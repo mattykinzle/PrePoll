@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom'
-import logo from './logo.svg';
 import './App.css';
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Members from "./pages/Members";
 import { useStoreContext } from './utils/GlobalStore';
+import API from './utils/API';
 
 
 function App() {
@@ -16,23 +16,25 @@ function App() {
     const [state, dispatch] = useStoreContext();
     useEffect(() => {
         // Try getting our user-data, if the user is logged in, we will update our GlobalStore to refelct that
+        API.checkUserInfo().then(response => {
+            console.log(response);
+        })
     }, []);
 
     return (
-        
-            <Router>
-                <div>
-                    <Route path="/" component={Login} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/signup" component={Signup} />
-                    {
-                        // Todo: make this a protected route based off of the context
-                    }
-                    <Route path="/members" component={Members} /> 
-                    
-                </div>
-            </Router>
-        </StoreProvider>
+
+        <Router>
+            <div>
+                <Route path="/" component={Login} />
+                <Route path="/login" component={Login} />
+                <Route path="/signup" component={Signup} />
+                {
+                    // Todo: make this a protected route based off of the context
+                }
+                <Route path="/members" component={Members} />
+
+            </div>
+        </Router>
     );
 }
 
