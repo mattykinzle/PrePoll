@@ -19,22 +19,16 @@ function Signup() {
             password: passwordRef.current.value
         };
         API.signup(signupData).then(response => {
-            // Dispath a logged in action if 
-            console.log(response);
-            setShowError(false);
-            if (response.status === 200) {
-                const { email } = response.data;
-                dispatch({
-                    type: AUTH_SET_LOGGED_IN,
-                    data: {
-                        email
-                    }
-                });
-            } else {
-                // TODO: handle the error
-                setShowError(true);
-                setErrorMessage("An error occurred while signing up");
-            }
+            const { email } = response.data;
+            dispatch({
+                type: AUTH_SET_LOGGED_IN,
+                data: {
+                    email
+                }
+            });
+        }).catch(err => {
+            setShowError(true);
+            setErrorMessage("An error occurred while signing up");
         })
     }
 
