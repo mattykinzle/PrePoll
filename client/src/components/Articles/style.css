@@ -1,0 +1,31 @@
+.artImg {
+    overflow: hidden;
+    border-radius: 10px;
+    max-width: 185px;
+}
+
+.card {
+    max-width: 40%;
+    margin-bottom: 10px;
+}
+
+.searchBar {
+    width: 60%;
+    margin-bottom: 30px;
+}
+
+.search-field {
+    margin-left: 5px;
+}
+
+.searchForm {
+    margin-bottom: 20px;
+}
+
+.newsRow {
+    margin-bottom: 10px;
+}
+
+.newsInfo {
+    margin-left: 10px;
+}
