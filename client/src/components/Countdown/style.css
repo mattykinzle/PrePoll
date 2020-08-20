@@ -1,0 +1,19 @@
+.countdown {
+    text-align: center;
+    background-image: url(https://i.pinimg.com/originals/28/f6/c3/28f6c3b7295a3cc896f9613e83a5c32e.jpg);
+    /* background-color: #00296b;  */
+    color: #d90429;
+    font-size: 36px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.countHeader {
+    font-size: 48px;
+    color: white;
+}
+
+.left {
+    background-color: #d90429; 
+}

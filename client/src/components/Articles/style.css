@@ -1,12 +1,7 @@
 .artImg {
-    overflow: hidden;
     border-radius: 10px;
-    max-width: 185px;
-}
-
-.card {
-    max-width: 40%;
-    margin-bottom: 10px;
+    width: 100%;
+    margin-bottom: 10px
 }
 
 .searchBar {
@@ -24,6 +19,7 @@
 
 .newsRow {
     margin-bottom: 10px;
+    display: flex;
 }
 
 .newsInfo {
