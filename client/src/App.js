@@ -56,7 +56,8 @@ function App() {
                         // if the user is Logged out
                         <>
                             <b>Welcome Guest!</b> &nbsp;&nbsp;&nbsp;
-                                <Link to="/login">Login</Link> | <Link to="/signup">Signup</Link>
+                                <Link to="/login">Login</Link> |
+                                <Link to="/signup">Signup</Link>
                         </>
                     ) : (
                             // If the user is Logged In

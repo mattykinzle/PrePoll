@@ -59,8 +59,20 @@ module.exports = function (app) {
     console.log('Were here api Route')
     db.Censuscounties.findAll({ where: [{ county: req.params.county }] })
       .then(response => {
-        console.log(response);
+        // console.log(response);
         res.json(response);
+      }).catch(err => {
+        console.log(err);
+      })
+
+  })
+
+  //get route to get all counties
+  app.get("/api/census/", (req, res) => {
+    db.Censuscounties.findAll({ attributes: ["county"] })
+      .then(response => {
+        console.log(response);
+        res.json(response)
       }).catch(err => {
         console.log(err);
       })
