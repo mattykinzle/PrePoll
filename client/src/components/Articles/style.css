@@ -25,3 +25,12 @@
 .newsInfo {
     margin-left: 10px;
 }
+
+.sideBar {
+    width: 100%;
+    overflow: hidden;
+}
+
+.sideImg {
+    height: 230px;
+}
