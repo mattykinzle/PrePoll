@@ -30,7 +30,9 @@ Create Table Censuscounties (
     uninsuredpme DECIMAL,
     belowpovertyline DECIMAL,
     belowpovertylinepme DECIMAL,
+    
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+
 
 );
 

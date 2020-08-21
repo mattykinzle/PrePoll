@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Members from "./pages/Members";
 import News from "./pages/News";
+import CensusInfo from "./pages/Info";
 import Landing from "./pages/Landing";
 import History from "./pages/History";
 import { useStoreContext } from './utils/GlobalStore';
@@ -96,6 +97,7 @@ function App() {
                 </Switch>
 
                 <Route exact path="/news" component={News} />
+                <Route exact path="/info" component={CensusInfo} />
                 <Route exact path="/landing" component={Landing} />
                 <Route exact path="/history" component={History} />
 
