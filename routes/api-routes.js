@@ -55,4 +55,16 @@ module.exports = function (app) {
     })
   });
 
+  app.get("/api/census/:county", (req, res) => {
+    console.log('Were here api Route')
+    db.Censuscounties.findAll({ where: [{ county: req.params.county }] })
+      .then(response => {
+        console.log(response);
+        res.json(response);
+      }).catch(err => {
+        console.log(err);
+      })
+
+  })
+
 };
