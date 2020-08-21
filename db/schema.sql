@@ -4,8 +4,6 @@ CREATE DATABASE Project3Dev;
 USE Project3Dev;
 
 Create Table Censuscounties (
-
-    
     geoid VARCHAR(100),
     county VARCHAR(100),
     totalpopulation INT,
@@ -32,7 +30,19 @@ Create Table Censuscounties (
     belowpovertylinepme DECIMAL,
     
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
-
-
 );
+
+Create Table BallotData (
+  election VARCHAR(100),
+  officeType VARCHAR(100),
+  candidate VARCHAR(100),
+  county VARCHAR(100),
+  email VARCHAR(100),
+  party VARCHAR(100),
+  city VARCHAR(100),
+  occupation VARCHAR(100),
+  isIncumbent VARCHAR(100),
+  id INTEGER PRIMARY KEY AUTO_INCREMENT
+);
+
 
