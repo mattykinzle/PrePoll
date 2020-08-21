@@ -6,6 +6,8 @@ import Signup from "./pages/Signup";
 import Members from "./pages/Members";
 import News from "./pages/News";
 import CensusInfo from "./pages/Info";
+import Landing from "./pages/Landing";
+import History from "./pages/History";
 import { useStoreContext } from './utils/GlobalStore';
 import API from './utils/API';
 import { AUTH_SET_LOGGED_IN, AUTH_SET_LOGGED_OUT } from "./utils/actions";
@@ -96,6 +98,8 @@ function App() {
 
                 <Route exact path="/news" component={News} />
                 <Route exact path="/info" component={CensusInfo} />
+                <Route exact path="/landing" component={Landing} />
+                <Route exact path="/history" component={History} />
 
             </div>
         </Router>

@@ -42,32 +42,68 @@ function Articles() {
                     articles.map((article, a) => (
                         <div key={a}>
 
-                            <div className="row newsRow">
-
-                                <div className="col-sm-12 col-lg-2 newsImg">
-                                    <div className="img-fluid">
-                                        <img src={article.urlToImage} alt={article.title} className="artImg img-fluid" />
+                            <div className="col-md-8">
+                                <div className="row">
+                                    <div className="col-md-2">
+                                        <div className="img-fluid">
+                                            <img src={article.urlToImage} alt={article.title} className="artImg img-fluid" />
+                                        </div>
                                     </div>
-                                    <a href={article.url} className="btn btn-primary">Click to Read</a>
+                                    <div className="col-md-6">
+                                        <p className="title"><strong>Title: </strong>{article.title}</p>
+                                        <p className="author"><strong>Author: </strong>{article.author}</p>
+                                        <p className="source"><strong>Source: </strong>{article.source.name}</p>
+                                        <p className="published"><strong>Date Published: </strong>{article.publishedAt}</p>
+                                        <p className="published"><strong>About: </strong>{article.content}</p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="col-md-4 sideBar">
+                                <div className="row">
+                                    <div className="col-md-4">
+                                        <div className="container">
+                                            <img src={article.urlToImage} alt={article.title} className="img-fluid sideImg" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* <div className="container">
+
+                                <div className="row newsRow">
+
+                                    <div className="col-sm-12 col-lg-2 newsImg">
+                                        <div className="img-fluid">
+                                            <img src={article.urlToImage} alt={article.title} className="artImg img-fluid" />
+                                        </div>
+                                        <a href={article.url} className="btn btn-primary">Click to Read</a>
+                                    </div>
+
+                                    <div className="col-lg-6 d-none d-lg-block newsInfo">
+                                        <p className="title"><strong>Title: </strong>{article.title}</p>
+                                        <p className="author"><strong>Author: </strong>{article.author}</p>
+                                        <p className="source"><strong>Source: </strong>{article.source.name}</p>
+                                        <p className="published"><strong>Date Published: </strong>{article.publishedAt}</p>
+                                        <p className="published"><strong>About: </strong>{article.content}</p>
+                                    </div>
+
                                 </div>
 
-                                <div className="col-sm-12 col-lg-6 newsInfo">
-                                    <p className="title"><strong>Title: </strong>{article.title}</p>
-                                    <p className="author"><strong>Author: </strong>{article.author}</p>
-                                    <p className="source"><strong>Source: </strong>{article.source.name}</p>
-                                    <p className="published"><strong>Date Published: </strong>{article.publishedAt}</p>
-                                    <p className="published"><strong>About: </strong>{article.content}</p>
-                                </div>
+                            </div>
+
+                            <div className="container">
 
                                 <div className="col-lg-4 d-none d-lg-block newsVid">
                                     <div className="img-fluid">
                                         <img src={article.urlToImage} alt={article.title} className="artImg img-fluid" />
                                     </div>
                                 </div>
+                            </div> */}
 
-
-                            </div>
                         </div>
+
                     ))
                 }
             </div>
