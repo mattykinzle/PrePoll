@@ -16,8 +16,8 @@
     display: flex;
     flex-direction: column;
     max-width: 80%;
-    background-color: turquoise;
-    border-radius: 5px;
+    background-color: white;
+    border-radius: 7px;
     width: 400px;
     padding: 15px;
     position: relative;
@@ -26,7 +26,7 @@
 
 .timeline-item-content::after {
     content: " ";
-    background-color: turquoise;
+    background-color: white;
     position: absolute;
     transform: rotate(45deg);
     width: 15px;
@@ -55,4 +55,23 @@
 .timeline-item:nth-child(odd) .timeline-item-content .circle {
     right: auto;
     left: -45px;
+}
+
+.timeline-text {
+color: black;
+}
+
+.date {
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.header {
+    font-size: 28px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.bodyText {
+    font-size: 18px;
 }

@@ -101,6 +101,7 @@ function App() {
                 <Route exact path="/landing" component={Landing} />
                 <Route exact path="/history" component={History} />
 
+
             </div>
         </Router>
     );
