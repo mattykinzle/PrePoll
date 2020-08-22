@@ -7,7 +7,7 @@ const { Provider } = StoreContext;
 // This is a PURE function that takes in an action and creates the next state
 // whenever a new action is "dispatched", the GlobalStore will update and the whole application will re-render.
 const reducer = (state, action) => {
-    switch(action.type){
+    switch (action.type) {
         case AUTH_SET_LOGGED_IN:
             return {
                 ...state,
@@ -26,7 +26,7 @@ const reducer = (state, action) => {
 }
 
 // Setup the provider component for our apps store
-const StoreProvider = ({value, ...props}) => {
+const StoreProvider = ({ value, ...props }) => {
     // What the react app view model starts as
     const initialState = value || {
         userLoggedIn: false,

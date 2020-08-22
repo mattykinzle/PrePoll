@@ -55,6 +55,7 @@ module.exports = function (app) {
     })
   });
 
+  //route to get census data by county
   app.get("/api/census/:county", (req, res) => {
     console.log('Were here api Route')
     db.Censuscounties.findAll({ where: [{ county: req.params.county }] })
@@ -67,10 +68,11 @@ module.exports = function (app) {
 
   })
 
-  //get route to get all counties
+  //get route to get all counties from census data
   app.get("/api/census/", (req, res) => {
     db.Censuscounties.findAll({ attributes: ["county"] })
       .then(response => {
+        console.log('backend census stuff')
         console.log(response);
         res.json(response)
       }).catch(err => {
