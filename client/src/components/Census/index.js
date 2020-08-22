@@ -8,43 +8,36 @@ import { Button } from "react-bootstrap"
 function Census() {
 
     const [censusData, setcensusData] = useState([]);
-    const [county, setCounty] = useState('Williamson County');
+    const [county, setCounty] = useState("Williamson County");
     const [countyList, setCountyList] = useState([]);
 
 
     useEffect(() => {
-        // getCensus();
+        getCensus();
         getCounties();
     }, []);
 
 
     //to get data based on users county selection
-    function getCensus() {
-        if (county === 'undefined') {
-            axios.get('/api/census/' + 'Williamson County').then(res => res.data)
-                .then(response => {
-                    setcensusData(response);
-                    // console.log(response.data);
-                })
-        } else {
-            axios.get('/api/census/' + county).then((response) => {
+    function getCensus(e) {
 
-                setcensusData(response.data);
-                // console.log(response.data);
 
-            }).catch(err => {
-                console.log(err);
-            });
+        axios.get('/api/census/' + e).then((response) => {
 
-        }
-        console.log("Heres the census data")
-        console.log(censusData)
+            setcensusData(response.data);
+            console.log(response.data);
+
+        }).catch(err => {
+            console.log(err);
+        });
+
     };
 
 
 
     //get all counties from db
     function getCounties() {
+        if (countyList.length) { return }
         axios.get("/api/census/").then(res => res.data)
             .then(response => {
                 console.log(response);
@@ -53,23 +46,38 @@ function Census() {
             })
         console.log("Heres the county list")
         console.log(countyList);
+
     };
 
 
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        console.log(county)
+        getCensus(county)
+
+    }
+
     return (
         <>
-            <form >
-                <Dropdown listOfCounties={countyList} />
+            <form onSubmit={e => handleFormSubmit(e)}>
+                <Dropdown countyList={countyList} county={county} setCounty={setCounty} />
                 <Button type="submit" value="Submit" />
             </form>
-            {/* <div className="chart">
-                <Doughnut
 
-                    data={censusData.insured}
-                    options={{ maintainAspectRatio: false }}
+            <div className="chart">
+                {/* {censusData[0] ?
+                    <Doughnut
 
-                />
-            </div> */}
+                        data={censusData[0].insured}
+                        options={{ maintainAspectRatio: false }}
+                        width={500}
+                        height={500}
+
+                    />
+                    :
+                    <p>Select a County</p>
+                } */}
+            </div>
         </>
     )
 

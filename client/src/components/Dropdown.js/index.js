@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 
 
 
-function Dropdown({ countyList }) {
+function Dropdown({ countyList, county, setCounty }) {
     console.log(countyList);
 
     function changeCounty(e) {
-        console.log(e)
-        // setCounty(e.target.name)
+        console.log(e.target.value)
+        setCounty(e.target.value)
     }
 
 
@@ -19,12 +19,12 @@ function Dropdown({ countyList }) {
                         Select A County
             </label>
 
-                    <select name="theCounty" >
+                    <select name="theCounty" value={county} onChange={e => changeCounty(e)} >
 
                         {
                             countyList.map((county, index) => (
 
-                                <option key={index} value={county}> {county.county} </option>
+                                <option key={index} value={county.county}> {county.county} </option>
 
 
                             ))
