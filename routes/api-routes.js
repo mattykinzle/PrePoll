@@ -14,6 +14,11 @@ module.exports = function (app) {
   // otherwise send back an error
   app.post("/api/signup", function (req, res) {
     db.User.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      address: req.body.address,
+      city: req.body.city,
+      zip: req.body.zip,
       email: req.body.email,
       password: req.body.password
     })
@@ -48,12 +53,25 @@ module.exports = function (app) {
 
   //Route to call News API
   app.get("/api/news", (req, res) => {
-    axios.get("http://newsapi.org/v2/everything?q=election&from=2020-08-14&to=2020-08-19&sortBy=popularity&apiKey=" + process.env.NEWS_API_KEY).then(response => {
+    axios.get("http://newsapi.org/v2/everything?q=election&from=2020-08-15&to=2020-08-21&sortBy=popularity&apiKey=" + process.env.NEWS_API_KEY).then(response => {
       res.json(response.data)
     }).catch(err => {
       res.status(err.status).send(err.message)
     })
   });
+
+
+
+
+  //Route to call News API
+  app.get("/api/gnews", (req, res) => {
+    axios.get("https://gnews.io/api/v3/search?q=election&lang=en&country=us&max=5&token=" + process.env.GNEWS_API_KEY).then(response => {
+      res.json(response.data)
+    }).catch(err => {
+      res.status(err.status).send(err.message)
+    })
+  });
+
 
   //route to get census data by county
   app.get("/api/census/:county", (req, res) => {

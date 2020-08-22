@@ -5,6 +5,7 @@ import { Doughnut } from "react-chartjs-2";
 import Dropdown from "../Dropdown.js";
 import { Button } from "react-bootstrap"
 
+
 function Census() {
 
     const [censusData, setcensusData] = useState([]);
@@ -59,6 +60,7 @@ function Census() {
 
     return (
         <>
+
             <form onSubmit={e => handleFormSubmit(e)}>
                 <Dropdown countyList={countyList} county={county} setCounty={setCounty} />
                 <Button type="submit" value="Submit" />
@@ -77,6 +79,7 @@ function Census() {
                     :
                     <p>Select a County</p>
                 } */}
+
             </div>
         </>
     )

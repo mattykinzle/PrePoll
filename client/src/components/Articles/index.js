@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import API from '../../utils/API.js';
-import Countdown from "../Countdown/index.";
-import Navbar from "../Navbar/index.js";
+import Form from "react-bootstrap/Form"
+import Col from "react-bootstrap/Col"
+import Row from "react-bootstrap/Row"
+import Button from "react-bootstrap/Button"
+import Container from "react-bootstrap/Container"
 
 function Articles() {
     const [articles, setArticles] = useState([]);
@@ -22,91 +25,58 @@ function Articles() {
 
     return (
         <>
-            <Navbar />
-            <Countdown />
 
-            <div className="container-fluid">
+            <Container fluid className="main">
 
-                <form className="form-inline searchForm">
-                    <div className="form-group">
-                        <label for="search">Search:</label>
-                        <input type="search" className="form-control search-field" id="newsSearchBar" aria-describedby="newsSearch" />
-                    </div>
-                    <button type="submit" className="btn btn-primary search-field">Submit</button>
-                </form>
-            </div>
+                <Container fluid >
 
-            <div className="container-fluid">
+                    <Form className="form searchForm">
 
-                {
-                    articles.map((article, a) => (
-                        <div key={a}>
+                        <Form.Group as={Row} controlId="searchbar">
+                            <Col md="7">
+                                <Form.Control type="search" placeholder="Search" />
+                            </Col>
+                            <Button variant="primary" type="submit">
+                                Submit
+                        </Button>
+                        </Form.Group>
 
-                            <div className="col-md-8">
-                                <div className="row">
-                                    <div className="col-md-2">
-                                        <div className="img-fluid">
+                    </Form>
+
+                </Container>
+
+                <Container fluid className="sideBar">
+
+                    {
+                        articles.map((article, a) => (
+                            <div key={a}>
+                                <Col md="10">
+                                    <Row className="newsRow">
+                                        <Col md="4">
                                             <img src={article.urlToImage} alt={article.title} className="artImg img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p className="title"><strong>Title: </strong>{article.title}</p>
-                                        <p className="author"><strong>Author: </strong>{article.author}</p>
-                                        <p className="source"><strong>Source: </strong>{article.source.name}</p>
-                                        <p className="published"><strong>Date Published: </strong>{article.publishedAt}</p>
-                                        <p className="published"><strong>About: </strong>{article.content}</p>
+                                            <p className="author"><strong>Author: </strong>{article.author}</p>
 
-                                    </div>
-                                </div>
+                                        </Col>
+                                        <Col md="6" className="newsInfo">
+                                            <p className="title"><strong>Title: </strong>{article.title}</p>
+                                            <p className="source"><strong>Source: </strong>{article.source.name}</p>
+                                            <p className="published"><strong>Date Published: </strong>{article.publishedAt}</p>
+                                            <p className="published"><strong>About: </strong>{article.content}</p>
+                                            <a href={article.url} className="btn btn-primary">Click to Read</a>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                                <Col md="2">
+                                    <Col md="2">
+                                        <p>Hello world</p>
+                                    </Col>
+                                </Col>
                             </div>
 
-                            <div className="col-md-4 sideBar">
-                                <div className="row">
-                                    <div className="col-md-4">
-                                        <div className="container">
-                                            <img src={article.urlToImage} alt={article.title} className="img-fluid sideImg" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* <div className="container">
-
-                                <div className="row newsRow">
-
-                                    <div className="col-sm-12 col-lg-2 newsImg">
-                                        <div className="img-fluid">
-                                            <img src={article.urlToImage} alt={article.title} className="artImg img-fluid" />
-                                        </div>
-                                        <a href={article.url} className="btn btn-primary">Click to Read</a>
-                                    </div>
-
-                                    <div className="col-lg-6 d-none d-lg-block newsInfo">
-                                        <p className="title"><strong>Title: </strong>{article.title}</p>
-                                        <p className="author"><strong>Author: </strong>{article.author}</p>
-                                        <p className="source"><strong>Source: </strong>{article.source.name}</p>
-                                        <p className="published"><strong>Date Published: </strong>{article.publishedAt}</p>
-                                        <p className="published"><strong>About: </strong>{article.content}</p>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div className="container">
-
-                                <div className="col-lg-4 d-none d-lg-block newsVid">
-                                    <div className="img-fluid">
-                                        <img src={article.urlToImage} alt={article.title} className="artImg img-fluid" />
-                                    </div>
-                                </div>
-                            </div> */}
-
-                        </div>
-
-                    ))
-                }
-            </div>
+                        ))
+                    }
+                </Container>
+            </Container>
         </>
     )
 }

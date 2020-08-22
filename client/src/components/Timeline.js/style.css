@@ -1,4 +1,4 @@
-body {
+.timeline-main {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,10 +17,11 @@ body {
     flex-direction: column;
     position: relative;
     margin: 40px 0;
+    width: 100%;
 }
 
 .timeline-container::after {
-    background-color: tomato;
+    background-color: #d90429;
     content: "";
     position: absolute;
     left: calc(50% - 3px);

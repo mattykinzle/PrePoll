@@ -42,7 +42,7 @@
 
 .timeline-item-content .circle {
     background-color: white;
-    border: 3px solid red;
+    border: 3px solid #d90429;
     height: 30px;
     width: 30px;
     border-radius: 50%;
@@ -74,4 +74,23 @@ color: black;
 
 .bodyText {
     font-size: 18px;
+}
+
+.history-btn {
+    background-color: #00296b;
+    border-color: #00296b;
+    color: white;
+    font-size: 13px;
+    border-radius: 5px;
+    text-transform: capitalize;
+    width: 50%;
+    align-self: center;
+}
+
+.history-btn:hover {
+    background-color: #00296b;
+    border-color: #00296b;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
 }
