@@ -53,12 +53,22 @@ module.exports = function (app) {
 
   //Route to call News API
   app.get("/api/news", (req, res) => {
-    axios.get("http://newsapi.org/v2/everything?q=election&from=2020-08-14&to=2020-08-19&sortBy=popularity&apiKey=" + process.env.NEWS_API_KEY).then(response => {
+    axios.get("http://newsapi.org/v2/everything?q=election&from=2020-08-15&to=2020-08-21&sortBy=popularity&apiKey=" + process.env.NEWS_API_KEY).then(response => {
       res.json(response.data)
     }).catch(err => {
       res.status(err.status).send(err.message)
     })
   });
+
+  //Route to call News API
+  app.get("/api/gnews", (req, res) => {
+    axios.get("https://gnews.io/api/v3/search?q=election&lang=en&country=us&max=5&token=" + process.env.GNEWS_API_KEY).then(response => {
+      res.json(response.data)
+    }).catch(err => {
+      res.status(err.status).send(err.message)
+    })
+  });
+
 
   app.get("/api/census/:county", (req, res) => {
     console.log('Were here api Route')

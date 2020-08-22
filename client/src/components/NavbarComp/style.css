@@ -1,22 +1,28 @@
 .navbar {
     background-color: #a3a4a5;
-    height: 80px;
+    margin-bottom: 0;
 }
 
 .nav-link {
     margin-right: 5px;
-    line-height: 80px;
-    font-size: 24px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.log-link {
     color: white;
     text-decoration: none;
 }
 
 .navbar-nav {
+    float: right;
+    margin-right: 5px;
+    padding-top: 5px;
 }
 
 .navbar-brand {
-    line-height: 43px;
-    font-size: 34px;
+    font-size: 28px;
 }
 
 .red {
