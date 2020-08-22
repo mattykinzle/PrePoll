@@ -1,10 +1,17 @@
+.main {
+/* background-image: url(https://i.pinimg.com/originals/11/b6/76/11b6769c8f2ea91b25fa0bb10bcaf4ab.jpg); */
+background-color: #c0c0c0;
+}
+
 .artImg {
     border-radius: 10px;
     width: 100%;
-    margin-bottom: 10px
+    overflow: hidden;
+    margin-bottom: 5px;
 }
 
-.searchBar {
+.searchForm {
+    margin-top: 20px;
     width: 60%;
     margin-bottom: 30px;
 }
@@ -18,17 +25,25 @@
 }
 
 .newsRow {
+    background-color: white;
     margin-bottom: 10px;
-    display: flex;
+    margin-left: 0px;
+    margin-right: 0px;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .newsInfo {
-    margin-left: 10px;
+    background-color: #1d3557;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
 }
 
 .sideBar {
-    width: 100%;
-    overflow: hidden;
+display: flex;
+flex-wrap: wrap;
 }
 
 .sideImg {

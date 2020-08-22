@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import Navbar from "../Navbar";
+import Navbar from "../NavbarComp";
 import axios from "axios";
-import { Doughnut } from "react-chartjs-2"
+// import { Doughnut } from "react-chartjs-2"
 
 function Census() {
 
@@ -39,7 +39,6 @@ function Census() {
 
     return (
         <>
-            <Navbar />
             {/* <InputGroup className="md-3">
             <DropdownButton
             as={InputGroup.Prepend}
@@ -50,12 +49,12 @@ function Census() {
             <Dropdown.Item href="#">Action</Dropdown.Item>
             </InputGroup> */}
             <div className="chart">
-                <Doughnut
+                {/* <Doughnut */}
 
                     data={censusData.insured}
                     options={{ maintainAspectRatio: false }}
 
-                />
+                {/* /> */}
             </div>
         </>
     )

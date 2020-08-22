@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
+import Jumbotron from "react-bootstrap/Jumbotron"
+import Container from "react-bootstrap/Container"
 
 function Countdown() {
 
@@ -45,11 +47,13 @@ function Countdown() {
     });
 
     return (
-        <div className="container-fluid countdown">
-            <div className="row">
-                <h1 className="countHeader">2020 US Presidential Election Countdown</h1>
+        <div>
+            <Jumbotron fluid className="countdown">
+                <Container className="countHeader">
+                    <h1 className="countHeader">2020 US Presidential Election Countdown</h1>
+                </Container>
                 <strong>{timerComponents.length ? timerComponents : <span>Time's up!</span>}</strong>
-            </div>
+            </Jumbotron>
         </div>
     )
 
