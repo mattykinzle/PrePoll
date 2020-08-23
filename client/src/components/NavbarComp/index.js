@@ -99,7 +99,7 @@ function NavbarComp() {
                                         <Link className="nav-link active" to="/vote">Vote  |</Link>
                                         <Link className="nav-link active" to="/info">Info  |</Link>
                                         <Link className="nav-link active" to="/history">History</Link>
-                                        <Link to="/members">Members</Link> | <a onClick={() => logout()} href="#">Logout</a>
+                                        <Link className="log-link active" to="/members">Members</Link> | <a className="log-link" onClick={() => logout()} href="/">Logout</a>
 
                                     </Nav>
 
@@ -114,27 +114,32 @@ function NavbarComp() {
                         !state.userLoggedIn ? (
                             // These routes are only avaialable to LOGGED OUT users
                             <>
+                                <Route exact path="/" component={Landing} />
                                 <Route exact path="/login" component={Login} />
                                 <Route exact path="/signup" component={Signup} />
+                                <Route exact path={["/members", "/news", "/info", "/landing", "/history"]}>
+                                    {/* If you are logged in, going to the login/signup page will take you to the members page */}
+                                    <Redirect to="/login" />
+                                </Route>
+
                             </>
                         ) : (
                                 // These routes are only available to LOGGED IN users
                                 <>
                                     <Route exact path={["/login", "/signup"]}>
                                         {/* If you are logged in, going to the login/signup page will take you to the members page */}
-                                        <Redirect to="/members" />
+                                        <Redirect to="/" />
                                     </Route>
+                                    <Route exact path="/" component={Landing} />
                                     <Route exact path="/members" component={Members} />
+                                    <Route exact path="/news" component={News} />
+                                    <Route exact path="/info" component={CensusInfo} />
+                                    <Route exact path="/history" component={History} />
+
                                 </>
                             )
                     }
                 </Switch>
-
-                <Route exact path="/" component={Landing} />
-                <Route exact path="/news" component={News} />
-                <Route exact path="/info" component={CensusInfo} />
-                <Route exact path="/landing" component={Landing} />
-                <Route exact path="/history" component={History} />
 
             </Router>
         </div>

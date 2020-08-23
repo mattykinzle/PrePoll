@@ -51,17 +51,15 @@ module.exports = function (app) {
     }
   });
 
-  //Route to call News API
+  // Route to call News API
   app.get("/api/news", (req, res) => {
-    axios.get("http://newsapi.org/v2/everything?q=election&from=2020-08-15&to=2020-08-21&sortBy=popularity&apiKey=" + process.env.NEWS_API_KEY).then(response => {
+    console.log(req.body);
+    axios.get("https://newsapi.org/v2/top-headlines?q=election&apiKey=" + process.env.NEWS_API_KEY).then(response => {
       res.json(response.data)
     }).catch(err => {
       res.status(err.status).send(err.message)
     })
   });
-
-
-
 
   //Route to call News API
   app.get("/api/gnews", (req, res) => {
@@ -100,3 +98,5 @@ module.exports = function (app) {
   })
 
 };
+
+// bing 3898b393ea014ed68631a30d65665d94

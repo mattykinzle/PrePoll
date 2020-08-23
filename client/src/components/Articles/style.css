@@ -1,5 +1,4 @@
 .main {
-/* background-image: url(https://i.pinimg.com/originals/11/b6/76/11b6769c8f2ea91b25fa0bb10bcaf4ab.jpg); */
 background-color: #c0c0c0;
 }
 
@@ -39,11 +38,24 @@ background-color: #c0c0c0;
     padding: 10px;
     color: white;
     font-size: 16px;
+    width: 66%;
 }
 
-.sideBar {
+.mainNews {
 display: flex;
 flex-wrap: wrap;
+}
+
+/* .sideBar {
+    background-color: white;
+    border-radius: 5px;
+} */
+
+.sideBarRow {
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
 }
 
 .sideImg {

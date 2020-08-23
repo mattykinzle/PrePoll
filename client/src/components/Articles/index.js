@@ -6,22 +6,36 @@ import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
+import SearchResults from "../SearchResults";
+
 
 function Articles() {
     const [articles, setArticles] = useState([]);
+    const [search, setSearch] = useState("")
 
     useEffect(() => {
-        loadArticles()
+        loadArticles("")
     }, [])
 
-    const loadArticles = () => {
-        API.articles()
+    const loadArticles = (search) => {
+        API.articles(search)
             .then(res => {
                 setArticles(res.data.articles)
-                console.log(res.data.articles)
             })
             .catch(err => console.log(err));
     }
+
+    const handleInputChange = event => {
+        event.preventDefault();
+        setSearch(event.target.value);
+    }
+
+    // const handleFormSubmit = event => {
+    //     event.preventDefault();
+    //     loadArticles(search);
+
+    // }
+
 
     return (
         <>
@@ -34,48 +48,42 @@ function Articles() {
 
                         <Form.Group as={Row} controlId="searchbar">
                             <Col md="7">
-                                <Form.Control type="search" placeholder="Search" />
+                                <Form.Control
+                                    value={search}
+                                    onChange={handleInputChange}
+                                    type="text"
+                                    placeholder="Search" />
                             </Col>
-                            <Button variant="primary" type="submit">
+                            <Button
+                                variant="primary"
+                                type="search"
+                            // onClick={handleFormSubmit}
+                            >
                                 Submit
-                        </Button>
+                            </Button>
                         </Form.Group>
 
                     </Form>
 
                 </Container>
 
-                <Container fluid className="sideBar">
+                <Container fluid className="mainNews">
 
-                    {
-                        articles.map((article, a) => (
-                            <div key={a}>
-                                <Col md="10">
-                                    <Row className="newsRow">
-                                        <Col md="4">
-                                            <img src={article.urlToImage} alt={article.title} className="artImg img-fluid" />
-                                            <p className="author"><strong>Author: </strong>{article.author}</p>
+                    <SearchResults articles={articles} />
 
-                                        </Col>
-                                        <Col md="6" className="newsInfo">
-                                            <p className="title"><strong>Title: </strong>{article.title}</p>
-                                            <p className="source"><strong>Source: </strong>{article.source.name}</p>
-                                            <p className="published"><strong>Date Published: </strong>{article.publishedAt}</p>
-                                            <p className="published"><strong>About: </strong>{article.content}</p>
-                                            <a href={article.url} className="btn btn-primary">Click to Read</a>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                                <Col md="2">
-                                    <Col md="2">
-                                        <p>Hello world</p>
-                                    </Col>
-                                </Col>
-                            </div>
+                    <Col md="2" className="sideBar">
 
-                        ))
-                    }
+                        <Row className="sideBarRow">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        </Row>
+                        <Row className="sideBarRow">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        </Row>
+
+                    </Col>
+
                 </Container>
+
             </Container>
         </>
     )
