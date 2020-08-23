@@ -15,7 +15,7 @@ function Signup() {
     const zipRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
-    
+
     const [, dispatch] = useStoreContext();
 
     const handleSignup = (event) => {
@@ -74,8 +74,8 @@ function Signup() {
                             <label htmlFor="inputZip">Zip Code</label>
                             <input type="text" className="form-control" placeholder="Zip Code" ref={zipRef} />
                         </div>
-                         {/* Email  */}
-                         <div className="form-group">
+                        {/* Email  */}
+                        <div className="form-group">
                             <label htmlFor="inputEmail">Email address</label>
                             <input type="email" className="form-control" placeholder="Email" ref={emailRef} />
                         </div>

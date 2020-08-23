@@ -1,6 +1,7 @@
 .navbar {
     background-color: #a3a4a5;
     margin-bottom: 0;
+    border-radius: 0px;
 }
 
 .nav-link {

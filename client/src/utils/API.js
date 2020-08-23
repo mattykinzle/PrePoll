@@ -14,8 +14,17 @@ export default {
     logout: () => {
         return axios.get("/logout");
     },
-    articles: function () {
-        return axios.get("api/news")
+    articles: function (search) {
+        console.log(search)
+        return axios.get("api/news", {
+            params: {
+                value: search
+            }
+        })
+    },
+    garticles: function () {
+        return axios.get("api/gnews")
     }
+
 
 }
