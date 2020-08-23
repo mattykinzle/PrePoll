@@ -3,34 +3,47 @@
 // import axios from 'axios';
 // import { Doughnut } from 'react-chartjs-2';
 
-// function Charts() {
-//     const [censusData, setcensusData] = useState([]);
-//     const [county, setCounty] = useState('Brazoria County');
+// function Charts({ setChartData, chartData }) {
+
+//     console.log('chartData');
+//     console.log(chartData);
 
 
-//     useEffect(() => {
 
-//         getCensus();
+//     setChartData(
+//         {
+//             name: 'Individuals With Health Insurance',
+//             data: {
+//                 datasets: [{
+//                     data: [chartData.insured, chartData.uninsured]
+//                 }],
+//                 labels: [
+//                     "Insured",
+//                     "Uninsured"
+//                 ]
+//             }
+//         }
+//     )
 
-//     }, []);
 
 
-//     function getCensus() {
 
-//         axios.get('/api/census/' + county).then((response) => {
-//             setcensusData(response.body);
-//             console.log(response);
-//         }).catch(err => {
-//             console.log(err);
-//         });
-//     };
+
+
+
 
 //     return (
-//         
+//         <>
+//             <Doughnut
+//                 data={chartData}
+//                 options={{
+//                     responsive: true,
+//                     maintainAspectRatio: true,
+//                 }}
 
-
-//     );
-
+//             />
+//         </>
+//     )
 
 
 

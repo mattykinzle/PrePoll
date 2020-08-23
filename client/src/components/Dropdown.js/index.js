@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 
 
 function Dropdown({ countyList, county, setCounty }) {
-    console.log(countyList);
+    // console.log(countyList);
 
     function changeCounty(e) {
-        console.log(e.target.value)
         setCounty(e.target.value)
     }
 
@@ -23,10 +22,7 @@ function Dropdown({ countyList, county, setCounty }) {
 
                         {
                             countyList.map((county, index) => (
-
                                 <option key={index} value={county.county}> {county.county} </option>
-
-
                             ))
                         }
 
@@ -37,12 +33,8 @@ function Dropdown({ countyList, county, setCounty }) {
             </div>
 
             }
-
         </>
-
-
     )
-
 }
 
 export default Dropdown;
