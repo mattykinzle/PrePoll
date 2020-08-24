@@ -1,0 +1,27 @@
+.title {
+    font-size: 20px ;
+}
+
+.about {
+    font-size: 14px;
+}
+
+.published {
+    font-size: 12px;
+}
+
+.source {
+    font-size: 12px;
+}
+
+.article-btn {
+    background-color: red;
+    border-color: red;
+    color: white;
+    text-transform: capitalize;
+}
+
+.article-btn:hover {
+    text-transform: uppercase;
+    color: white;
+}

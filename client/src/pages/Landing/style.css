@@ -1,0 +1,12 @@
+.thingsToDo {
+    width: 100%;
+}
+
+.landingRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardImg {
+    width: 100%;
+}

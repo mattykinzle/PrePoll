@@ -1,0 +1,16 @@
+.mainArticles {
+background-color: #66c8e9;
+border-radius: 10px;
+}
+
+.articleCol {
+    padding: 10px;
+}
+
+.landingImg {
+    border-radius: 5px;
+}
+
+.card {
+    color: black;
+}
