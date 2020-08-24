@@ -70,6 +70,26 @@ module.exports = function (app) {
     })
   });
 
+  //Route to save article
+  app.post('/api/saveArticle', function (req, res) {
+    db.Article.create({
+      title: req.body.title,
+      source: req.body.source.name,
+      author: req.body.author,
+      content: req.body.content,
+      publishedAt: req.body.publishedAt,
+      img: req.body.urlToImage,
+      UserId: req.user.id
+    })
+      .then(function (results) {
+        //console.log(results);
+        res.json(results);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  });
+
 
   //route to get census data by county
   app.get("/api/census/:county", (req, res) => {
