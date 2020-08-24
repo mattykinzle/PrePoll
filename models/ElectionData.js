@@ -10,7 +10,11 @@ module.exports = function (sequelize, DataTypes) {
     city: DataTypes.STRING,
     occupation: DataTypes.STRING,
     isIncumbent: DataTypes.STRING,
-  });
+
+  },
+    {
+      timestamps: false
+    });
   return ElectionData;
 }
 
