@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row"
 import "./style.css";
 
 function SearchResults(props) {
+    console.log(props)
 
     return (
         <>
@@ -25,7 +26,7 @@ function SearchResults(props) {
                                 <p className="source"><strong>Source: </strong>{article.source.name}</p>
                                 <p className="published"><strong>Date Published: </strong>{article.publishedAt}</p>
                                 <p className="published"><strong>About: </strong>{article.content}</p>
-                                <a href={article.url} className="btn btn-primary">Click to Read</a>
+                                <a href={article.url} target="_blank" className="btn btn-primary">Click to Read</a>
                             </Col>
 
                         </Row>
