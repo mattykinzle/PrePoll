@@ -53,17 +53,26 @@ module.exports = function (app) {
 
   // Route to call News API
   app.get("/api/news", (req, res) => {
-    console.log(req.body);
-    axios.get("https://newsapi.org/v2/top-headlines?q=election&apiKey=" + process.env.NEWS_API_KEY).then(response => {
+    axios.get("https://newsapi.org/v2/everything?q=" + req.query.value + "&sortBy=popularity&apiKey=" + process.env.NEWS_API_KEY).then(response => {
       res.json(response.data)
     }).catch(err => {
       res.status(err.status).send(err.message)
     })
   });
 
-  //Route to call News API
-  app.get("/api/gnews", (req, res) => {
-    axios.get("https://gnews.io/api/v3/search?q=election&lang=en&country=us&max=5&token=" + process.env.GNEWS_API_KEY).then(response => {
+  // Route to call Bing News API
+  app.get("/api/bing", (req, res) => {
+    console.log(req)
+    axios.get('https://api.cognitive.microsoft.com/bing/v7.0/news/search', {
+      headers: {
+        'Ocp-Apim-Subscription-Key': process.env.BING_NEWS_API_KEY
+      },
+      params: {
+        count: 10,
+        mkt: 'en-US',
+        q: req.query.value
+      }
+    }).then(response => {
       res.json(response.data)
     }).catch(err => {
       res.status(err.status).send(err.message)
@@ -90,6 +99,22 @@ module.exports = function (app) {
       });
   });
 
+  //   axios.get("https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=" + req.query.value + "&key=" + process.env.BING_NEWS_API_KEY).then(response => {
+  //     res.json(response.data)
+  //   }).catch(err => {
+  //     res.status(err.status).send(err.message)
+  //   })
+  // });
+
+
+  //Route to call GNews API
+  app.get("/api/gnews", (req, res) => {
+    axios.get("https://gnews.io/api/v3/search?q=&lang=en&country=us&max=5&token=" + process.env.GNEWS_API_KEY).then(response => {
+      res.json(response.data)
+    }).catch(err => {
+      res.status(err.status).send(err.message)
+    })
+  });
 
   //route to get census data by county
   app.get("/api/census/:county", (req, res) => {

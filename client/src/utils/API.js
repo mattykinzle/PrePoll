@@ -15,16 +15,21 @@ export default {
         return axios.get("/logout");
     },
     articles: function (search) {
+        return axios.get("/api/news", {
+            params: {
+                value: search
+            }
+        })
+    },
+    barticles: function (search) {
         console.log(search)
-        return axios.get("api/news", {
+        return axios.get("/api/bing", {
             params: {
                 value: search
             }
         })
     },
     garticles: function () {
-        return axios.get("api/gnews")
+        return axios.get("/api/gnews")
     }
-
-
 }

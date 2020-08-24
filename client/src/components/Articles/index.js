@@ -14,7 +14,7 @@ function Articles() {
     const [search, setSearch] = useState("")
 
     useEffect(() => {
-        loadArticles("")
+        loadArticles("2020 election")
     }, [])
 
     const loadArticles = (search) => {
@@ -30,11 +30,11 @@ function Articles() {
         setSearch(event.target.value);
     }
 
-    // const handleFormSubmit = event => {
-    //     event.preventDefault();
-    //     loadArticles(search);
-
-    // }
+    const handleFormSubmit = event => {
+        event.preventDefault();
+        loadArticles(search);
+        setSearch("");
+    }
 
 
     return (
@@ -57,7 +57,7 @@ function Articles() {
                             <Button
                                 variant="primary"
                                 type="search"
-                            // onClick={handleFormSubmit}
+                                onClick={handleFormSubmit}
                             >
                                 Submit
                             </Button>
