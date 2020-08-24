@@ -15,9 +15,9 @@ function Dropdown({ countyList, county, setCounty }) {
         <>
             {countyList ?
                 <div>
-                    <label>
-                        Select A County
-            </label>
+                    <label >
+
+                    </label>
 
                     <select name="theCounty" value={county} onChange={e => changeCounty(e)} >
 
