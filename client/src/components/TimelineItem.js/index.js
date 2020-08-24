@@ -8,7 +8,7 @@ const TimelineItem = ({ data }) => (
             <p className="date timeline-text">{data.date}</p>
             <h3 className="header timeline-text">{data.header}</h3>
             <p className="bodyText timeline-text">{data.text}</p>
-            <Button variant="link" className="history-btn" href={data.url}>Learn More</Button>
+            <Button variant="link" className="history-btn" href={data.url} target="_blank">Learn More</Button>
             <span className="circle"></span>
         </div>
     </div>

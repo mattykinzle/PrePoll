@@ -1,49 +1,58 @@
 // import React, { useEffect, useState } from "react";
 // import "./style.css";
-// import axios from 'axios';
+// //  
 // import { Doughnut } from 'react-chartjs-2';
-
-// function Charts({ setChartData, chartData }) {
-
-//     console.log('chartData');
-//     console.log(chartData);
+// import React, { useEffect, useState, useRef } from "react";
+// // import data from "../../data";
 
 
 
-//     setChartData(
-//         {
-//             name: 'Individuals With Health Insurance',
-//             data: {
-//                 datasets: [{
-//                     data: [chartData.insured, chartData.uninsured]
-//                 }],
-//                 labels: [
-//                     "Insured",
-//                     "Uninsured"
-//                 ]
-//             }
+// function Charts(censusData) {
+//     const chartContainer = useRef(null);
+//     const [chartInstance, setChartInstance] = useState(null);
+
+//     const chartConfig = {
+//         type: 'Doughnut',
+//         // name: 'Individuals With Health Insurance',
+
+//         data: {
+//             datasets: [{
+//                 data: [censusData[0].insured, censusData[0].uninsured],
+//                 backgroundColor: ['#a3a4a5', '#d90429']
+//             }],
+//             labels: [
+//                 "Insured",
+//                 "Uninsured"
+//             ]
+
+//         },
+//         options = {
+//             responsive: true,
+//             maintainAspectRatio: false
 //         }
-//     )
 
+//     };
 
+//     useEffect(() =>{
 
+//     })
 
 
 
 
 
 //     return (
-//         <>
-//             <Doughnut
-//                 data={chartData}
-//                 options={{
-//                     responsive: true,
-//                     maintainAspectRatio: true,
-//                 }}
 
-//             />
+//         <>
+
+//             <Doughnut
+//                 data={}
+//                 options={} />
+
 //         </>
-//     )
+
+//     );
+
 
 
 
