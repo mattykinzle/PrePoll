@@ -21,7 +21,7 @@ export default {
             }
         })
     },
-    barticles: function (search) {
+    bing: function (search) {
         console.log(search)
         return axios.get("/api/bing", {
             params: {
@@ -29,7 +29,7 @@ export default {
             }
         })
     },
-    garticles: function () {
-        return axios.get("/api/gnews")
+    landingArticles: function () {
+        return axios.get("/api/news/landing")
     }
 }
