@@ -79,6 +79,26 @@ module.exports = function (app) {
     })
   });
 
+  //Route to save article
+  app.post('/api/saveArticle', function (req, res) {
+    db.Article.create({
+      title: req.body.title,
+      source: req.body.source.name,
+      author: req.body.author,
+      content: req.body.content,
+      publishedAt: req.body.publishedAt,
+      img: req.body.urlToImage,
+      UserId: req.user.id
+    })
+      .then(function (results) {
+        //console.log(results);
+        res.json(results);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  });
+
   //   axios.get("https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=" + req.query.value + "&key=" + process.env.BING_NEWS_API_KEY).then(response => {
   //     res.json(response.data)
   //   }).catch(err => {
