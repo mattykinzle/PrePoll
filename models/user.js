@@ -1,8 +1,8 @@
 // Requiring bcrypt for password hashing. Using the bcryptjs version as the regular bcrypt module sometimes causes errors on Windows machines
-var bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs");
 // Creating our User model
 module.exports = function (sequelize, DataTypes) {
-  var User = sequelize.define("User", {
+  const User = sequelize.define("User", {
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -67,8 +67,8 @@ module.exports = function (sequelize, DataTypes) {
 
   //Associations
   User.associate = function (models) {
-    User.hasMany(models.Election);
-    User.hasMany(models.Notes);
+    User.belongsToMany(models.Election, { through: 'User_Elections' });
+    User.hasMany(models.Note);
     User.hasMany(models.Article);
     User.hasMany(models.Response);
   };
