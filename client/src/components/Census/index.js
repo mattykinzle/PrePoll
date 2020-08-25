@@ -13,7 +13,14 @@ function Census() {
     const [IchartData, setIChartData] = useState({});
     //Employment state
     const [EchartData, setEchartata] = useState({});
-
+    //median male v female income
+    const [MFchartData, setMFchartData] = useState({});
+    //Total Population
+    const [populationData, setpopulationData] = useState([]);
+    //median income
+    const [incomeData, setincomeData] = useState([]);
+    //poverty line
+    const [povertyData, setpovertyData] = useState([]);
 
     useEffect(() => {
         getCensus();
@@ -50,6 +57,10 @@ function Census() {
     }
 
     function chartDataSetter(e) {
+        console.log(e)
+        setpopulationData(e[0].totalpopulation);
+        setincomeData(e[0].medianincome);
+        setpovertyData(e[0].belowpovertyline);
 
         setIChartData({
             labels: ['Insured', 'Uninsured'],
@@ -57,7 +68,7 @@ function Census() {
                 {
                     data: [e[0].insured, e[0].uninsured],
                     backgroundColor: [
-                        '#c0c0c',
+                        '#021b45',
                         '#d90429'
                     ],
                     borderWidth: 3
@@ -70,13 +81,29 @@ function Census() {
                 {
                     data: [e[0].employed, e[0].unemployed],
                     backgroundColor: [
-                        '#c0c0c',
+                        '#021b45',
                         '#d90429'
                     ],
                     borderWidth: 3
                 }
             ]
-        })
+        });
+
+
+        setMFchartData({
+            labels: ['Median Male Income', 'Median Female Income'],
+            datasets: [
+                {
+                    data: [e[0].medianmaleincome, e[0].medianfemaleincome],
+                    backgroundColor: [
+                        '#021b45',
+                        '#d90429'
+                    ],
+                    borderWidth: 3
+                }
+            ]
+        });
+
     }
 
 
@@ -86,7 +113,7 @@ function Census() {
                 console.log(chartData)} */}
             <Container className="container">
                 <Row>
-                    <h1 className="header">Select a County</h1>
+                    <h1 className="header">{county}</h1>
                     <Col className="countySelector">
                         <br></br>
                         <form onSubmit={e => handleFormSubmit(e)}>
@@ -97,7 +124,11 @@ function Census() {
                 </Row>
             </Container>
             <Container>
+
+            </Container>
+            <Container>
                 <Row>
+
                     <div className="chart">
                         {/* {censusData[0] ? */}
                         <Col md={6}>
@@ -122,6 +153,19 @@ function Census() {
                                 }}
                             />
                         </Col>
+                    </div>
+                    <div className="chart">
+                        <Col md={6}>
+                            <div className="rawNumbers">
+                                <div> <h2 className="population">Population: {populationData}</h2> </div>
+                                <div> <h2 className="householdimcone">Median Income: ${incomeData}</h2></div>
+                                <div> <h2 className="povertyLine">Families Below the Poverty Line: {povertyData}%</h2></div>
+                            </div>
+                        </Col>
+                    </div>
+                </Row>
+                <Row>
+                    <div className="chart">
                         <Col md={6}>
                             <Doughnut
                                 // censusData={censusData.data}
@@ -151,6 +195,30 @@ function Census() {
                         </Col>
                     } */}
                     </div>
+                    <div className="chart">
+                        <Col md={6}>
+                            <Doughnut
+                                // censusData={censusData.data}
+                                data={MFchartData}
+                                options={{
+                                    title: {
+                                        display: true,
+                                        text: "Median Male Income vs. Median Female Income",
+                                        fontSize: 25,
+                                        fontColor: "#021b45"
+                                    },
+                                    legend: {
+                                        display: true,
+                                        position: "bottom"
+                                    },
+                                    responsive: true,
+                                    maintainAspectRatio: true,
+
+                                }}
+                            />
+                        </Col>
+                    </div>
+
                 </Row>
             </Container>
         </>
