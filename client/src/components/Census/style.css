@@ -10,9 +10,22 @@
     justify-content: center;
     width: 150px;
     margin-top: 10px;
+    background-color: #a3a4a5;
+    border-color: #a3a4a5;
+    color: #021b45;
+
 }
+.searchCounty:hover {
+    background-color: #d90429;
+    border-color: #d90429;
+    color: white;
+  }
+
 .header{
     display: flex;
     justify-content: center;
     margin-top: 30px;
+    font-size: 50px;
+    font-weight: 700;
+    color: #021b45;
 }

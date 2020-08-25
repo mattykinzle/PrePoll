@@ -4,9 +4,8 @@ background-color: #c0c0c0;
 
 .artImg {
     border-radius: 10px;
-    width: 100%;
-    overflow: hidden;
     margin-bottom: 5px;
+    width: 100%;
 }
 
 .searchForm {
@@ -39,7 +38,7 @@ background-color: #c0c0c0;
     padding: 10px;
     color: white;
     font-size: 16px;
-    width: 66%;
+    width: 83%;
 }
 
 .mainNews {

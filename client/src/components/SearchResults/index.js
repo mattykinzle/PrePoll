@@ -16,17 +16,17 @@ function SearchResults(props) {
                     props.articles.map((article, a) => (
                         <Row key={a} className="newsRow">
 
-                            <Col md="4">
-                                <img src={article.urlToImage} alt={article.title} className="artImg img-fluid" />
-                                <p className="author"><strong>Author: </strong>{article.author}</p>
+                            <Col md="2">
+                                <img src={article.image.thumbnail.contentUrl} alt={article.title} className="artImg img-fluid" />
+                                <a href={article.url} target="_blank" className="btn article-btn">Click to Read</a>
                             </Col>
 
-                            <Col md="6" className="newsInfo">
-                                <p className="title"><strong>Title: </strong>{article.title}</p>
-                                <p className="source"><strong>Source: </strong>{article.source.name}</p>
-                                <p className="published"><strong>Date Published: </strong>{article.publishedAt}</p>
-                                <p className="published"><strong>About: </strong>{article.content}</p>
-                                <a href={article.url} target="_blank" className="btn btn-primary">Click to Read</a>
+                            <Col md="8" className="newsInfo">
+                                <p className="title"><strong>{article.name}</strong></p>
+                                <hr />
+                                <p className="about"><strong></strong>{article.description}</p>
+                                <p className="source">Source: {article.provider[0].name}</p>
+                                <p className="published">Date Published: {new Date(article.datePublished).toString('MM dd yyyy').substring(0, 15)}</p>
                             </Col>
 
                         </Row>

@@ -18,9 +18,10 @@ function Articles() {
     }, [])
 
     const loadArticles = (search) => {
-        API.articles(search)
+        API.bing(search)
             .then(res => {
-                setArticles(res.data.articles)
+                setArticles(res.data.value)
+                console.log(res.data.value)
             })
             .catch(err => console.log(err));
     }

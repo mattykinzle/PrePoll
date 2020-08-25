@@ -1,0 +1,38 @@
+.hero {
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    /* background-color: salmon; */
+    color: white;
+    background-image: url(https://www.wave3.com/resizer/cmexYfkgROJorbT5r_aonKeBJVM=/1400x0/cloudfront-us-east-1.images.arcpublishing.com/raycom/DQLW3UIYUBCY5PAVW3BGMOD7DQ.bmp);
+  }
+  
+  .hero::after {
+    content: "";
+    display: block;
+    opacity: 0.4;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: black;
+  }
+  
+  .hero * {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .hero h1,
+  .hero h2 {
+    color: white;
+  }
+  
+  .hero h1 {
+    font-size: 60px;
+    padding-top: 140px;
+    margin-top: 0;
+  }
+  

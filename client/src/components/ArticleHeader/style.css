@@ -1,0 +1,12 @@
+.article-Header {
+text-align: center;
+background-color: white;
+/* background-image: url(https://c8.alamy.com/comp/DD50F3/retro-grunge-paper-paper-texture-for-background-and-wallpaper-DD50F3.jpg); */
+border-radius: 5px;
+margin-top: 10px;
+padding: 10px;
+}
+
+.art-Header {
+    color: red;
+}

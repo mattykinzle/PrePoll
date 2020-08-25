@@ -1,6 +1,6 @@
 import React from "react";
 import Articles from "../components/Articles";
-//import ArticleHeader from "../components/ArticleHeader";
+// import ArticleHeader from "../components/ArticleHeader";
 
 
 function News() {
