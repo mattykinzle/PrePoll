@@ -1,4 +1,4 @@
-election,officeType,candidate,county,email,party,city,occupation,isIncumbent
+office,officeType,candidate,county,email,party,city,occupation,isIncumbent
 U. S. PRESIDENT,FEDERAL,JOE BIDEN,,,DEMOCRATIC,,,FALSE
 U. S. PRESIDENT,FEDERAL,HOWIE HAWKINS,,,GREEN,,,FALSE
 U. S. PRESIDENT,FEDERAL,JO JORGENSEN,,,LIBERTARIAN,,,FALSE
