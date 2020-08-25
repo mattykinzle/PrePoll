@@ -21,6 +21,11 @@
     color: white;
   }
 
+  .searchCounty:active {
+    background-color: #021b45;
+    border-color: #021b45;
+    color: white;
+  }
 .header{
     display: flex;
     justify-content: center;
@@ -28,4 +33,30 @@
     font-size: 50px;
     font-weight: 700;
     color: #021b45;
+}
+.chart{
+    margin: 45px;
+}
+.rawNumbers {
+    /* display: flex;
+    justify-content: center; */
+    
+}
+.population{
+    font-size: 40px;
+    font-weight: 900;
+    color: #021b45;
+    margin:5
+}
+.householdimcone{
+    font-size: 30px;
+    font-weight: 900;
+    color: #021b45;
+    margin:5
+}
+.povertyLine{
+    font-size: 20px;
+    font-weight: 1000;
+    color: #021b45;
+    margin:5  
 }

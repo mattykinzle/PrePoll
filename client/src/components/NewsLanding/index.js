@@ -6,6 +6,8 @@ import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
+import newsPic from "../../assets/newsPrepolllg.jpg"
+import dataPic from "../../assets/data.jpg"
 
 
 function NewsLanding() {
@@ -26,46 +28,41 @@ function NewsLanding() {
     return (
         <>
 
-            <Container fluid >
+            <Container fluid className="mainArticles">
 
-                <Container fluid >
-
-                    <Col md="12" className="mainArticles">
-
-                        <center><h1> Top Election 2020 News Stories </h1></center>
-
-                        <hr />
-                        <Row>
-
-                            {
-                                articles.map((article, a) => (
-
-
-                                    <Col md="3" key={a} className="articleCol">
-
-                                        <Card>
-                                            <Card.Img variant="top" src={article.image.thumbnail.contentUrl} className="landingImg" />
-                                            <Card.Body>
-                                                <Card.Title>{article.name}</Card.Title>
-                                                <Card.Text>
-                                                    {article.description}
-                                                </Card.Text>
-                                                <Button href={article.url} target="_blank" variant="primary">Read Article</Button>
-                                            </Card.Body>
-                                        </Card>
-
-                                    </Col>
-
-
-                                ))
-                            }
-                        </Row>
-
-                    </Col>
-
+                <Container className="topHeader">
+                    <center><h1> Top Election 2020 News Stories </h1></center>
                 </Container>
+                <hr />
+
+                <Row>
+
+                    {
+                        articles.map((article, a) => (
+
+
+                            <Col md="3" key={a} className="articleCol">
+
+                                <Card>
+                                    <center><Card.Img variant="top" src={article.image.thumbnail.contentUrl} className="landingImg" /></center>
+                                    <Card.Body>
+                                        <Card.Title className="cardText">{article.name}</Card.Title>
+                                        <Card.Text className="cardText">
+                                            {article.description}
+                                        </Card.Text>
+                                        <Button href={article.url} target="_blank" variant="primary">Read Article</Button>
+                                    </Card.Body>
+                                </Card>
+
+                            </Col>
+
+                        ))
+                    }
+
+                </Row>
 
             </Container>
+
         </>
     )
 }

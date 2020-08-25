@@ -1,5 +1,6 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useStoreContext } from '../utils/GlobalStore';
+import API from "../utils/API";
 
 function Members() {
   const [state] = useStoreContext();
@@ -26,6 +27,7 @@ function Members() {
 
     
   }, []);
+
 
   return <div className="container">
     <div className="row">

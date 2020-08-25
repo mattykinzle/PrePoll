@@ -1,16 +1,29 @@
 .mainArticles {
-background-color: #66c8e9;
-border-radius: 10px;
+background-color: #e63946;
+padding: 10px;
 }
 
-.articleCol {
+.topHeader {
+    background-color: #f1faee;
+    border-radius: 10px;
+    width: 50%;
     padding: 10px;
 }
 
 .landingImg {
     border-radius: 5px;
+    width: 50%;
+}
+
+.cardText {
+    color: black;
 }
 
 .card {
-    color: black;
+    padding: 10px;
+    width: 95%;
+    margin: 5px;
+    background-color: ivory;
+    border-radius: 10px;
 }
+

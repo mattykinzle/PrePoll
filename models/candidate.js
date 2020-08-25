@@ -1,10 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
 
-  const ElectionData = sequelize.define('ElectionData', {
-    office: DataTypes.STRING,
-    officeType: DataTypes.STRING,
+  const Candidate = sequelize.define('Candidate', {
     candidate: DataTypes.STRING,
-    county: DataTypes.STRING,
     email: DataTypes.STRING,
     party: DataTypes.STRING,
     city: DataTypes.STRING,
@@ -14,6 +11,11 @@ module.exports = function (sequelize, DataTypes) {
     {
       timestamps: false
     });
-  return ElectionData;
-}
 
+  //Associations
+  Candidate.associate = function (models) {
+    Candidate.belongsTo(models.Election);
+    Candidate.hasMany(models.Note);
+  };
+  return Candidate;
+}
