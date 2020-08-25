@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #a3a4a5;
+    background-color: #f1faee;
     margin-bottom: 0;
     border-radius: 0px;
 }
@@ -7,12 +7,12 @@
 .nav-link {
     margin-right: 5px;
     font-size: 20px;
-    color: white;
+    color: black;
     text-decoration: none;
 }
 
 .log-link {
-    color: white;
+    color: black;
     text-decoration: none;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .white {
-    color: white;
+    color: black;
 }
 
 .blue {
