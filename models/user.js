@@ -49,9 +49,6 @@ module.exports = function (sequelize, DataTypes) {
     },
     sboeDist: {
       type: DataTypes.STRING
-    },
-    judDist: {
-      type: DataTypes.STRING
     }
   });
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
@@ -70,6 +67,8 @@ module.exports = function (sequelize, DataTypes) {
 
   //Associations
   User.associate = function (models) {
+    User.hasMany(models.Election);
+    User.hasMany(models.Notes);
     User.hasMany(models.Article);
     User.hasMany(models.Response);
   };
