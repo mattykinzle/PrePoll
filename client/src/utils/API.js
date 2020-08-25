@@ -29,7 +29,16 @@ export default {
             }
         })
     },
-    landingArticles: function () {
+    landingArticles: function() {
         return axios.get("/api/news/landing")
+    },
+
+    voterInformation: voterData => {
+        console.log(voterData);
+        return axios.get("/api/voterInformation", {
+            params:{
+                value:voterData
+            }
+        })
     }
 }

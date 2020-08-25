@@ -20,7 +20,12 @@ module.exports = function (app) {
       city: req.body.city,
       zip: req.body.zip,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      county: req.body.county,
+      congressDist: req.body.congressDist,
+      houseDist: req.body.houseDist,
+      senateDist: req.body.senateDist,
+      sboeDist: req.body.sboeDist
     })
       .then(function () {
         res.redirect(307, "/api/login");
@@ -117,6 +122,20 @@ module.exports = function (app) {
     })
   });
 
+   //Route to get District information
+   app.get("/api/voterInformation", (req, res) => {
+    console.log('THIS IS THE VALUE' + req.query.value);
+    const {address, city, zip} = JSON.parse(req.query.value);
+    const addressArr = address.split(' ');
+ 
+    axios.get(`https://rws.capitol.texas.gov/api/MatchAddress?Address=${addressArr[0]}%20${addressArr[1]}&City=${city}&Zip=${zip}&DistType=A`).then(response => {
+      console.log(response.data);
+      res.json(response.data)
+    }).catch(err => {
+      res.status(err.status).send(err.message);
+    })
+
+  });
 
   //route to get census data by county
   app.get("/api/census/:county", (req, res) => {
@@ -143,6 +162,7 @@ module.exports = function (app) {
       })
 
   })
+ 
 
 };
 
