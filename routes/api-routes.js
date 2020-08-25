@@ -122,12 +122,12 @@ module.exports = function (app) {
     })
   });
 
-   //Route to get District information
-   app.get("/api/voterInformation", (req, res) => {
+  //Route to get District information
+  app.get("/api/voterInformation", (req, res) => {
     console.log('THIS IS THE VALUE' + req.query.value);
-    const {address, city, zip} = JSON.parse(req.query.value);
+    const { address, city, zip } = JSON.parse(req.query.value);
     const addressArr = address.split(' ');
- 
+
     axios.get(`https://rws.capitol.texas.gov/api/MatchAddress?Address=${addressArr[0]}%20${addressArr[1]}&City=${city}&Zip=${zip}&DistType=A`).then(response => {
       console.log(response.data);
       res.json(response.data)
@@ -160,9 +160,25 @@ module.exports = function (app) {
       }).catch(err => {
         console.log(err);
       })
-
   })
- 
+
+  app.get("/api/president", (req, res) => {
+    db.Election.findAll({
+      where: {
+        office: 'U. S. PRESIDENT'
+      },
+      include: [{
+        model: db.Candidate,
+        attributes: ['candidate', 'party', 'isIncumbent'],
+        required: true
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
 
 };
 
