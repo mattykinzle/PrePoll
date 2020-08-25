@@ -57,7 +57,9 @@ function Census() {
     }
 
     function chartDataSetter(e) {
-        console.log(e)
+
+        // console.log(e)
+
         setpopulationData(e[0].totalpopulation);
         setincomeData(e[0].medianincome);
         setpovertyData(e[0].belowpovertyline);

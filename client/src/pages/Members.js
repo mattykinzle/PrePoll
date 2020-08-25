@@ -6,13 +6,29 @@ function Members() {
   const [state] = useStoreContext();
   const { email } = state;
 
+  let ballot = [];
+
   useEffect(() => {
-    console.log("test test");
-    API.president().then(response => {
-      console.log(response);
-      let ballot = response;
+    API.getUserInfo(email).then( response => {
+      console.log(response.data);
+
+      
+
+      API.president().then(response => {
+        let race = {
+          office: response.data[0].office,
+          officeType: response.data[0].officeType,
+          candidates: response.data[0].Candidates
+        };
+        ballot.push(race);
+        console.log(ballot);
+      })
     })
+
+    
   }, []);
+
+
   return <div className="container">
     <div className="row">
       <div className="col-md-6 col-md-offset-3">
