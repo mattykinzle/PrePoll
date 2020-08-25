@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
 
   const ElectionData = sequelize.define('ElectionData', {
-    election: DataTypes.STRING,
+    office: DataTypes.STRING,
     officeType: DataTypes.STRING,
     candidate: DataTypes.STRING,
     county: DataTypes.STRING,
@@ -10,7 +10,6 @@ module.exports = function (sequelize, DataTypes) {
     city: DataTypes.STRING,
     occupation: DataTypes.STRING,
     isIncumbent: DataTypes.STRING,
-
   },
     {
       timestamps: false
