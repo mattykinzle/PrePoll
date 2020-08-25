@@ -1,0 +1,37 @@
+.siteFeatures {
+    background-color: #f1faee;
+    padding: 10px;
+
+}
+
+.featuresRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.howToPic {
+    width: 100%;
+    border-radius: 5px;
+    max-height: 400px;
+}
+
+.howToCard {
+    background-color: #1d3557;
+    color: white;
+}
+
+.howToTitle {
+    color: white;
+}
+
+.howToHeader {
+    background-color: #1d3557;
+    border-radius: 10px;
+    width: 50%;
+    padding: 10px;
+}
+
+.howdy {
+    color: white;
+}
