@@ -2,6 +2,7 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const axios = require("axios");
+const { Op } = require("sequelize");
 
 module.exports = function (app) {
   // Route for logging in
@@ -146,7 +147,7 @@ module.exports = function (app) {
   })
 
   app.get("/api/users/:email", (req, res) => {
-    db.User.findOne({where: [{email: req.params.email}]})
+    db.User.findOne({ where: [{ email: req.params.email }] })
       .then(response => {
         res.json(response);
       }).catch(err => {
@@ -171,6 +172,36 @@ module.exports = function (app) {
       })
   })
 
+  // Get ALL ballot items for a user
+  app.get("/api/ballotItems", (req, res) => {
+    db.Election.findAll({
+      where: {
+        [Op.or]: [
+          { office: 'U. S. PRESIDENT' },
+          { office: 'U. S. SENATOR' },
+          { officeType: 'STATEWIDE' },
+          { office: 'U. S. REPRESENTATIVE DISTRICT ' + req.query.congressDist },
+          { office: 'STATE REPRESENTATIVE DISTRICT ' + req.query.houseDist },
+          { office: 'STATE SENATOR, DISTRICT ' + req.query.senateDist },
+          { office: 'MEMBER, STATE BOARD OF EDUCATION, DISTRICT ' + req.query.sboeDist },
+          { county: req.query.county }
+        ]
+      },
+      // include: { all: true, nested: true }
+      include: [{
+        model: db.Candidate,
+        required: true
+      }]
+    }).then(response => {
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+
+  //Individual routes for each type of office
+
   app.get("/api/president", (req, res) => {
     db.Election.findAll({
       where: {
@@ -179,6 +210,129 @@ module.exports = function (app) {
       include: [{
         model: db.Candidate,
         required: true
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+  app.get("/api/senate", (req, res) => {
+    db.Election.findAll({
+      where: {
+        office: 'U. S. SENATOR'
+      },
+      include: [{
+        model: db.Candidate,
+        required: true
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+  app.get("/api/statewide", (req, res) => {
+    db.Election.findAll({
+      where: {
+        officeType: 'STATEWIDE'
+      },
+      include: [{
+        model: db.Candidate,
+        required: true
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+  app.get("/api/congress", (req, res) => {
+
+    db.Election.findAll({
+      where: {
+        office: 'U. S. REPRESENTATIVE DISTRICT ' + req.query.district
+      },
+      include: [{
+        model: db.Candidate,
+        required: true
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+  app.get("/api/house", (req, res) => {
+
+    db.Election.findAll({
+      where: {
+        office: 'STATE REPRESENTATIVE DISTRICT ' + req.query.district
+      },
+      include: [{
+        model: db.Candidate,
+        required: true
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+  app.get("/api/stateSenate", (req, res) => {
+
+    db.Election.findAll({
+      where: {
+        office: 'STATE SENATOR, DISTRICT ' + req.query.district
+      },
+      include: [{
+        model: db.Candidate,
+        required: true
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+  app.get("/api/sboe", (req, res) => {
+
+    db.Election.findAll({
+      where: {
+        office: 'MEMBER, STATE BOARD OF EDUCATION, DISTRICT ' + req.query.district
+      },
+      include: [{
+        model: db.Candidate,
+        required: true
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+  app.get("/api/countywide", (req, res) => {
+
+    db.Election.findAll({
+      where: {
+        county: req.query.county
+      },
+      include: [{
+        model: db.Candidate
       }]
     }).then(response => {
       console.log(response[0].dataValues.Candidates);

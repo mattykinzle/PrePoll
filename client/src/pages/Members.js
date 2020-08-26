@@ -9,23 +9,22 @@ function Members() {
   let ballot = [];
 
   useEffect(() => {
-    API.getUserInfo(email).then( response => {
+    API.getUserInfo(email).then(response => {
       console.log(response.data);
-
-      
-
-      API.president().then(response => {
-        let race = {
-          office: response.data[0].office,
-          officeType: response.data[0].officeType,
-          candidates: response.data[0].Candidates
-        };
-        ballot.push(race);
-        console.log(ballot);
-      })
+      let userInfo = response.data;
+      API.getBallotItems(userInfo).then(response => {
+        console.log(response.data)
+      });
+      // API.president().then(response => {
+      //   let race = {
+      //     office: response.data[0].office,
+      //     officeType: response.data[0].officeType,
+      //     candidates: response.data[0].Candidates
+      //   };
+      //   ballot.push(race);
+      //   console.log(ballot);
+      // });
     })
-
-    
   }, []);
 
   return (
