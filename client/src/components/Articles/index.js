@@ -21,7 +21,6 @@ function Articles() {
         API.bing(search)
             .then(res => {
                 setArticles(res.data.value)
-                console.log(res.data.value)
             })
             .catch(err => console.log(err));
     }
@@ -37,6 +36,16 @@ function Articles() {
         setSearch("");
     }
 
+    function handleArticleLike(event) {
+        event.preventDefault();
+        let saveId = event.target.id
+        console.log(articles[saveId].name)
+        API.articleSave({
+            title: articles[saveId].name,
+            about: articles[saveId].description,
+            url: articles[saveId].url
+        })
+    }
 
     return (
         <>
@@ -70,7 +79,10 @@ function Articles() {
 
                 <Container fluid className="mainNews">
 
-                    <SearchResults articles={articles} />
+                    <SearchResults
+                        articles={articles}
+                        handleArticleLike={handleArticleLike}
+                    />
 
                     <Col md="2" className="sideBar">
 

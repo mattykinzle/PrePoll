@@ -28,14 +28,15 @@ function Members() {
     
   }, []);
 
-
-  return <div className="container">
-    <div className="row">
-      <div className="col-md-6 col-md-offset-3">
-        <h2>Welcome {email}</h2>
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-md-6 col-md-offset-3">
+          <h2>Welcome {email}</h2>
+        </div>
       </div>
     </div>
-  </div>
+  )
 }
 
 export default Members;

@@ -4,23 +4,11 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    source: {
+    about: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    author: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    content: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    publishedAt: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    img: {
+    url: {
       type: DataTypes.STRING,
       allowNull: false
     }
