@@ -61,8 +61,8 @@
     margin-bottom: 25px;  
 }
 .card {
-    border-style: double;
-    text-align: center;
+    /* border-style: double;
+    text-align: center; */
 }
 .disclaimer{
     font-size: 15px;

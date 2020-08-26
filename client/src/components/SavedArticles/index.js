@@ -28,7 +28,7 @@ function SavedArticles() {
             <Container fluid>
                 <Col md="6" className="savedCol">
 
-                    <h3 className="savedHeader">Your Saved Articles</h3>
+                    <h3 className="savedHeader">Your Saved Articles <span><p className="scrollhead">(scroll to see more)</p></span></h3>
 
                     {
                         saveArticles.map((article, a) => (

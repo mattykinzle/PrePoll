@@ -5,6 +5,8 @@
 .savedCol {
     background-color: #457b9d;
     border-radius: 5px;
+    max-height: 240px;
+    overflow: scroll;
 }
 
 .savedRow {
@@ -33,6 +35,9 @@
     text-transform: uppercase;
 }
 
+.scrollhead {
+    font-size: 14px;
+}
 
 .savedHeader {
     color: white;

@@ -30,36 +30,39 @@ function NewsLanding() {
 
             <Container fluid className="mainArticles">
 
-                <Container className="topHeader">
-                    <center><h1> Top Election 2020 News Stories </h1></center>
+                <Container>
+                    <Container className="topHeader">
+                        <center><h1> Top Election 2020 News Stories </h1></center>
+                    </Container>
+                    <hr />
+
+                    <Row>
+
+                        {
+                            articles.map((article, a) => (
+
+
+                                <Col md="3" key={a} className="articleCol">
+
+                                    <Card>
+                                        <center><Card.Img variant="top" src={article.image.thumbnail.contentUrl} className="landingImg" /></center>
+                                        <Card.Body>
+                                            <Card.Title className="cardText">{article.name}</Card.Title>
+                                            <Card.Text className="cardText">
+                                                {article.description}
+                                            </Card.Text>
+                                            <Button href={article.url} target="_blank" variant="primary">Read Article</Button>
+                                        </Card.Body>
+                                    </Card>
+
+                                </Col>
+
+                            ))
+                        }
+
+                    </Row>
                 </Container>
-                <hr />
 
-                <Row>
-
-                    {
-                        articles.map((article, a) => (
-
-
-                            <Col md="3" key={a} className="articleCol">
-
-                                <Card>
-                                    <center><Card.Img variant="top" src={article.image.thumbnail.contentUrl} className="landingImg" /></center>
-                                    <Card.Body>
-                                        <Card.Title className="cardText">{article.name}</Card.Title>
-                                        <Card.Text className="cardText">
-                                            {article.description}
-                                        </Card.Text>
-                                        <Button href={article.url} target="_blank" variant="primary">Read Article</Button>
-                                    </Card.Body>
-                                </Card>
-
-                            </Col>
-
-                        ))
-                    }
-
-                </Row>
 
             </Container>
 

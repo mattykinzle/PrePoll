@@ -89,7 +89,6 @@ module.exports = function (app) {
 
   //Route to save article
   app.post('/api/saveArticle', function (req, res) {
-    console.log(req.body)
     db.Article.create({
       title: req.body.title,
       about: req.body.about,
@@ -97,7 +96,6 @@ module.exports = function (app) {
       UserId: req.user.id
     })
       .then(function (results) {
-        //console.log(results);
         res.json(results);
       })
       .catch(function (err) {
@@ -125,12 +123,10 @@ module.exports = function (app) {
 
   //Route to get District information
   app.get("/api/voterInformation", (req, res) => {
-    // console.log('THIS IS THE VALUE' + req.query.value);
     const { address, city, zip } = JSON.parse(req.query.value);
     const addressArr = address.split(' ');
 
     axios.get(`https://rws.capitol.texas.gov/api/MatchAddress?Address=${addressArr[0]}%20${addressArr[1]}&City=${city}&Zip=${zip}&DistType=A`).then(response => {
-      // console.log(response.data);
       res.json(response.data)
     }).catch(err => {
       res.status(err.status).send(err.message);
@@ -166,8 +162,6 @@ module.exports = function (app) {
       ]
     })
       .then(response => {
-        // console.log('backend census stuff')
-        // console.log(response);
         res.json(response)
       }).catch(err => {
         console.log(err);
@@ -214,7 +208,6 @@ module.exports = function (app) {
         required: true
       }]
     }).then(response => {
-      // console.log(response[0].dataValues.Candidates);
       res.json(response);
     }).catch(err => {
       console.log(err);
