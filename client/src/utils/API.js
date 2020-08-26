@@ -6,6 +6,10 @@ export default {
         return axios.get("/api/user_data");
     },
 
+    getUserInfo: (email) => {
+        return axios.get(`/api/users/${email}`);
+    },
+
     signup: (signupData) => {
         return axios.post("/api/signup", signupData)
     },

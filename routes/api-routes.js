@@ -122,7 +122,7 @@ module.exports = function (app) {
 
   //Route to get District information
   app.get("/api/voterInformation", (req, res) => {
-    console.log('THIS IS THE VALUE' + req.query.value);
+
     const { address, city, zip } = JSON.parse(req.query.value);
     const addressArr = address.split(' ');
 
@@ -137,23 +137,34 @@ module.exports = function (app) {
 
   //route to get census data by county
   app.get("/api/census/:county", (req, res) => {
-    console.log('Were here api Route')
     db.Censuscounties.findAll({ where: [{ county: req.params.county }] })
       .then(response => {
-        // console.log(response);
         res.json(response);
       }).catch(err => {
         console.log(err);
       })
+  })
 
+  app.get("/api/users/:email", (req, res) => {
+    db.User.findOne({where: [{email: req.params.email}]})
+      .then(response => {
+        res.json(response);
+      }).catch(err => {
+        console.log(err);
+      })
   })
 
   //get route to get all counties from census data
   app.get("/api/census/", (req, res) => {
-    db.Censuscounties.findAll({ attributes: ["county"] })
+    db.Censuscounties.findAll({
+      attributes: ["county"],
+      order: [
+        ["county", "ASC"]
+      ]
+    })
       .then(response => {
-        console.log('backend census stuff')
-        console.log(response);
+        // console.log('backend census stuff')
+        // console.log(response);
         res.json(response)
       }).catch(err => {
         console.log(err);
@@ -167,7 +178,6 @@ module.exports = function (app) {
       },
       include: [{
         model: db.Candidate,
-        attributes: ['candidate', 'party', 'isIncumbent'],
         required: true
       }]
     }).then(response => {
