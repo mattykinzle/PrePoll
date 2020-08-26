@@ -81,7 +81,6 @@ export default {
         return axios.get("/api/statewide");
     },
 
-<<<<<<< Updated upstream
     congress: function (userInfo) {
         console.log(userInfo);
         return axios.get("/api/congress", {
@@ -126,14 +125,12 @@ export default {
             }
         })
     }
-=======
-    },
-
-    saved: function () {
-        return axios.get("/api/saved")
-    },
-
->>>>>>> Stashed changes
-
-
 }
+
+//     saved: function () {
+//         return axios.get("/api/saved")
+//     },
+
+
+
+// }

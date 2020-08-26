@@ -1,5 +1,4 @@
-.container {
-}
+
 .countySelector{
     margin-top: 15px;
     display: flex;
@@ -58,5 +57,17 @@
     font-size: 20px;
     font-weight: 1000;
     color: #021b45;
-    margin:5  
+    /* margin:5; */
+    margin-bottom: 25px;  
+}
+.card {
+    border-style: double;
+    text-align: center;
+}
+.disclaimer{
+    font-size: 15px;
+}
+.disclaimerContainer{
+    text-align: center; 
+    margin-top: 30px;
 }

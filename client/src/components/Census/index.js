@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
 import { Doughnut } from "react-chartjs-2";
-// import Chart from 'chart.js';
+import API from '../../utils/API';
 import Dropdown from "../Dropdown.js";
-import { Button, Col, Row, Container } from "react-bootstrap"
+import { Button, Col, Row, Container, Card } from "react-bootstrap"
+
+
 function Census() {
     const [censusData, setcensusData] = useState([]);
-    const [county, setCounty] = useState("Williamson County");
+    const [county, setCounty] = useState([]);
+    const [userCounty, setuserCounty] = useState();
     const [countyList, setCountyList] = useState([]);
     //insurance state
     const [IchartData, setIChartData] = useState({});
@@ -25,12 +28,34 @@ function Census() {
     useEffect(() => {
         getCensus();
         getCounties();
+        usersCountyFN();
     }, []);
+
+    // to get the users county from the users db
+    function usersCountyFN() {
+
+        API.checkUserInfo().then(response => {
+            setuserCounty(response.data.county);
+            console.log(userCounty)
+        })
+    }
 
     //to get data based on users county selection
     function getCensus(e) {
+
         let countyLocal = e;
-        if (!countyLocal) { countyLocal = "Williamson County" }
+
+        if (!countyLocal) {
+            if (userCounty) {
+                countyLocal = userCounty + " County";
+
+            } else {
+                countyLocal = "Williamson County"
+            }
+
+        }
+        setCounty(countyLocal)
+
         axios.get('/api/census/' + countyLocal).then((response) => {
             setcensusData(response.data);
             chartDataSetter(response.data);
@@ -57,9 +82,7 @@ function Census() {
     }
 
     function chartDataSetter(e) {
-
         // console.log(e)
-
         setpopulationData(e[0].totalpopulation);
         setincomeData(e[0].medianincome);
         setpovertyData(e[0].belowpovertyline);
@@ -125,9 +148,7 @@ function Census() {
                     </Col>
                 </Row>
             </Container>
-            <Container>
 
-            </Container>
             <Container>
                 <Row>
 
@@ -158,11 +179,15 @@ function Census() {
                     </div>
                     <div className="chart">
                         <Col md={6}>
-                            <div className="rawNumbers">
-                                <div> <h2 className="population">Population: {populationData}</h2> </div>
-                                <div> <h2 className="householdimcone">Median Income: ${incomeData}</h2></div>
-                                <div> <h2 className="povertyLine">Families Below the Poverty Line: {povertyData}%</h2></div>
-                            </div>
+                            <Card className="card">
+                                <Card.Body>
+                                    <div className="rawNumbers">
+                                        <div> <h2 className="population">Population: {populationData}</h2> </div>
+                                        <div> <h2 className="householdimcone">Median Income: ${incomeData}</h2></div>
+                                        <div> <h2 className="povertyLine">Families Below the Poverty Line: {povertyData}%</h2></div>
+                                    </div>
+                                </Card.Body>
+                            </Card>
                         </Col>
                     </div>
                 </Row>
@@ -223,6 +248,13 @@ function Census() {
 
                 </Row>
             </Container>
+            <Row>
+                <Col md={12}>
+                    <Container className="disclaimerContainer">
+                        <div><p className="disclaimer"> *All the data presented here is sourced from the acs census data collected in 2018</p></div>
+                    </Container>
+                </Col>
+            </Row>
         </>
     )
 }

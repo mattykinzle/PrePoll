@@ -48,11 +48,13 @@ module.exports = function (app) {
       // The user is not logged in, send back an empty object
       res.status(401).json({});
     } else {
+      console.log(req.user)
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
+        county: req.user.county
       });
     }
   });
@@ -123,12 +125,12 @@ module.exports = function (app) {
 
   //Route to get District information
   app.get("/api/voterInformation", (req, res) => {
-
+    // console.log('THIS IS THE VALUE' + req.query.value);
     const { address, city, zip } = JSON.parse(req.query.value);
     const addressArr = address.split(' ');
 
     axios.get(`https://rws.capitol.texas.gov/api/MatchAddress?Address=${addressArr[0]}%20${addressArr[1]}&City=${city}&Zip=${zip}&DistType=A`).then(response => {
-      console.log(response.data);
+      // console.log(response.data);
       res.json(response.data)
     }).catch(err => {
       res.status(err.status).send(err.message);
@@ -212,14 +214,13 @@ module.exports = function (app) {
         required: true
       }]
     }).then(response => {
-      console.log(response[0].dataValues.Candidates);
+      // console.log(response[0].dataValues.Candidates);
       res.json(response);
     }).catch(err => {
       console.log(err);
     })
   })
 
-<<<<<<< Updated upstream
   app.get("/api/senate", (req, res) => {
     db.Election.findAll({
       where: {
@@ -342,7 +343,6 @@ module.exports = function (app) {
       console.log(err);
     })
   })
-=======
   app.get("/api/saved", (req, res) => {
     db.Article.findAll()
       .then(response => {
@@ -352,7 +352,7 @@ module.exports = function (app) {
       })
   })
 
->>>>>>> Stashed changes
 
 };
+// bing 3898b393ea014ed68631a30d65665d94
 
