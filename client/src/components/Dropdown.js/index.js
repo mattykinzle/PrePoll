@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 
 
 function Dropdown({ countyList, county, setCounty }) {
-    console.log(countyList);
+    // console.log(countyList);
 
     function changeCounty(e) {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setCounty(e.target.value)
     }
 
