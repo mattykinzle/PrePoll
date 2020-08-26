@@ -5,8 +5,6 @@ import NavbarComp from './components/NavbarComp';
 import Footer from './components/Footer';
 import Wrapper from './components/Wrapper';
 
-
-
 function App() {
 
     return (
@@ -17,7 +15,6 @@ function App() {
                     <NavbarComp />
                 </Wrapper>
                 <Footer />
-
             </div>
         </Router>
     )

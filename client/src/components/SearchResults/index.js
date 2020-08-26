@@ -1,6 +1,7 @@
 import React from "react";
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
+import Button from "react-bootstrap/Button"
 
 import "./style.css";
 
@@ -27,6 +28,14 @@ function SearchResults(props) {
                                 <p className="about"><strong></strong>{article.description}</p>
                                 <p className="source">Source: {article.provider[0].name}</p>
                                 <p className="published">Date Published: {new Date(article.datePublished).toString('MM dd yyyy').substring(0, 15)}</p>
+                                <Button
+                                    id={a}
+                                    variant="primary"
+                                    type="submit"
+                                    onClick={props.handleArticleLike}
+                                >
+                                    Save
+                            </Button>
                             </Col>
 
                         </Row>

@@ -3,10 +3,9 @@ import "./style.css";
 import axios from "axios";
 import { Doughnut } from "react-chartjs-2";
 import API from '../../utils/API';
-// import Chart from 'chart.js';
 import Dropdown from "../Dropdown.js";
 import { Button, Col, Row, Container, Card } from "react-bootstrap"
-// import { response } from "express";
+
 
 function Census() {
     const [censusData, setcensusData] = useState([]);
