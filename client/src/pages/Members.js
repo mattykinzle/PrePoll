@@ -12,7 +12,6 @@ function Members() {
   useEffect(() => {
     API.getUserInfo(email).then(response => {
       console.log(response.data);
-<<<<<<< Updated upstream
       let userInfo = response.data;
       API.getBallotItems(userInfo).then(response => {
         console.log(response.data)
@@ -27,23 +26,6 @@ function Members() {
       //   console.log(ballot);
       // });
     })
-=======
-
-
-
-      API.president().then(response => {
-        let race = {
-          office: response.data[0].office,
-          officeType: response.data[0].officeType,
-          candidates: response.data[0].Candidates
-        };
-        ballot.push(race);
-        console.log(ballot);
-      })
-    })
-
-
->>>>>>> Stashed changes
   }, []);
 
   return (

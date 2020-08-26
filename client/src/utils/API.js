@@ -124,13 +124,13 @@ export default {
                 county: userInfo.county
             }
         })
-    }
+    },
+
+
+    saved: function () {
+        return axios.get("/api/saved")
+    },
+
+
+
 }
-
-//     saved: function () {
-//         return axios.get("/api/saved")
-//     },
-
-
-
-// }
