@@ -15,8 +15,8 @@
 }
 
 .article-btn {
-    background-color: red;
-    border-color: red;
+    background-color: #e63946;
+    border-color: #e63946;
     color: white;
     text-transform: capitalize;
 }
@@ -24,4 +24,21 @@
 .article-btn:hover {
     text-transform: uppercase;
     color: white;
+}
+
+.saveBtn {
+    background-color: #2a9d8f;
+    border-color: #2a9d8f;
+    color: white;
+    text-transform: capitalize;
+    border-radius: 10px;
+}
+
+.saveBtn:hover {
+    background-color: #2a9d8f;
+    border-color: #2a9d8f;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
 }

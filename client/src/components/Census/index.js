@@ -87,7 +87,6 @@ function Census() {
     }
 
     function chartDataSetter(e) {
-        // console.log(e)
         setpopulationData(e[0].totalpopulation);
         setincomeData(e[0].medianincome);
         setpovertyData(e[0].belowpovertyline);
@@ -139,8 +138,6 @@ function Census() {
 
     return (
         <>
-            {/* {console.log('censusData'),
-                console.log(chartData)} */}
             <Container className="container">
                 <Row>
                     <h1 className="header">{county}</h1>

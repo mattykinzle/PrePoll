@@ -3,10 +3,14 @@ background-color: #e63946;
 padding: 10px;
 }
 
+.mainLanding{
+    background-color: #c0c0c0;
+}
+
 .topHeader {
     background-color: #f1faee;
     border-radius: 10px;
-    width: 50%;
+    width: 100%;
     padding: 10px;
 }
 
@@ -21,9 +25,16 @@ padding: 10px;
 
 .card {
     padding: 10px;
-    width: 95%;
+    width: 100%;
     margin: 5px;
-    background-color: ivory;
+    background-color: #f1faee;
     border-radius: 10px;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .topHeader {
+        width: 75%;
+    }
 }
 
