@@ -2,6 +2,8 @@ import React from "react";
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import Button from "react-bootstrap/Button"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSave } from '@fortawesome/free-solid-svg-icons'
 
 import "./style.css";
 
@@ -34,8 +36,8 @@ function SearchResults(props) {
                                     type="submit"
                                     onClick={props.handleArticleLike}
                                 >
-                                    Save
-                            </Button>
+                                    Save  <FontAwesomeIcon icon={faSave} />
+                                </Button>
                             </Col>
 
                         </Row>

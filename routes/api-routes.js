@@ -219,6 +219,7 @@ module.exports = function (app) {
     })
   })
 
+<<<<<<< Updated upstream
   app.get("/api/senate", (req, res) => {
     db.Election.findAll({
       where: {
@@ -341,7 +342,17 @@ module.exports = function (app) {
       console.log(err);
     })
   })
+=======
+  app.get("/api/saved", (req, res) => {
+    db.Article.findAll()
+      .then(response => {
+        res.json(response);
+      }).catch(err => {
+        console.log(err);
+      })
+  })
+
+>>>>>>> Stashed changes
 
 };
 
-// bing 3898b393ea014ed68631a30d65665d94
