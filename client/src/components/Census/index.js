@@ -35,25 +35,30 @@ function Census() {
     function usersCountyFN() {
 
         API.checkUserInfo().then(response => {
-            setuserCounty(response.data.county);
-            console.log(userCounty)
+            console.log(response.data.county);
+            setuserCounty(...response.data.county);
+            getCensus(response.data.county)
+
         })
+        console.log(userCounty)
     }
 
     //to get data based on users county selection
     function getCensus(e) {
-
+        console.log(userCounty);
         let countyLocal = e;
 
         if (!countyLocal) {
             if (userCounty) {
                 countyLocal = userCounty + " County";
+                console.log(countyLocal)
 
             } else {
                 countyLocal = "Williamson County"
             }
 
         }
+
         setCounty(countyLocal)
 
         axios.get('/api/census/' + countyLocal).then((response) => {
