@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useStoreContext } from '../utils/GlobalStore';
 import API from "../utils/API";
+import SavedArticles from "../components/SavedArticles";
 
 function Members() {
   const [state] = useStoreContext();
@@ -9,10 +10,26 @@ function Members() {
   let ballot = [];
 
   useEffect(() => {
-    API.getUserInfo(email).then( response => {
+    API.getUserInfo(email).then(response => {
       console.log(response.data);
+<<<<<<< Updated upstream
+      let userInfo = response.data;
+      API.getBallotItems(userInfo).then(response => {
+        console.log(response.data)
+      });
+      // API.president().then(response => {
+      //   let race = {
+      //     office: response.data[0].office,
+      //     officeType: response.data[0].officeType,
+      //     candidates: response.data[0].Candidates
+      //   };
+      //   ballot.push(race);
+      //   console.log(ballot);
+      // });
+    })
+=======
 
-      
+
 
       API.president().then(response => {
         let race = {
@@ -25,16 +42,18 @@ function Members() {
       })
     })
 
-    
+
+>>>>>>> Stashed changes
   }, []);
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6 col-md-offset-3">
-          <h2>Welcome {email}</h2>
+    <div className="container-fluid">
+      <div className="row welcome">
+        <div className="col-md-6">
+          <h3>Welcome {email}</h3>
         </div>
       </div>
+      <SavedArticles />
     </div>
   )
 }

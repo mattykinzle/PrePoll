@@ -2,6 +2,7 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const axios = require("axios");
+const { Op } = require("sequelize");
 
 module.exports = function (app) {
   // Route for logging in
@@ -173,6 +174,36 @@ module.exports = function (app) {
       })
   })
 
+  // Get ALL ballot items for a user
+  app.get("/api/ballotItems", (req, res) => {
+    db.Election.findAll({
+      where: {
+        [Op.or]: [
+          { office: 'U. S. PRESIDENT' },
+          { office: 'U. S. SENATOR' },
+          { officeType: 'STATEWIDE' },
+          { office: 'U. S. REPRESENTATIVE DISTRICT ' + req.query.congressDist },
+          { office: 'STATE REPRESENTATIVE DISTRICT ' + req.query.houseDist },
+          { office: 'STATE SENATOR, DISTRICT ' + req.query.senateDist },
+          { office: 'MEMBER, STATE BOARD OF EDUCATION, DISTRICT ' + req.query.sboeDist },
+          { county: req.query.county }
+        ]
+      },
+      // include: { all: true, nested: true }
+      include: [{
+        model: db.Candidate,
+        required: true
+      }]
+    }).then(response => {
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+
+  //Individual routes for each type of office
+
   app.get("/api/president", (req, res) => {
     db.Election.findAll({
       where: {
@@ -190,6 +221,15 @@ module.exports = function (app) {
     })
   })
 
+  app.get("/api/saved", (req, res) => {
+    db.Article.findAll()
+      .then(response => {
+        res.json(response);
+      }).catch(err => {
+        console.log(err);
+      })
+  })
+
+
 };
-// bing 3898b393ea014ed68631a30d65665d94
 

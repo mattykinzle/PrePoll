@@ -1,0 +1,39 @@
+.welcome {
+    text-align: center;
+}
+
+.savedCol {
+    background-color: #457b9d;
+    border-radius: 5px;
+}
+
+.savedRow {
+    background-color: white;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.savedArtBtn {
+    background-color: #e63946;
+    border-color: #e63946;
+    border-radius: 5px;
+    color: white;
+    text-transform: capitalize;
+}
+
+.savedArtBtn:hover {
+    background-color: #e63946;
+    border-color: #e63946;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+
+.savedHeader {
+    color: white;
+}
