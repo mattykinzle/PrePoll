@@ -72,7 +72,7 @@ module.exports = function (app) {
         'Ocp-Apim-Subscription-Key': process.env.BING_NEWS_API_KEY
       },
       params: {
-        count: 1,
+        count: 10,
         freshness: "week",
         mkt: 'en-US',
         q: req.query.value
@@ -86,13 +86,11 @@ module.exports = function (app) {
 
   //Route to save article
   app.post('/api/saveArticle', function (req, res) {
+    console.log(req.body)
     db.Article.create({
       title: req.body.title,
-      source: req.body.source.name,
-      author: req.body.author,
-      content: req.body.content,
-      publishedAt: req.body.publishedAt,
-      img: req.body.urlToImage,
+      about: req.body.about,
+      url: req.body.url,
       UserId: req.user.id
     })
       .then(function (results) {
