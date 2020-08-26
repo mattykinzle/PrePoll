@@ -221,6 +221,128 @@ module.exports = function (app) {
     })
   })
 
+  app.get("/api/senate", (req, res) => {
+    db.Election.findAll({
+      where: {
+        office: 'U. S. SENATOR'
+      },
+      include: [{
+        model: db.Candidate,
+        required: true
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+  app.get("/api/statewide", (req, res) => {
+    db.Election.findAll({
+      where: {
+        officeType: 'STATEWIDE'
+      },
+      include: [{
+        model: db.Candidate,
+        required: true
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+  app.get("/api/congress", (req, res) => {
+
+    db.Election.findAll({
+      where: {
+        office: 'U. S. REPRESENTATIVE DISTRICT ' + req.query.district
+      },
+      include: [{
+        model: db.Candidate,
+        required: true
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+  app.get("/api/house", (req, res) => {
+
+    db.Election.findAll({
+      where: {
+        office: 'STATE REPRESENTATIVE DISTRICT ' + req.query.district
+      },
+      include: [{
+        model: db.Candidate,
+        required: true
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+  app.get("/api/stateSenate", (req, res) => {
+
+    db.Election.findAll({
+      where: {
+        office: 'STATE SENATOR, DISTRICT ' + req.query.district
+      },
+      include: [{
+        model: db.Candidate,
+        required: true
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+  app.get("/api/sboe", (req, res) => {
+
+    db.Election.findAll({
+      where: {
+        office: 'MEMBER, STATE BOARD OF EDUCATION, DISTRICT ' + req.query.district
+      },
+      include: [{
+        model: db.Candidate,
+        required: true
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+  app.get("/api/countywide", (req, res) => {
+
+    db.Election.findAll({
+      where: {
+        county: req.query.county
+      },
+      include: [{
+        model: db.Candidate
+      }]
+    }).then(response => {
+      console.log(response[0].dataValues.Candidates);
+      res.json(response);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
   app.get("/api/saved", (req, res) => {
     db.Article.findAll()
       .then(response => {
@@ -232,4 +354,5 @@ module.exports = function (app) {
 
 
 };
+// bing 3898b393ea014ed68631a30d65665d94
 
