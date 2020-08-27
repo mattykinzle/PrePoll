@@ -44,7 +44,7 @@ function NewsLanding() {
                             <Col md="3" key={a} className="articleCol">
 
                                 <Card>
-                                    <center><Card.Img variant="top" src={article.image.thumbnail.contentUrl} className="landingImg" /></center>
+                                    <center><Card.Img variant="top" src={(article.image) ? article.image.thumbnail.contentUrl : ''} className="landingImg" /></center>
                                     <Card.Body>
                                         <Card.Title className="cardText">{article.name}</Card.Title>
                                         <Card.Text className="cardText">

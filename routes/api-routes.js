@@ -127,9 +127,9 @@ module.exports = function (app) {
   app.get("/api/voterInformation", (req, res) => {
     // console.log('THIS IS THE VALUE' + req.query.value);
     const { address, city, zip } = JSON.parse(req.query.value);
-    const addressArr = address.split(' ');
+    const addressJoin = address.split(' ').join('%20');
 
-    axios.get(`https://rws.capitol.texas.gov/api/MatchAddress?Address=${addressArr[0]}%20${addressArr[1]}&City=${city}&Zip=${zip}&DistType=A`).then(response => {
+    axios.get(`https://rws.capitol.texas.gov/api/MatchAddress?Address=${addressJoin}&City=${city}&Zip=${zip}&DistType=A`).then(response => {
       // console.log(response.data);
       res.json(response.data)
     }).catch(err => {
@@ -343,6 +343,7 @@ module.exports = function (app) {
       console.log(err);
     })
   })
+
   app.get("/api/saved", (req, res) => {
     db.Article.findAll()
       .then(response => {
