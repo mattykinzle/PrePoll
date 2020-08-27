@@ -17,7 +17,7 @@ function Dropdown({ countyList, county, setCounty }) {
 
                     </label>
 
-                    <select name="theCounty" value={county} onChange={e => changeCounty(e)} >
+                    <select name="theCounty" value={county} onChange={e => changeCounty(e)} placeholder={'Select a County'} >
 
                         {
                             countyList.map((county, index) => (

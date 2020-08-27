@@ -347,7 +347,16 @@ module.exports = function (app) {
       })
   })
 
-
+  app.get("/api/fincances/:year", (req, res) => {
+    db.StateFinances.findAll({ where: [{ year: req.params.year }] })
+      .then(response => {
+        console.log('HELP')
+        console.log(response)
+        res.json(response)
+      }).catch(err => {
+        console.log(err);
+      })
+  })
 };
 // bing 3898b393ea014ed68631a30d65665d94
 
