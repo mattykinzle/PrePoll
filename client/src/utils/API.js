@@ -121,8 +121,6 @@ export default {
 
     saved: function () {
         return axios.get("/api/saved")
-    },
-
-
+    }
 
 }

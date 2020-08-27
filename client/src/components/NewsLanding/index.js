@@ -55,7 +55,20 @@ function NewsLanding() {
                                         </Card.Body>
                                     </Card>
 
+
+                                <Card>
+                                    <center><Card.Img variant="top" src={(article.image) ? article.image.thumbnail.contentUrl : ''} className="landingImg" /></center>
+                                    <Card.Body>
+                                        <Card.Title className="cardText">{article.name}</Card.Title>
+                                        <Card.Text className="cardText">
+                                            {article.description}
+                                        </Card.Text>
+                                        <Button href={article.url} target="_blank" variant="primary">Read Article</Button>
+                                    </Card.Body>
+                                </Card>
+
                                 </Col>
+
 
                             ))
                         }

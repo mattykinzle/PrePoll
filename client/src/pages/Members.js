@@ -1,43 +1,124 @@
-import React, { useEffect } from "react"
-import { useStoreContext } from '../utils/GlobalStore';
+import React, { useEffect, useState } from "react"
+import { useStoreContext } from "../utils/GlobalStore";
+import { Card, Container, Row, Col } from "react-bootstrap";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import API from "../utils/API";
 import SavedArticles from "../components/SavedArticles";
+import DisplayBallots from "../components/DisplayBallots/DisplayBallots";
 
 function Members() {
   const [state] = useStoreContext();
   const { email } = state;
 
-  let ballot = [];
+  const [userFirstName, setUserFirstName] = useState('');
+  const [userLastName, setUserLastName] = useState('');
+  const [userAddress, setUserAddress] = useState('');
+  const [userCity, setUserCity] = useState('');
+  const [userZipCode, setUserZipCode] = useState('');
+  const [userCounty, setUserCounty] = useState('');
+  const [userCongDistrict, setUserCongDistrict] = useState('');
+  const [userHouseDistrict, setUserHouseDistrict] = useState('');
+  const [userSBOE, setUserSBOE] = useState('');
+  const [userSenateDistrict, setUserSenateDistrict] = useState('');
+  const [userBallot, setUserBallot] = useState([]);
+  const [key, setKey] = useState('ballot');
 
   useEffect(() => {
     API.getUserInfo(email).then(response => {
+
       console.log(response.data);
+
+      setUserFirstName(response.data.firstName);
+      setUserLastName(response.data.lastName);
+      setUserAddress(response.data.address);
+      setUserCity(response.data.city);
+      setUserZipCode(response.data.zip);
+      setUserCounty(response.data.county);
+      setUserCongDistrict(response.data.congressDist);
+      setUserHouseDistrict(response.data.houseDist);
+      setUserSBOE(response.data.sboeDist);
+      setUserSenateDistrict(response.data.senateDist);
+
       let userInfo = response.data;
       API.getBallotItems(userInfo).then(response => {
-        console.log(response.data)
+        setUserBallot([...response.data]);
       });
-      // API.president().then(response => {
-      //   let race = {
-      //     office: response.data[0].office,
-      //     officeType: response.data[0].officeType,
-      //     candidates: response.data[0].Candidates
-      //   };
-      //   ballot.push(race);
-      //   console.log(ballot);
-      // });
+
     })
   }, []);
 
+  //would I pass the ballot array into a new component 
+
   return (
-    <div className="container-fluid">
-      <div className="row welcome">
-        <div className="col-md-6">
-          <h3>Welcome {email}</h3>
-        </div>
-      </div>
-      <SavedArticles />
+    <div>
+      <Container className="fluid">
+        <Row className="justify-content-center">
+          <Col>
+            <Card>
+              <Card.Body>
+                <Card.Title style={{ fontSize: '40px' }}>Welcome {userFirstName} {userLastName}</Card.Title>
+                <Card.Subtitle style={{ fontSize: '12px' }}>Here's your user information. </Card.Subtitle>
+                <Card.Text className='card-text'>You live at {userAddress} in {userCity}, Texas, {userZipCode}, which is in {userCounty} county.</Card.Text>
+                <Card.Text>Your district for the U.S. Congress is district <span style={{ fontWeight: "bolder" }}>{userCongDistrict}</span>. </Card.Text>
+                <Card.Text>In the Texas Senate, your district is {userSenateDistrict}. In the Texas House of Representatives, your district {userHouseDistrict}. Your Schoolboard of Education district is {userSBOE}.
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Tabs style={{fontSize:'20px', textAlign:'center'}} >
+            <TabList>
+              <Tab>Your ballot</Tab>
+              <Tab>Your Saved Articles</Tab>
+              <Tab>Your County's Census Data</Tab>
+            </TabList>
+
+            <TabPanel>
+              <DisplayBallots elections={userBallot}/>
+            </TabPanel>
+            <TabPanel>
+             <SavedArticles />
+            </TabPanel>
+            <TabPanel>
+              Your County's census data
+            </TabPanel>
+          </Tabs>
+
+
+        </Row>
+
+      </Container>
     </div>
   )
 }
 
 export default Members;
+
+
+{/* <div className="row mt-5">
+<div className="col-md-6">
+  <SavedArticles />
+</div>
+<div className="col-md-6">
+  <Card style={{ width: '50rem' }}>
+    <Card.Title>Welcome {userFirstName} {userLastName}</Card.Title>
+    <Card.Subtitle>Here's your user information. </Card.Subtitle>
+    <Card.Text>
+      You live at {userAddress} in {userCity}, Texas, {userZipCode}, which is in {userCounty} county.
+      At that address, your district for the U.S. Congress is district {userCongDistrict}. In the
+      Texas Senate, your district is {userSenateDistrict} and in the Texas House of Representatives is district {userHouseDistrict}. Your Schoolboard of Education district is {userSBOE}.
+    </Card.Text>
+  </Card>
+</div>
+</div>
+<div className="row">
+<div className="col-md-6">
+
+</div>
+<div className="col-md-6">
+  {/* <DisplayBallots elections={userBallot} /> *
+</div>
+
+</div> */}
