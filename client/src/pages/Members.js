@@ -28,6 +28,7 @@ function Members() {
     API.getUserInfo(email).then(response => {
 
       console.log(response.data);
+
       setUserFirstName(response.data.firstName);
       setUserLastName(response.data.lastName);
       setUserAddress(response.data.address);
@@ -38,7 +39,6 @@ function Members() {
       setUserHouseDistrict(response.data.houseDist);
       setUserSBOE(response.data.sboeDist);
       setUserSenateDistrict(response.data.senateDist);
-
 
       let userInfo = response.data;
       API.getBallotItems(userInfo).then(response => {
@@ -88,8 +88,6 @@ function Members() {
 
 
         </Row>
-
-
 
       </Container>
     </div>

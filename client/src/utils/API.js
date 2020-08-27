@@ -43,13 +43,11 @@ export default {
     },
 
     articleSave: (article) => {
-        console.log(article)
         return axios.post('/api/saveArticle', article);
 
     },
 
     voterInformation: voterData => {
-        console.log(voterData);
         return axios.get("/api/voterInformation", {
             params: {
                 value: voterData
@@ -82,7 +80,6 @@ export default {
     },
 
     congress: function (userInfo) {
-        console.log(userInfo);
         return axios.get("/api/congress", {
             params: {
                 district: userInfo.congressDist
@@ -91,7 +88,6 @@ export default {
     },
 
     house: function (userInfo) {
-        console.log(userInfo);
         return axios.get("/api/house", {
             params: {
                 district: userInfo.houseDist
@@ -100,7 +96,6 @@ export default {
     },
 
     sboe: function (userInfo) {
-        console.log(userInfo);
         return axios.get("/api/sboe", {
             params: {
                 district: userInfo.sboeDist
@@ -109,7 +104,6 @@ export default {
     },
 
     stateSenate: function (userInfo) {
-        console.log(userInfo);
         return axios.get("/api/stateSenate", {
             params: {
                 district: userInfo.senateDist
@@ -118,7 +112,6 @@ export default {
     },
 
     countywide: function (userInfo) {
-        console.log(userInfo);
         return axios.get("/api/countywide", {
             params: {
                 county: userInfo.county

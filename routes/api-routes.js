@@ -48,7 +48,7 @@ module.exports = function (app) {
       // The user is not logged in, send back an empty object
       res.status(401).json({});
     } else {
-      console.log(req.user)
+      // console.log(req.user)
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
@@ -89,7 +89,6 @@ module.exports = function (app) {
 
   //Route to save article
   app.post('/api/saveArticle', function (req, res) {
-    console.log(req.body)
     db.Article.create({
       title: req.body.title,
       about: req.body.about,
@@ -97,7 +96,6 @@ module.exports = function (app) {
       UserId: req.user.id
     })
       .then(function (results) {
-        //console.log(results);
         res.json(results);
       })
       .catch(function (err) {
@@ -125,7 +123,6 @@ module.exports = function (app) {
 
   //Route to get District information
   app.get("/api/voterInformation", (req, res) => {
-    // console.log('THIS IS THE VALUE' + req.query.value);
     const { address, city, zip } = JSON.parse(req.query.value);
     const addressJoin = address.split(' ').join('%20');
 
@@ -166,8 +163,6 @@ module.exports = function (app) {
       ]
     })
       .then(response => {
-        // console.log('backend census stuff')
-        // console.log(response);
         res.json(response)
       }).catch(err => {
         console.log(err);
@@ -214,7 +209,6 @@ module.exports = function (app) {
         required: true
       }]
     }).then(response => {
-      // console.log(response[0].dataValues.Candidates);
       res.json(response);
     }).catch(err => {
       console.log(err);

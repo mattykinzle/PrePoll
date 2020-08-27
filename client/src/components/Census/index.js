@@ -35,25 +35,30 @@ function Census() {
     function usersCountyFN() {
 
         API.checkUserInfo().then(response => {
-            setuserCounty(response.data.county);
-            console.log(userCounty)
+            console.log(response.data.county);
+            setuserCounty(...response.data.county);
+            getCensus(response.data.county)
+
         })
+        console.log(userCounty)
     }
 
     //to get data based on users county selection
     function getCensus(e) {
-
+        console.log(userCounty);
         let countyLocal = e;
 
         if (!countyLocal) {
             if (userCounty) {
                 countyLocal = userCounty + " County";
+                console.log(countyLocal)
 
             } else {
                 countyLocal = "Williamson County"
             }
 
         }
+
         setCounty(countyLocal)
 
         axios.get('/api/census/' + countyLocal).then((response) => {
@@ -82,7 +87,6 @@ function Census() {
     }
 
     function chartDataSetter(e) {
-        // console.log(e)
         setpopulationData(e[0].totalpopulation);
         setincomeData(e[0].medianincome);
         setpovertyData(e[0].belowpovertyline);
@@ -134,8 +138,6 @@ function Census() {
 
     return (
         <>
-            {/* {console.log('censusData'),
-                console.log(chartData)} */}
             <Container className="container">
                 <Row>
                     <h1 className="header">{county}</h1>

@@ -8,7 +8,6 @@ import { faSave } from '@fortawesome/free-solid-svg-icons'
 import "./style.css";
 
 function SearchResults(props) {
-    console.log(props)
 
     return (
         <>
@@ -31,12 +30,14 @@ function SearchResults(props) {
                                 <p className="source">Source: {article.provider[0].name}</p>
                                 <p className="published">Date Published: {new Date(article.datePublished).toString('MM dd yyyy').substring(0, 15)}</p>
                                 <Button
-                                    id={a}
                                     variant="primary"
+                                    className="saveBtn"
+                                    variant="link"
+                                    id={a}
                                     type="submit"
                                     onClick={props.handleArticleLike}
                                 >
-                                    Save  <FontAwesomeIcon icon={faSave} />
+                                    Save <FontAwesomeIcon icon={faSave} />
                                 </Button>
                             </Col>
 

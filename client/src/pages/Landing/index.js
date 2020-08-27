@@ -9,7 +9,7 @@ import HowToPoll from '../../components/HowToPoll';
 const Landing = () => {
 
     return (
-        <div>
+        <div className="mainLanding">
             <Countdown />
             <NewsLanding />
             <HowToPoll />
