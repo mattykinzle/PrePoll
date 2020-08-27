@@ -4,6 +4,7 @@ import './App.css';
 import NavbarComp from './components/NavbarComp';
 import Footer from './components/Footer';
 import Wrapper from './components/Wrapper';
+import ScrollTopArrow from './components/ScrollTopArrow/ScrollTopArrow';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
 
         <Router>
             <div>
+                <ScrollTopArrow />
                 <Wrapper>
                     <NavbarComp />
                 </Wrapper>
