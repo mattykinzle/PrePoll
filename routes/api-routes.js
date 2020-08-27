@@ -347,8 +347,8 @@ module.exports = function (app) {
       })
   })
 
-  app.get("/api/fincances/:year", (req, res) => {
-    db.StateFinances.findAll({ where: [{ year: req.params.year }] })
+  app.get("/api/finances/", (req, res) => {
+    db.StateFinances.findAll()
       .then(response => {
         console.log('HELP')
         console.log(response)

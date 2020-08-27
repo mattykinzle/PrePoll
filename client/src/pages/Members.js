@@ -8,6 +8,7 @@ import axios from "axios";
 import SavedArticles from "../components/SavedArticles";
 import DisplayBallots from "../components/DisplayBallots/DisplayBallots";
 import CountyCharts from "../components/Charts"
+import StateCharts from "../components/stateCharts.js"
 
 
 function Members() {
@@ -90,7 +91,7 @@ function Members() {
               <SavedArticles />
             </TabPanel>
             <TabPanel>
-
+              <StateCharts />
             </TabPanel>
             <TabPanel>
               <CountyCharts userCounty={userCounty} />
