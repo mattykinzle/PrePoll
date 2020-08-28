@@ -47,7 +47,10 @@ function Members() {
 
       let userInfo = response.data;
       API.getBallotItems(userInfo).then(response => {
-        setUserBallot([...response.data]);
+        API.getBallotTable(userInfo).then(response => {
+          setUserBallot([...response.data]);
+          console.log(response.data);
+        })
       });
 
     })
@@ -69,7 +72,7 @@ function Members() {
                 <Card.Subtitle style={{ fontSize: '12px' }}>Here's your user information. </Card.Subtitle>
                 <Card.Text className='card-text'>You live at {userAddress} in {userCity}, Texas, {userZipCode}, which is in {userCounty} county.</Card.Text>
                 <Card.Text>Your district for the U.S. Congress is district <span style={{ fontWeight: "bolder" }}>{userCongDistrict}</span>. </Card.Text>
-                <Card.Text>In the Texas Senate, your district is {userSenateDistrict}. In the Texas House of Representatives, your district {userHouseDistrict}. Your Schoolboard of Education district is {userSBOE}.
+                <Card.Text>In the Texas Senate, your district is {userSenateDistrict}. In the Texas House of Representatives, your district is {userHouseDistrict}. Your Schoolboard of Education district is {userSBOE}.
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -85,7 +88,7 @@ function Members() {
             </TabList>
 
             <TabPanel>
-              <DisplayBallots elections={userBallot} />
+              {/* <DisplayBallots elections={userBallot} /> */}
             </TabPanel>
             <TabPanel>
               <SavedArticles />

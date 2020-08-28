@@ -62,59 +62,33 @@ export default {
                 houseDist: userInfo.houseDist,
                 senateDist: userInfo.senateDist,
                 sboeDist: userInfo.sboeDist,
-                county: userInfo.county
+                county: userInfo.county,
+                id: userInfo.id
             }
         })
     },
 
-    president: () => {
-        return axios.get("/api/president");
-    },
-
-    senate: () => {
-        return axios.get("/api/senate");
-    },
-
-    statewide: () => {
-        return axios.get("/api/statewide");
-    },
-
-    congress: function (userInfo) {
-        return axios.get("/api/congress", {
+    getBallotTable: function (userInfo) {
+        return axios.get("/api/ballotTable", {
             params: {
-                district: userInfo.congressDist
+                id: userInfo.id
             }
         })
     },
 
-    house: function (userInfo) {
-        return axios.get("/api/house", {
-            params: {
-                district: userInfo.houseDist
-            }
-        })
+    noteSave: (note) => {
+        return axios.post('/api/saveNote', note);
+
     },
 
-    sboe: function (userInfo) {
-        return axios.get("/api/sboe", {
-            params: {
-                district: userInfo.sboeDist
-            }
-        })
+    noteUpdate: (note) => {
+        return axios.put("/api/updateNote", note);
     },
 
-    stateSenate: function (userInfo) {
-        return axios.get("/api/stateSenate", {
+    noteDelete: (note) => {
+        return axios.delete("/api/deleteNote", {
             params: {
-                district: userInfo.senateDist
-            }
-        })
-    },
-
-    countywide: function (userInfo) {
-        return axios.get("/api/countywide", {
-            params: {
-                county: userInfo.county
+                id: note.id
             }
         })
     },
@@ -130,6 +104,60 @@ export default {
                 value: saveId
             }
         })
-    },
+    }
+
+
+
+    // president: () => {
+    //     return axios.get("/api/president");
+    // },
+
+    // senate: () => {
+    //     return axios.get("/api/senate");
+    // },
+
+    // statewide: () => {
+    //     return axios.get("/api/statewide");
+    // },
+
+    // congress: function (userInfo) {
+    //     return axios.get("/api/congress", {
+    //         params: {
+    //             district: userInfo.congressDist
+    //         }
+    //     })
+    // },
+
+    // house: function (userInfo) {
+    //     return axios.get("/api/house", {
+    //         params: {
+    //             district: userInfo.houseDist
+    //         }
+    //     })
+    // },
+
+    // sboe: function (userInfo) {
+    //     return axios.get("/api/sboe", {
+    //         params: {
+    //             district: userInfo.sboeDist
+    //         }
+    //     })
+    // },
+
+    // stateSenate: function (userInfo) {
+    //     return axios.get("/api/stateSenate", {
+    //         params: {
+    //             district: userInfo.senateDist
+    //         }
+    //     })
+    // },
+
+    // countywide: function (userInfo) {
+    //     return axios.get("/api/countywide", {
+    //         params: {
+    //             county: userInfo.county
+    //         }
+    //     })
+    // },
 
 }

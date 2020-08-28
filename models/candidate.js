@@ -15,7 +15,6 @@ module.exports = function (sequelize, DataTypes) {
   //Associations
   Candidate.associate = function (models) {
     Candidate.belongsTo(models.Election);
-    Candidate.hasMany(models.Note);
   };
   return Candidate;
 }
