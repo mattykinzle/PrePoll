@@ -92,7 +92,7 @@ function Signup() {
 
     return <div>
         <div className="container">
-            <div className="row">
+            <div className="row" style={{ justifyContent: "center" }}>
                 <div className="col-md-6 col-md-offset-3">
                     <h2>Sign Up Form</h2>
                     <form className="signup" onSubmit={handleSignup}>

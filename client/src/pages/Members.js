@@ -62,10 +62,14 @@ function Members() {
   //would I pass the ballot array into a new component 
 
   return (
-    <div className="allMain">
-      <Container className="fluid">
+    <Container fluid className="allMain">
+
+      <Container>
+
         <Row className="justify-content-center">
+
           <Col>
+
             <Card>
               <Card.Body>
                 <Card.Title style={{ fontSize: '40px' }}>Welcome {userFirstName} {userLastName}</Card.Title>
@@ -76,10 +80,15 @@ function Members() {
                 </Card.Text>
               </Card.Body>
             </Card>
+
           </Col>
+
         </Row>
+
         <Row>
-          <Tabs style={{ fontSize: '20px', textAlign: 'center' }} >
+
+          <Tabs style={{ fontSize: '20px', textAlign: 'center', width: '100%', marginTop: "10px" }} >
+
             <TabList>
               <Tab>Your ballot</Tab>
               <Tab>Your Saved Articles</Tab>
@@ -99,13 +108,14 @@ function Members() {
             <TabPanel>
               <CountyCharts userCounty={userCounty} />
             </TabPanel>
-          </Tabs>
 
+          </Tabs>
 
         </Row>
 
       </Container>
-    </div>
+
+    </Container>
   )
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import { Link } from 'react-router-dom';
 import Container from "react-bootstrap/Container"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
@@ -37,7 +38,7 @@ function HowToPoll() {
                                         <Card.Text>
                                             Keep up to date on the most recent election news or search for topics that interest you.
                                 </Card.Text>
-                                        <Button className="mt-auto" variant="primary">Go somewhere</Button>
+                                        <Link to="/news" type="button" className="mt-auto howToBtn" variant="primary">Go somewhere</Link>
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -50,7 +51,7 @@ function HowToPoll() {
                                         <Card.Text>
                                             The US census provides many great insights on how your counti holding up! Click below to see what's good in the hood.
                                 </Card.Text>
-                                        <Button className="mt-auto" variant="primary">Go somewhere</Button>
+                                        <Link to="/info" type="button" className="mt-auto howToBtn" variant="primary">Go somewhere</Link>
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -64,7 +65,7 @@ function HowToPoll() {
                                             Some quick example text to build on the card title and make up the bulk of
                                             the card's content.
                                 </Card.Text>
-                                        <Button className="mt-auto" variant="primary">Go somewhere</Button>
+                                        <Link to="/vote" type="button" className="mt-auto howToBtn" variant="primary">Go somewhere</Link>
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -78,7 +79,7 @@ function HowToPoll() {
                                             Some quick example text to build on the card title and make up the bulk of
                                             the card's content.
                                 </Card.Text>
-                                        <Button className="mt-auto" variant="primary">Go somewhere</Button>
+                                        <Link to="/history" type="button" className="mt-auto howToBtn" variant="primary">Go somewhere</Link>
                                     </Card.Body>
                                 </Card>
 
