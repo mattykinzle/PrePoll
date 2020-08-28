@@ -84,54 +84,19 @@ export default {
         })
     },
 
-    president: () => {
-        return axios.get("/api/president");
+    noteSave: (note) => {
+        return axios.post('/api/saveNote', note);
+
     },
 
-    senate: () => {
-        return axios.get("/api/senate");
+    noteUpdate: (note) => {
+        return axios.put("/api/updateNote", note);
     },
 
-    statewide: () => {
-        return axios.get("/api/statewide");
-    },
-
-    congress: function (userInfo) {
-        return axios.get("/api/congress", {
+    noteDelete: (note) => {
+        return axios.delete("/api/deleteNote", {
             params: {
-                district: userInfo.congressDist
-            }
-        })
-    },
-
-    house: function (userInfo) {
-        return axios.get("/api/house", {
-            params: {
-                district: userInfo.houseDist
-            }
-        })
-    },
-
-    sboe: function (userInfo) {
-        return axios.get("/api/sboe", {
-            params: {
-                district: userInfo.sboeDist
-            }
-        })
-    },
-
-    stateSenate: function (userInfo) {
-        return axios.get("/api/stateSenate", {
-            params: {
-                district: userInfo.senateDist
-            }
-        })
-    },
-
-    countywide: function (userInfo) {
-        return axios.get("/api/countywide", {
-            params: {
-                county: userInfo.county
+                id: note.id
             }
         })
     },
@@ -139,5 +104,59 @@ export default {
     saved: function () {
         return axios.get("/api/saved")
     }
+
+
+
+    // president: () => {
+    //     return axios.get("/api/president");
+    // },
+
+    // senate: () => {
+    //     return axios.get("/api/senate");
+    // },
+
+    // statewide: () => {
+    //     return axios.get("/api/statewide");
+    // },
+
+    // congress: function (userInfo) {
+    //     return axios.get("/api/congress", {
+    //         params: {
+    //             district: userInfo.congressDist
+    //         }
+    //     })
+    // },
+
+    // house: function (userInfo) {
+    //     return axios.get("/api/house", {
+    //         params: {
+    //             district: userInfo.houseDist
+    //         }
+    //     })
+    // },
+
+    // sboe: function (userInfo) {
+    //     return axios.get("/api/sboe", {
+    //         params: {
+    //             district: userInfo.sboeDist
+    //         }
+    //     })
+    // },
+
+    // stateSenate: function (userInfo) {
+    //     return axios.get("/api/stateSenate", {
+    //         params: {
+    //             district: userInfo.senateDist
+    //         }
+    //     })
+    // },
+
+    // countywide: function (userInfo) {
+    //     return axios.get("/api/countywide", {
+    //         params: {
+    //             county: userInfo.county
+    //         }
+    //     })
+    // },
 
 }
