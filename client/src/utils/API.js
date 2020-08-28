@@ -47,6 +47,14 @@ export default {
 
     },
 
+    articleDelete: (article) => {
+        return axios.delete("/api/deleteArticle", {
+            params: {
+                id: article.id
+            }
+        })
+    },
+
     voterInformation: voterData => {
         return axios.get("/api/voterInformation", {
             params: {
@@ -62,7 +70,16 @@ export default {
                 houseDist: userInfo.houseDist,
                 senateDist: userInfo.senateDist,
                 sboeDist: userInfo.sboeDist,
-                county: userInfo.county
+                county: userInfo.county,
+                id: userInfo.id
+            }
+        })
+    },
+
+    getBallotTable: function (userInfo) {
+        return axios.get("/api/ballotTable", {
+            params: {
+                id: userInfo.id
             }
         })
     },
