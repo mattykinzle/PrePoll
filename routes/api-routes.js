@@ -103,6 +103,18 @@ module.exports = function (app) {
       });
   });
 
+  //Route to delete article
+  app.delete("/api/deleteArticle", function (req, res) {
+    db.Article.destroy({
+      where: { id: req.params.id }
+    }).then((response) => {
+      console.log(response);
+      res.end();
+    }).catch(err => {
+      res.status(err.status).send(err.message);
+    })
+  });
+
   app.get("/api/news/landing", (req, res) => {
     axios.get('https://api.cognitive.microsoft.com/bing/v7.0/news/search', {
       headers: {
@@ -183,18 +195,40 @@ module.exports = function (app) {
           { office: 'MEMBER, STATE BOARD OF EDUCATION, DISTRICT ' + req.query.sboeDist },
           { county: req.query.county }
         ]
-      },
-      // include: { all: true, nested: true }
-      include: [{
-        model: db.Candidate,
-        required: true
-      }]
+      }
     }).then(response => {
+      res.json(response);
+      db.sequelize.queryInterface.bulkInsert("User_Elections", response.map(elec => {
+        return { UserId: req.query.id, ElectionId: elec.id }
+      }))
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+
+
+  app.get("/api/ballotTable", (req, res) => {
+    db.User_Election.findAll({
+      where: {
+        UserId: req.query.id
+      },
+      include: [{
+        model: db.Election,
+        required: true,
+        // include: [{
+        //   model: db.Candidate,
+        //   required: true
+        // }]
+      }]
+    }
+    ).then(response => {
+      console.log(response);
       res.json(response);
     }).catch(err => {
       console.log(err);
     })
   })
+
 
 
   //Individual routes for each type of office
