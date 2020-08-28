@@ -4,8 +4,12 @@ import { Card, Container, Row, Col } from "react-bootstrap";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import API from "../utils/API";
+import axios from "axios";
 import SavedArticles from "../components/SavedArticles";
 import DisplayBallots from "../components/DisplayBallots/DisplayBallots";
+import CountyCharts from "../components/Charts"
+import StateCharts from "../components/stateCharts.js"
+
 
 function Members() {
   const [state] = useStoreContext();
@@ -23,6 +27,7 @@ function Members() {
   const [userSenateDistrict, setUserSenateDistrict] = useState('');
   const [userBallot, setUserBallot] = useState([]);
   const [key, setKey] = useState('ballot');
+
 
   useEffect(() => {
     API.getUserInfo(email).then(response => {
@@ -46,7 +51,10 @@ function Members() {
       });
 
     })
+
   }, []);
+
+
 
   //would I pass the ballot array into a new component 
 
@@ -68,21 +76,25 @@ function Members() {
           </Col>
         </Row>
         <Row>
-          <Tabs style={{fontSize:'20px', textAlign:'center'}} >
+          <Tabs style={{ fontSize: '20px', textAlign: 'center' }} >
             <TabList>
               <Tab>Your ballot</Tab>
               <Tab>Your Saved Articles</Tab>
-              <Tab>Your County's Census Data</Tab>
+              <Tab>State Census Data</Tab>
+              <Tab>County Census Data</Tab>
             </TabList>
 
             <TabPanel>
-              <DisplayBallots elections={userBallot}/>
+              <DisplayBallots elections={userBallot} />
             </TabPanel>
             <TabPanel>
-             <SavedArticles />
+              <SavedArticles />
             </TabPanel>
             <TabPanel>
-              Your County's census data
+              <StateCharts />
+            </TabPanel>
+            <TabPanel>
+              <CountyCharts userCounty={userCounty} />
             </TabPanel>
           </Tabs>
 

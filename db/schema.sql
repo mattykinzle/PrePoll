@@ -45,4 +45,13 @@ Create Table BallotData (
   id INTEGER PRIMARY KEY AUTO_INCREMENT
 );
 
+Create Table StateFinances
+(
 
+  totalRevenue INT,
+  education INT,
+  hospitalsHealth INT,
+  highways INT,
+  policeCorrections INT,
+
+)
