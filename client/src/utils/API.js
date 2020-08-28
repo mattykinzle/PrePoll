@@ -103,7 +103,16 @@ export default {
 
     saved: function () {
         return axios.get("/api/saved")
-    }
+    },
+
+    articleDelete: (saveId) => {
+        console.log(saveId)
+        return axios.delete("/api/deleteArticle", {
+            params: {
+                value: saveId
+            }
+        })
+    },
 
 
 

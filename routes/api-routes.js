@@ -441,6 +441,20 @@ module.exports = function (app) {
         console.log(err);
       })
   })
+
+  //Route to delete article
+  app.delete("/api/deleteArticle", function (req, res) {
+    db.Article.destroy({
+      where: { id: req.query.value }
+    }).then((response) => {
+      console.log(response);
+      res.end();
+    }).catch(err => {
+      res.status(err.status).send(err.message);
+    })
+  });
+
+
 };
 // bing 3898b393ea014ed68631a30d65665d94
 

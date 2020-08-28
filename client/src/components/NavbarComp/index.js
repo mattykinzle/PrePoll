@@ -69,9 +69,9 @@ function NavbarComp() {
                                 </Link>
 
                                 <Nav className="ml-md-auto justify-content-end">
-                                    <Link className="nav-link active" to="/news">News  |</Link>
-                                    <Link className="nav-link active" to="/vote">Vote  |</Link>
-                                    <Link className="nav-link active" to="/info">Info  |</Link>
+                                    <Link className="nav-link active" to="/news">News</Link>
+                                    <Link className="nav-link active" to="/vote">Vote</Link>
+                                    <Link className="nav-link active" to="/info">Info</Link>
                                     <Link className="nav-link active" to="/history">History</Link>
                                     <Link className="log-link active" to="/login">Login /</Link>
                                     <Link className="log-link active" to="/signup"> Sign Up</Link>
@@ -95,11 +95,11 @@ function NavbarComp() {
                                     </Link>
 
                                     <Nav className="ml-md-auto justify-content-end">
-                                        <Link className="nav-link active" to="/news">News  |</Link>
-                                        <Link className="nav-link active" to="/vote">Vote  |</Link>
-                                        <Link className="nav-link active" to="/info">Info  |</Link>
-                                        <Link className="nav-link active" to="/history">History</Link>
-                                        <Link className="log-link active" to="/members">Members</Link> | <a className="log-link" onClick={() => logout()} href="/">Logout</a>
+                                        <Link className="nav-link active" to="/news">News</Link>
+                                        <Link className="nav-link active" to="/vote"> Vote</Link>
+                                        <Link className="nav-link active" to="/info"> Info</Link>
+                                        <Link className="nav-link active" to="/history"> History</Link>
+                                        <Link className="log-link active" to="/members">Members /</Link><a className="log-link" onClick={() => logout()} href="/">Logout</a>
 
                                     </Nav>
 
@@ -128,7 +128,7 @@ function NavbarComp() {
                                 <>
                                     <Route exact path={["/login", "/signup"]}>
                                         {/* If you are logged in, going to the login/signup page will take you to the members page */}
-                                        <Redirect to="/" />
+                                        <Redirect to="/members" />
                                     </Route>
                                     <Route exact path="/" component={Landing} />
                                     <Route exact path="/members" component={Members} />
