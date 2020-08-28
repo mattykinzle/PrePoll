@@ -1,99 +1,179 @@
-// import React, { useEffect, useState } from "react";
-// import "./style.css";
-// import axios from "axios";
-// import { Pie } from "react-chartjs-2";
-// // import Chart from 'chart.js';
-// import Dropdown from "../Dropdown.js";
-// import { Button, Col, Row, Container } from "react-bootstrap"
-// function Census() {
-//     const [censusData, setcensusData] = useState([]);
-//     const [county, setCounty] = useState("Williamson County");
-//     const [countyList, setCountyList] = useState([]);
-//     const [chartData, setChartData] = useState({});
+import React, { useEffect, useState } from "react";
+import "./style.css";
+import axios from "axios";
+import { Doughnut } from "react-chartjs-2";
+import API from '../../utils/API';
+import { Button, Col, Row, Container, Card } from "react-bootstrap"
+
+function Charts(userCounty) {
 
 
-//     useEffect(() => {
-//         getCensus();
-//         getCounties();
-//     }, []);
 
-//     //to get data based on users county selection
-//     function getCensus(e) {
-//         let countyLocal = e;
-//         if (!countyLocal) { countyLocal = "Williamson County" }
-//         axios.get('/api/census/' + countyLocal).then((response) => {
-//             setcensusData(response.data);
-//             censusDataSetter(response.data);
-//         }).catch(err => {
-//             console.log(err);
-//         });
-//     };
-//     //get all counties from db
-//     function getCounties() {
-//         if (countyList.length) { return }
-//         axios.get("/api/census/").then(res => res.data)
-//             .then(response => {
-//                 setCountyList(response);
-//             }).catch(err => {
-//                 console.log(err)
-//             })
-//     };
-//     function handleFormSubmit(e) {
-//         e.preventDefault();
-//         getCensus(county)
-//     }
-//     function censusDataSetter(e) {
-//         console.log("setting data")
-//         console.log(e);
-// ​
-//         setChartData({
-//             labels: ['Insured', 'Uninsured'],
-//             datasets: [
-//                 {
-//                     data: [e[0].insured, e[0].uninsured],
-//                     backgroundColor: [
-//                         'rgba(255, 99, 132, 0.6)',
-//                         'rgba(54, 162, 235, 0.6)'
-//                     ],
-//                     borderWidth: 3
-//                 }
-//             ]
-//         })
-//     }
-//     return (
-//         <>
-//             {console.log('censusData'),
-//                 console.log(chartData.data)}
-//             <Container className="container">
-//                 <Row>
-//                     <h1 className="header">Select a County</h1>
-//                     <Col className="countySelector">
-//                         <br></br>
-//                         <form onSubmit={e => handleFormSubmit(e)}>
-//                             <Dropdown countyList={countyList} county={county} setCounty={setCounty} />
-//                             <Button className="searchCounty" type="submit" value="Submit">Search</Button>
-//                         </form>
-//                     </Col>
-//                 </Row>
-//             </Container>
-//             <div className="chart">
-//                 {true ?
-//                     <Pie
-//                         censusData={censusData.data}
-//                         data={chartData}
-//                         options={{
-//                             responsive: true,
-//                             maintainAspectRatio: false,
-//                             display: true
-//                         }}
-//                         height={500}
-//                         width={700}
-//                     />
-//                     :
-//                     <p>Please load a County</p>
-//                 }
-//             </div>
-//         </>
-//     )
-// }
-// export default Census;
+    const [censusData, setCensusData] = useState([]);
+    //insurance state
+    const [IchartData, setIChartData] = useState({});
+    //Employment state
+    const [EchartData, setEchartata] = useState({});
+    //median male v female income
+    const [MFchartData, setMFchartData] = useState({});
+    //Total Population
+    const [populationData, setpopulationData] = useState([]);
+    //median income
+    const [incomeData, setincomeData] = useState([]);
+    //poverty line
+    const [povertyData, setpovertyData] = useState([]);
+
+    const [theCounty, settheCounty] = useState();
+
+    // const localCounty = JSON.stringify(userCounty) + ' County'
+    // console.log(localCounty)
+    useEffect(() => {
+        API.checkUserInfo().then(response => {
+
+            settheCounty(response.data.county + ' County')
+            getCensusData(response.data.county + ' County')
+        })
+
+    }, [])
+
+
+    function getCensusData(c) {
+        console.log(c)
+        axios.get('/api/census/' + c).then((response) => {
+            console.log(response.data)
+            setCensusData([...response.data]);
+            chartDataSetter(response.data);
+        })
+    }
+
+    function chartDataSetter(e) {
+
+        setpopulationData(e[0].totalpopulation);
+        setincomeData(e[0].medianincome);
+        setpovertyData(e[0].belowpovertyline);
+
+        setIChartData({
+            labels: ['Insured', 'Uninsured'],
+            datasets: [
+                {
+                    data: [e[0].insured, e[0].uninsured],
+                    backgroundColor: [
+                        '#021b45',
+                        '#d90429'
+                    ],
+                    borderWidth: 3
+                }
+            ]
+        });
+        setEchartata({
+            labels: ['Employed', 'Unemployed'],
+            datasets: [
+                {
+                    data: [e[0].employed, e[0].unemployed],
+                    backgroundColor: [
+                        '#021b45',
+                        '#d90429'
+                    ],
+                    borderWidth: 3
+                }
+            ]
+        });
+
+
+        setMFchartData({
+            labels: ['Median Male Income', 'Median Female Income'],
+            datasets: [
+                {
+                    data: [e[0].medianmaleincome, e[0].medianfemaleincome],
+                    backgroundColor: [
+                        '#021b45',
+                        '#d90429'
+                    ],
+                    borderWidth: 3
+                }
+            ]
+        });
+
+
+    }
+
+
+    return (
+        <>
+            <div><h1>{theCounty}</h1></div>
+            <hr />
+            <Container className="numbersContainer">
+                <div className="rawNumbers">
+                    <div> <h2 className="population">Population: {populationData}</h2> </div>
+                    <div> <h2 className="householdimcone">Median Income: ${incomeData}</h2></div>
+                    <div> <h2 className="povertyLine">Families Below the Poverty Line: {povertyData}%</h2></div>
+                </div>
+            </Container>
+            <Container>
+                <Row>
+                    <div className="chart">
+                        {/* {censusData[0] ? */}
+                        <Col md={6}>
+                            <Doughnut
+                                data={EchartData}
+                                options={{
+                                    title: {
+                                        display: true,
+                                        text: "Employed vs. Unemployed",
+                                        fontSize: 25,
+                                        fontColor: "#021b45"
+                                    },
+                                    legend: {
+                                        display: true,
+                                        position: "bottom",
+                                        fontSize: 15,
+                                        fontColor: "#021b45"
+                                    },
+                                    responsive: true,
+                                    maintainAspectRatio: true,
+
+                                }}
+                            />
+                        </Col>
+                    </div>
+                    <div className="chart">
+                        <Col md={6}>
+                            <Doughnut
+                                // censusData={censusData.data}
+                                data={IchartData}
+                                options={{
+                                    title: {
+                                        display: true,
+                                        text: "Insured vs. Uninsured",
+                                        fontSize: 25,
+                                        fontColor: "#021b45"
+                                    },
+                                    legend: {
+                                        display: true,
+                                        position: "bottom"
+                                    },
+                                    responsive: true,
+                                    maintainAspectRatio: true,
+
+                                }}
+                            />
+                        </Col>
+
+
+                        {/* :
+                        <Col>
+                        <p>Please load a County</p>
+                        </Col>
+                    } */}
+                    </div>
+                </Row>
+            </Container>
+
+        </>
+
+    )
+
+
+};
+
+export default Charts; 

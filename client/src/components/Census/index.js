@@ -54,7 +54,7 @@ function Census() {
                 console.log(countyLocal)
 
             } else {
-                countyLocal = "Williamson County"
+                countyLocal = "Texas"
             }
 
         }
