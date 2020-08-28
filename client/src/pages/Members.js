@@ -59,7 +59,7 @@ function Members() {
   //would I pass the ballot array into a new component 
 
   return (
-    <div>
+    <div className="allMain">
       <Container className="fluid">
         <Row className="justify-content-center">
           <Col>
