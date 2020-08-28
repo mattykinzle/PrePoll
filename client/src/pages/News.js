@@ -6,7 +6,7 @@ import ArticleHeader from "../components/ArticleHeader";
 function News() {
 
     return (
-        <div className="newsMain">
+        <div className="allMain">
             <ArticleHeader />
             <Articles />
         </div>

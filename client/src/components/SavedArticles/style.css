@@ -19,6 +19,23 @@
 }
 
 .savedArtBtn {
+    background-color: #2a9d8f;
+    border-color: #2a9d8f;
+    border-radius: 5px;
+    color: white;
+    text-transform: capitalize;
+}
+
+.savedArtBtn:hover {
+    background-color: #2a9d8f;
+    border-color: #2a9d8f;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.delArtBtn {
     background-color: #e63946;
     border-color: #e63946;
     border-radius: 5px;
@@ -26,7 +43,7 @@
     text-transform: capitalize;
 }
 
-.savedArtBtn:hover {
+.delArtBtn:hover {
     background-color: #e63946;
     border-color: #e63946;
     border-radius: 5px;
@@ -34,6 +51,7 @@
     text-decoration: none;
     text-transform: uppercase;
 }
+
 
 .scrollhead {
     font-size: 14px;

@@ -23,6 +23,16 @@ function SavedArticles() {
             .catch(err => console.log(err));
     }
 
+    function handleArticleDelete(event) {
+        event.preventDefault();
+        console.log(event.target.id);
+        let saveId = saveArticles[event.target.id].id;
+        console.log(saveId);
+        API.articleDelete(saveId)
+        articlesSaved()
+    }
+
+
     return (
         <>
             <Container fluid>
@@ -35,10 +45,24 @@ function SavedArticles() {
                             <Row key={a} className="savedRow">
 
                                 <p>{article.title}</p>
-                                {/* <p>{article.about}</p> */}
-                                <Button className="savedArtBtn" href={article.url} target="_blank" size="sm" variant="link">Read Now</Button>
+                                <Button
+                                    className="savedArtBtn"
+                                    href={article.url}
+                                    target="_blank"
+                                    size="sm"
+                                    variant="link">
+                                    Read Now
+                                    </Button>
 
-                                {/* <p>{article.url}</p> */}
+                                <Button
+                                    id={a}
+                                    className="delArtBtn"
+                                    size="sm"
+                                    onClick={handleArticleDelete}>
+                                    Delete
+                                    </Button>
+
+
 
                             </Row>
                         ))

@@ -6,8 +6,6 @@ import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
-import newsPic from "../../assets/newsPrepolllg.jpg"
-import dataPic from "../../assets/data.jpg"
 
 
 function NewsLanding() {
@@ -31,51 +29,42 @@ function NewsLanding() {
             <Container fluid className="mainArticles">
 
                 <Container>
+
                     <Container className="topHeader">
                         <center><h1> Top Election 2020 News Stories </h1></center>
                     </Container>
-                    <hr />
+                    <hr className="newsLine" />
 
-                    <Row>
+                    <Col md="12">
 
-                        {
-                            articles.map((article, a) => (
+                        <Row className="landRow">
 
+                            {
+                                articles.map((article, a) => (
 
-                                <Col md="3" key={a} className="articleCol">
+                                    <Col key={a} md="3" className="newsCol">
 
-                                    <Card>
-                                        <center><Card.Img variant="top" src={article.image.thumbnail.contentUrl} className="landingImg" /></center>
-                                        <Card.Body>
-                                            <Card.Title className="cardText">{article.name}</Card.Title>
-                                            <Card.Text className="cardText">
-                                                {article.description}
+                                        < Card className="newsCard h-100">
+                                            <center><Card.Img variant="top" src={(article.image) ? article.image.thumbnail.contentUrl : ''} className="landingImg" /></center>
+                                            <Card.Body className="d-flex flex-column">
+                                                <Card.Title className="cardText">{article.name.substring(0, 80)}...</Card.Title>
+                                                <Card.Text className="cardText">
+                                                    {article.description.substring(0, 80)}...
                                             </Card.Text>
-                                            <Button href={article.url} target="_blank" variant="primary">Read Article</Button>
-                                        </Card.Body>
-                                    </Card>
+                                                <Button className="mt-auto" href={article.url} target="_blank" variant="primary">Read Article</Button>
+                                            </Card.Body>
+                                        </Card>
 
+                                    </Col>
 
-                                <Card>
-                                    <center><Card.Img variant="top" src={(article.image) ? article.image.thumbnail.contentUrl : ''} className="landingImg" /></center>
-                                    <Card.Body>
-                                        <Card.Title className="cardText">{article.name}</Card.Title>
-                                        <Card.Text className="cardText">
-                                            {article.description}
-                                        </Card.Text>
-                                        <Button href={article.url} target="_blank" variant="primary">Read Article</Button>
-                                    </Card.Body>
-                                </Card>
+                                ))
+                            }
 
-                                </Col>
+                        </Row>
 
+                    </Col>
 
-                            ))
-                        }
-
-                    </Row>
                 </Container>
-
 
             </Container>
 
@@ -84,4 +73,3 @@ function NewsLanding() {
 }
 
 export default NewsLanding;
-
