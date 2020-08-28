@@ -235,7 +235,7 @@ module.exports = function (app) {
   app.post('/api/saveNote', function (req, res) {
     db.Note.create({
       noteText: req.body.noteText,
-      candidateId: req.body.candidateChoice,
+      candidateId: req.body.candidateId,
       ElectionId: req.body.ElectionId,
       UserId: req.user.id
     })
