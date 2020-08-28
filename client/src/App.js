@@ -12,13 +12,11 @@ function App() {
     return (
 
         <Router>
-            <div>
-                <ScrollTopArrow />
-                <Wrapper>
-                    <NavbarComp />
-                </Wrapper>
-                <Footer />
-            </div>
+            <ScrollTopArrow />
+            <Wrapper>
+                <NavbarComp />
+            </Wrapper>
+            <Footer />
         </Router>
     )
 

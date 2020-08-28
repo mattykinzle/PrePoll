@@ -25,18 +25,16 @@ function SavedArticles() {
 
     function handleArticleDelete(event) {
         event.preventDefault();
-        console.log(event.target.id);
         let saveId = saveArticles[event.target.id].id;
-        console.log(saveId);
         API.articleDelete(saveId)
-        articlesSaved()
-    }
+            .then(() => articlesSaved())
 
+    }
 
     return (
         <>
             <Container fluid>
-                <Col md="6" className="savedCol">
+                <Col md="12" className="savedCol">
 
                     <h3 className="savedHeader">Your Saved Articles <span><p className="scrollhead">(scroll to see more)</p></span></h3>
 
@@ -49,16 +47,15 @@ function SavedArticles() {
                                     className="savedArtBtn"
                                     href={article.url}
                                     target="_blank"
-                                    size="sm"
-                                    variant="link">
+                                >
                                     Read Now
                                     </Button>
 
                                 <Button
                                     id={a}
                                     className="delArtBtn"
-                                    size="sm"
-                                    onClick={handleArticleDelete}>
+                                    onClick={handleArticleDelete}
+                                >
                                     Delete
                                     </Button>
 

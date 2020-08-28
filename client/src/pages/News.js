@@ -1,15 +1,16 @@
 import React from "react";
 import Articles from "../components/Articles";
 import ArticleHeader from "../components/ArticleHeader";
+import { Container } from "react-bootstrap";
 
 
 function News() {
 
     return (
-        <div className="allMain">
+        <Container fuid>
             <ArticleHeader />
             <Articles />
-        </div>
+        </Container>
     )
 }
 

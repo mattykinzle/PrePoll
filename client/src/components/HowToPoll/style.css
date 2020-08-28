@@ -17,6 +17,7 @@
 .howToCard {
     background-color: #1d3557;
     color: white;
+    padding: 10px
 }
 
 .howToTitle {
@@ -40,4 +41,15 @@
 
 .featureCol {
     margin-bottom: 10px;
+}
+
+.howToBtn {
+    background-color: #e63946;
+    border-color: #e63946;
+    color: white;
+    width: 50%;
+    text-align: center;
+    align-self: center;
+    border-radius: 5px;
+    padding: 5px;
 }

@@ -5,8 +5,7 @@
 .savedCol {
     background-color: #457b9d;
     border-radius: 5px;
-    max-height: 240px;
-    overflow: scroll;
+    padding: 20px;
 }
 
 .savedRow {
@@ -16,6 +15,7 @@
     margin-right: 0px;
     border-radius: 5px;
     padding: 10px;
+    display: block;
 }
 
 .savedArtBtn {
@@ -24,6 +24,7 @@
     border-radius: 5px;
     color: white;
     text-transform: capitalize;
+    margin-left: 10px;
 }
 
 .savedArtBtn:hover {
@@ -41,6 +42,7 @@
     border-radius: 5px;
     color: white;
     text-transform: capitalize;
+    margin-left: 10px;
 }
 
 .delArtBtn:hover {

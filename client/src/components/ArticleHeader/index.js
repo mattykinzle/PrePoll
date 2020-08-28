@@ -7,7 +7,7 @@ function ArticleHeader() {
 
     return (
         <>
-            <Container fluid className="main">
+            <Container fluid className="headerMain">
                 <Container className="article-Header">
                     <Row>
                         <h1 className="art-Header">Top News on the 2020 Election</h1>
