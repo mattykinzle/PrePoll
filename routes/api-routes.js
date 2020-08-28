@@ -181,6 +181,15 @@ module.exports = function (app) {
       })
   });
 
+  app.get("/api/saved", (req, res) => {
+    db.Article.findAll()
+      .then(response => {
+        res.json(response);
+      }).catch(err => {
+        console.log(err);
+      })
+  });
+
   // Get ballot items for user, populate junction table
   app.get("/api/ballotItems", (req, res) => {
     db.Election.findAll({
@@ -420,15 +429,6 @@ module.exports = function (app) {
   //   }).catch(err => {
   //     console.log(err);
   //   })
-  // })
-
-  // app.get("/api/saved", (req, res) => {
-  //   db.Article.findAll()
-  //     .then(response => {
-  //       res.json(response);
-  //     }).catch(err => {
-  //       console.log(err);
-  //     })
   // })
 
 
