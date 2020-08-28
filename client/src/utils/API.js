@@ -47,14 +47,6 @@ export default {
 
     },
 
-    articleDelete: (article) => {
-        return axios.delete("/api/deleteArticle", {
-            params: {
-                id: article.id
-            }
-        })
-    },
-
     voterInformation: voterData => {
         return axios.get("/api/voterInformation", {
             params: {
@@ -112,7 +104,7 @@ export default {
                 value: saveId
             }
         })
-    },
+    }
 
 
 
