@@ -67,7 +67,8 @@ module.exports = function (sequelize, DataTypes) {
 
   //Associations
   User.associate = function (models) {
-    User.belongsToMany(models.Election, { through: 'User_Elections' });
+    User.belongsToMany(models.Election, { through: 'User_Election' });
+    User.hasMany(models.User_Election);
     User.hasMany(models.Note);
     User.hasMany(models.Article);
     User.hasMany(models.Response);
