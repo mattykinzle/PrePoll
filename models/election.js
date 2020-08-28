@@ -13,6 +13,7 @@ module.exports = function (sequelize, DataTypes) {
   //Associations
   Election.associate = function (models) {
     Election.hasMany(models.Candidate);
+    Election.hasMany(models.Note);
     Election.belongsToMany(models.User, { through: 'User_Election' });
     Election.hasMany(models.User_Election);
   };
