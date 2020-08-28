@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Wrapper from './components/Wrapper';
 import ScrollTopArrow from './components/ScrollTopArrow/ScrollTopArrow';
 
+
 function App() {
 
     return (
