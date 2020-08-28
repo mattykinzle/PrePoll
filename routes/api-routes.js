@@ -103,17 +103,6 @@ module.exports = function (app) {
       });
   });
 
-  //Route to delete article
-  app.delete("/api/deleteArticle", function (req, res) {
-    db.Article.destroy({
-      where: { id: req.params.id }
-    }).then((response) => {
-      console.log(response);
-      res.end();
-    }).catch(err => {
-      res.status(err.status).send(err.message);
-    })
-  });
 
   app.get("/api/news/landing", (req, res) => {
     axios.get('https://api.cognitive.microsoft.com/bing/v7.0/news/search', {
