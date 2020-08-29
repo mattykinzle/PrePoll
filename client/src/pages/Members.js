@@ -15,6 +15,8 @@ function Members() {
   const [state] = useStoreContext();
   const { email } = state;
 
+
+
   const [userFirstName, setUserFirstName] = useState('');
   const [userLastName, setUserLastName] = useState('');
   const [userAddress, setUserAddress] = useState('');
@@ -26,13 +28,12 @@ function Members() {
   const [userSBOE, setUserSBOE] = useState('');
   const [userSenateDistrict, setUserSenateDistrict] = useState('');
   const [userBallot, setUserBallot] = useState([]);
+  const [initialNotes, setInitialNotes] = useState([]);
   const [key, setKey] = useState('ballot');
 
 
   useEffect(() => {
     API.getUserInfo(email).then(response => {
-
-      console.log(response.data);
 
       setUserFirstName(response.data.firstName);
       setUserLastName(response.data.lastName);
@@ -50,6 +51,14 @@ function Members() {
         API.getBallotTable(userInfo).then(response => {
           setUserBallot([...response.data]);
           console.log(response.data);
+
+
+          let tempArr = response.data.map(element => {
+            return (element.Election.Notes.length !== 0) ? element.Election.Notes[0].noteText : '';
+          });
+          setInitialNotes(tempArr);
+
+
         })
       });
 
@@ -101,12 +110,14 @@ function Members() {
               <Tab>County Census Data</Tab>
             </TabList>
 
+
             <TabPanel>
-              {/* <DisplayBallots elections={userBallot} /> */}
+              <DisplayBallots elections={userBallot} initialNotes={initialNotes} />
             </TabPanel>
             <TabPanel>
               <SavedArticles />
             </TabPanel>
+            
             <TabPanel>
               <StateCharts />
             </TabPanel>

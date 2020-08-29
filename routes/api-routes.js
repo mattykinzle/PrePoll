@@ -248,7 +248,7 @@ module.exports = function (app) {
   });
 
   //Route to update election note
-  app.post('/api/updateNote', function (req, res) {
+  app.put('/api/updateNote', function (req, res) {
     db.Note.update({
       noteText: req.body.noteText,
       candidateId: req.body.candidateChoice,
