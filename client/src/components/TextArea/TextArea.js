@@ -1,9 +1,12 @@
-import React from "./node_modules/react";
+import React from 'react';
 
-export function TextArea(props) {
+
+const TextArea = props => {
   return (
     <div className="form-group">
       <textarea className="form-control" rows="20" {...props} />
     </div>
   );
 }
+
+export default TextArea;
