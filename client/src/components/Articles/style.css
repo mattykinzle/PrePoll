@@ -69,3 +69,15 @@ flex-wrap: wrap;
     background-color: #c0c0c0;
     margin-top: 10px;
 }
+
+@media (max-width: 991px) {
+
+    .submitBtn {
+        margin-left: 15px;
+    }
+
+    .article-btn {
+        margin-left: 5px;
+    }
+
+}

@@ -65,6 +65,7 @@ function Articles() {
                                     placeholder="Search" />
                             </Col>
                             <Button
+                                className="submitBtn"
                                 variant="primary"
                                 type="search"
                                 onClick={handleFormSubmit}

@@ -66,7 +66,12 @@ function Members() {
 
       <Container>
 
-        <Row className="justify-content-center">
+        <Row className="justify-content-center"
+          style={{
+            padding: "10px",
+            backgroundColor: "#f1faee",
+            borderRadius: "5px"
+          }}>
 
           <Col>
 
