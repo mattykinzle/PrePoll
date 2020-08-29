@@ -42,3 +42,40 @@
     border-radius: 10px;
     text-decoration: none;
 }
+
+@media (max-width: 991px) {
+
+    .article-btn {
+        margin-bottom: 5px;
+    }
+
+    .artImg {
+        width: 25%;
+    }
+
+    .newsInfo {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 568px) {
+
+    .artImg {
+        width: 50%;
+    }
+
+}
+
+@media (max-width: 375px) {
+
+    .picCol {
+        text-align: center;
+    }
+
+    .artImg {
+        width: 100%;
+    }
+
+}
+

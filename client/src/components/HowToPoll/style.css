@@ -17,7 +17,8 @@
 .howToCard {
     background-color: #1d3557;
     color: white;
-    padding: 10px
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .howToTitle {
@@ -27,7 +28,7 @@
 .howToHeader {
     background-color: #1d3557;
     border-radius: 10px;
-    width: 50%;
+    width: 75%;
     padding: 10px;
 }
 
@@ -52,4 +53,10 @@
     align-self: center;
     border-radius: 5px;
     padding: 5px;
+}
+
+@media (max-width: 991px) {
+    .howToHeader {
+        width: 100%;
+    }
 }

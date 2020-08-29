@@ -18,7 +18,7 @@ function SearchResults(props) {
                     props.articles.map((article, a) => (
                         <Row key={a} className="newsRow">
 
-                            <Col md="2">
+                            <Col md="2" className="picCol">
                                 <img src={(article.image) ? article.image.thumbnail.contentUrl : ''} alt={article.title} className="artImg img-fluid" />
                                 <a href={article.url} target="_blank" className="btn article-btn">Click to Read</a>
                             </Col>

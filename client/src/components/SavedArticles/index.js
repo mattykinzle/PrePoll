@@ -5,6 +5,9 @@ import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+
 
 
 function SavedArticles() {
@@ -56,8 +59,8 @@ function SavedArticles() {
                                     className="delArtBtn"
                                     onClick={handleArticleDelete}
                                 >
-                                    Delete
-                                    </Button>
+                                    <FontAwesomeIcon icon={faTrashAlt} />
+                                </Button>
 
 
 
