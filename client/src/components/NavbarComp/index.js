@@ -10,6 +10,7 @@ import History from "../../pages/History";
 import Landing from "../../pages/Landing";
 import News from "../../pages/News";
 import CensusInfo from "../../pages/Info";
+import About from "../../pages/About/index";
 import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
 import "./style.css";
@@ -141,6 +142,7 @@ function NavbarComp() {
                             )
                     }
                 </Switch>
+                <Route exact path="/about" component={About} />
 
             </Router>
         </div>

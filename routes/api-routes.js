@@ -220,6 +220,10 @@ module.exports = function (app) {
           model: db.Note,
           where: { UserId: req.query.id },
           required: false
+        }, {
+          model: db.Choice,
+          where: { UserId: req.query.id },
+          required: false
         }]
       }]
     }
@@ -268,6 +272,52 @@ module.exports = function (app) {
   //Route to delete election note
   app.delete("/api/deleteNote", function (req, res) {
     db.Note.destroy({
+      where: { id: req.params.id }
+    }).then((response) => {
+      console.log(response);
+      res.end();
+    }).catch(err => {
+      res.status(err.status).send(err.message);
+    })
+  });
+
+  //Route to save election choice
+  app.post('/api/saveChoice', function (req, res) {
+    console.log(req);
+    db.Choice.create({
+      CandidateId: req.body.CandidateId,
+      ElectionId: req.body.ElectionId,
+      UserId: req.user.id
+    })
+      .then(function (results) {
+        res.json(results);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  });
+
+  //Route to update election choice
+  app.put('/api/updateChoice', function (req, res) {
+    db.Choice.update({
+      CandidateId: req.body.choice
+    }, {
+      where: {
+        ElectionId: req.body.ElectionId,
+        UserId: req.user.id
+      }
+    })
+      .then(function (results) {
+        res.json(results);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  });
+
+  //Route to delete election choice
+  app.delete("/api/deleteChoice", function (req, res) {
+    db.Choice.destroy({
       where: { id: req.params.id }
     }).then((response) => {
       console.log(response);
