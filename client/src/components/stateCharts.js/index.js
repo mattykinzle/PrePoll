@@ -120,7 +120,7 @@ function StateCharts() {
 
     return (
         <>
-            <div><h1>Texas</h1></div>
+            <div><h1 className="header">Texas</h1></div>
             <hr />
             <Container className="numbersContainer">
                 <div className="rawNumbers">

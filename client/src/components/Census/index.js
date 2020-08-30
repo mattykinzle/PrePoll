@@ -4,7 +4,7 @@ import axios from "axios";
 import { Doughnut, Bar } from "react-chartjs-2";
 import API from '../../utils/API';
 import Dropdown from "../Dropdown.js";
-import { Button, Col, Row, Container, Card } from "react-bootstrap"
+import { Col, Row, Container, Card } from "react-bootstrap"
 
 
 function Census() {
@@ -25,7 +25,7 @@ function Census() {
     //poverty line
     const [povertyData, setpovertyData] = useState([]);
 
-    const [barChart, setBarChart] = useState({})
+    const [barChart, setBarChart] = useState({});
 
     useEffect(() => {
         getCensus();
@@ -256,9 +256,7 @@ function Census() {
                     </div>
                 </Row>
                 <Row>
-                    <Col md={3}>
 
-                    </Col>
                     <div className="chart">
                         <Col md={3}>
 
