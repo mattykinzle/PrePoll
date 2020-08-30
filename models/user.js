@@ -70,6 +70,7 @@ module.exports = function (sequelize, DataTypes) {
     User.belongsToMany(models.Election, { through: 'User_Election' });
     User.hasMany(models.User_Election);
     User.hasMany(models.Note);
+    User.hasMany(models.Choice);
     User.hasMany(models.Article);
     User.hasMany(models.Response);
   };
