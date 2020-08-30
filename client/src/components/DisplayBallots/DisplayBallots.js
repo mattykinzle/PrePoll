@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Row, Card, ListGroup, Button, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Col, Row, Card, ListGroup, Button, ToggleButtonGroup, ToggleButton, Container } from 'react-bootstrap';
 import Modal from '../Modal/Modal';
 import API from "../../utils/API";
 import "./style.css";
@@ -26,6 +26,7 @@ function DisplayBallot(props) {
   const [choice, setChoice] = useState(null);
   const [electionChoice, setElectionChoice] = useState(null);
   const [candidateChoice, setCandidateChoice] = useState(null);
+  const [candidateArr, setCandidateArr] = useState([]);
 
   // this is to keep track of how the page is rendered, and display purposes
   const [tempNotes, setTempNotes] = useState(props.initialNotes);
@@ -35,14 +36,13 @@ function DisplayBallot(props) {
 
   //setTempNotes(...tempNotes, index: newValue )
 
-  // Updates our values if prop values change
-  useEffect(() => {
-    setTempNotes(props.initialNotes);
-  }, [props.initialNotes])
-
   useEffect(() => {
     setTempChoices(props.initialChoices);
   }, [props.initialChoices])
+
+  useEffect(() => {
+    setTempNotes(props.initialNotes);
+  }, [props.initialNotes])
 
   // Modal/Notes
 
@@ -117,30 +117,29 @@ function DisplayBallot(props) {
 
   return (
     <div>
-      <Modal displayModal={displayModal} closeModal={closeModal}
-        electionId={electionId} office={office} noteArr={noteArr}
-        note={note} updateNote={updateNote} saveNote={saveNote}
-        handleNoteChange={handleNoteChange} setNote={setNote}
-        passedNotes={tempNotes} setTempNotes={setTempNotes}
-        noteIndex={noteIndex} noteId={noteId}>
-      </Modal>
-      <Row>
-
-        <Col md={10} style={{ display: 'contents' }}>
-          {
-            props.elections.map((element, a) => (
-
-              <Card key={a} style={{ width: '50%', display: 'inline-block' }}>
-
-                <Card.Body>
-                  <Card.Title style={{ fontSize: '20px' }}>
-                    Election for {element.Election.office}
-                  </Card.Title>
-                  <Card.Subtitle
-                  >{(element.Election.county) ?
-                    (element.Election.county + ' COUNTY') : ''}
-                  </Card.Subtitle>
-                  <Card.Text>
+      <Container>
+        <Modal displayModal={displayModal} closeModal={closeModal}
+          electionId={electionId} office={office} noteArr={noteArr}
+          note={note} updateNote={updateNote} saveNote={saveNote}
+          handleNoteChange={handleNoteChange} setNote={setNote}
+          passedNotes={tempNotes} setTempNotes={setTempNotes}
+          noteIndex={noteIndex} noteId={noteId}
+          candidates={candidateArr}>
+        </Modal>
+        <Row>
+          <Col md="10" style={{ display: 'contents' }}>
+            {
+              props.elections.map((element, a) => (
+                <Card key={a} style={{ width: '50%', display: 'inline-block' }}>
+                  <Card.Body>
+                    <Card.Title style={{ fontSize: '20px' }}>
+                      Election for {element.Election.office}
+                    </Card.Title>
+                    <Card.Subtitle
+                    >{(element.Election.county) ?
+                      (element.Election.county + ' COUNTY') : ''}
+                    </Card.Subtitle>
+                    <Card.Text>
                     <ToggleButtonGroup vertical type="radio" name={`${a}`} value={tempChoices[a]} onChange={handleChoiceChange}>
                       {element.Election.Candidates.map((candidateEl) => (
                         <ToggleButton className="candidateBtn" id={"option" + candidateEl.id} variant="info" value={candidateEl.id} onClick={(e) => {
@@ -152,26 +151,28 @@ function DisplayBallot(props) {
                           <span>{candidateEl.party} </span></ToggleButton>
                       ))}
                     </ToggleButtonGroup>
-                    <Button color="success" onClick={() => {
-                      setElectionId(element.ElectionId);
-                      setOffice(element.Election.office);
-                      setNoteId((element.Election.Notes.length !== 0) ? element.Election.Notes[0].id : 0);
-                      setNoteArr(element.Election.Notes);  //this is an array...
-                      setTempNotes(props.initialNotes);
-                      setNoteIndex(a);
-                      //setNote((element.Election.Notes.length !== 0) ? element.Election.Notes[0].noteText : '');
-                      setNote(tempNotes[a])
-                      openModal();
-                    }}>
-                      Candidate Notes
+                      <Button color="success" onClick={() => {
+                        setCandidateArr(element.Election.Candidates);
+                        setElectionId(element.ElectionId);
+                        setOffice(element.Election.office);
+                        setNoteId((element.Election.Notes.length !== 0) ? element.Election.Notes[0].id : 0);
+                        setNoteArr(element.Election.Notes);  //this is an array...
+                        //setTempNotes(props.initialNotes);
+                        setNoteIndex(a);
+                        //setNote((element.Election.Notes.length !== 0) ? element.Election.Notes[0].noteText : '');
+                        setNote(tempNotes[a]);
+                        openModal();
+                      }}>
+                        Candidate Notes
                    </Button>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            ))
-          }
-        </Col>
-      </Row>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              ))
+            }
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
