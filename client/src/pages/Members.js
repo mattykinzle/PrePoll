@@ -29,6 +29,7 @@ function Members() {
   const [userSenateDistrict, setUserSenateDistrict] = useState('');
   const [userBallot, setUserBallot] = useState([]);
   const [initialNotes, setInitialNotes] = useState([]);
+  const [initialChoices, setInitialChoices] = useState([]);
   const [key, setKey] = useState('ballot');
 
 
@@ -52,11 +53,23 @@ function Members() {
           setUserBallot([...response.data]);
           console.log(response.data);
 
+          let tempArr = [];
+          let tempChoicesArr = [];
 
-          let tempArr = response.data.map(element => {
-            return (element.Election.Notes.length !== 0) ? element.Election.Notes[0].noteText : '';
+          response.data.forEach(element => {
+            tempArr.push((element.Election.Notes.length !== 0) ? element.Election.Notes[0].noteText : '');
+            tempChoicesArr.push((element.Election.Choices.length !== 0) ? element.Election.Choices[0].CandidateId : null);
           });
+
+          // let tempArr = response.data.map(element => {
+          //   return (element.Election.Notes.length !== 0) ? element.Election.Notes[0].noteText : '';
+          // });
           setInitialNotes(tempArr);
+          setInitialChoices(tempChoicesArr);
+
+
+
+
 
 
         })
@@ -112,12 +125,12 @@ function Members() {
 
 
             <TabPanel>
-              <DisplayBallots elections={userBallot} initialNotes={initialNotes} />
+              <DisplayBallots elections={userBallot} initialNotes={initialNotes} initialChoices={initialChoices} />
             </TabPanel>
             <TabPanel>
               <SavedArticles />
             </TabPanel>
-            
+
             <TabPanel>
               <StateCharts />
             </TabPanel>
