@@ -93,6 +93,24 @@ export default {
         })
     },
 
+
+    choiceSave: (choice) => {
+        return axios.post('/api/saveChoice', choice);
+
+    },
+
+    choiceUpdate: (choice) => {
+        return axios.put("/api/updateChoice", choice);
+    },
+
+    choiceDelete: (choice) => {
+        return axios.delete("/api/deleteChoice", {
+            params: {
+                id: choice.id
+            }
+        })
+    },
+
     saved: function () {
         return axios.get("/api/saved")
     },

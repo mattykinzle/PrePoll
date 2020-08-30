@@ -281,6 +281,50 @@ module.exports = function (app) {
     })
   });
 
+  //Route to save election choice
+  app.post('/api/saveChoice', function (req, res) {
+    db.Choice.create({
+      CandidateId: req.body.candidateId,
+      ElectionId: req.body.ElectionId,
+      UserId: req.user.id
+    })
+      .then(function (results) {
+        res.json(results);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  });
+
+  //Route to update election choice
+  app.put('/api/updateChoice', function (req, res) {
+    db.Choice.update({
+      CandidateId: req.body.choice
+    }, {
+      where: {
+        id: req.body.id
+      }
+    })
+      .then(function (results) {
+        res.json(results);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  });
+
+  //Route to delete election choice
+  app.delete("/api/deleteChoice", function (req, res) {
+    db.Choice.destroy({
+      where: { id: req.params.id }
+    }).then((response) => {
+      console.log(response);
+      res.end();
+    }).catch(err => {
+      res.status(err.status).send(err.message);
+    })
+  });
+
 
 
   //Individual routes for each type of office
