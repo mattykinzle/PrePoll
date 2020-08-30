@@ -22,6 +22,7 @@ function StateCharts() {
     const [healthcare, setHealthcare] = useState([]);
     const [police, setPolice] = useState([]);
     const [highways, setHighways] = useState([]);
+    const [revenue, setRevenue] = useState([]);
 
     useEffect(() => {
 
@@ -51,10 +52,10 @@ function StateCharts() {
                 {
                     data: [d[0].insured, d[0].uninsured],
                     backgroundColor: [
-                        '#021b45',
-                        '#d90429'
+                        '#1D3557',
+                        '#C81927'
                     ],
-                    borderWidth: 3
+                    borderWidth: 2
                 }
             ]
         });
@@ -64,8 +65,8 @@ function StateCharts() {
                 {
                     data: [d[0].employed, d[0].unemployed],
                     backgroundColor: [
-                        '#021b45',
-                        '#d90429'
+                        '#1D3557',
+                        '#C81927'
                     ],
                     borderWidth: 3
                 }
@@ -80,7 +81,7 @@ function StateCharts() {
             datasets: [{
                 label: 'Education Funding',
                 data: [b[4].education, b[3].education, b[2].education, b[1].education, b[0].education],
-                backgroundColor: ['#021b45', '#021b45', '#021b45', '#021b45', '#021b45'],
+                backgroundColor: ['#1D3557', '#1D3557', '#1D3557', '#1D3557', '#1D3557'],
                 borderWidth: 3
             }],
         });
@@ -91,7 +92,8 @@ function StateCharts() {
             datasets: [{
                 label: 'Healthcare Funding',
                 data: [b[4].hospitalsHealth, b[3].hospitalsHealth, b[2].hospitalsHealth, b[1].hospitalsHealth, b[0].hospitalsHealth],
-                backgroundColor: ['#d90429', '#d90429', '#d90429', '#d90429', '#d90429'],
+
+                backgroundColor: ['#457B9D', '#457B9D', '#457B9D', '#457B9D', '#457B9D'],
                 borderWidth: 3
             }],
         })
@@ -101,7 +103,7 @@ function StateCharts() {
             datasets: [{
                 label: 'Police and Corrections Funding',
                 data: [b[4].policeCorrections, b[3].policeCorrections, b[2].policeCorrections, b[1].policeCorrections, b[0].policeCorrections],
-                backgroundColor: ['#d90429', '#d90429', '#d90429', '#d90429', '#d90429'],
+                backgroundColor: ['#457B9D', '#457B9D', '#457B9D', '#457B9D', '#457B9D'],
                 borderWidth: 3
             }],
         })
@@ -111,10 +113,20 @@ function StateCharts() {
             datasets: [{
                 label: 'Highway and Infrastructure Funding',
                 data: [b[4].highways, b[3].highways, b[2].highways, b[1].highways, b[0].highways],
-                backgroundColor: ['#021b45', '#021b45', '#021b45', '#021b45', '#021b45'],
+                backgroundColor: ['#1D3557', '#1D3557', '#1D3557', '#1D3557', '#1D3557'],
                 borderWidth: 3
             }],
 
+        })
+
+        setRevenue({
+            labels: ['2014', '2015', '2016', '2017', '2018'],
+            datasets: [{
+                label: 'Total funding over 5 years',
+                data: [b[4].totalRevenue, b[3].totalRevenue, b[2].totalRevenue, b[1].totalRevenue, b[0].totalRevenue],
+                backgroundColor: ['#C81927', '#C81927', '#C81927', '#C81927', '#C81927'],
+                borderWidth: 3
+            }],
         })
     };
 
@@ -132,7 +144,7 @@ function StateCharts() {
             <Container>
                 <Row>
                     <div className="chart">
-                        <Col md="6">
+                        <Col md={6}>
                             <Doughnut
                                 data={EchartData}
                                 options={{
@@ -145,7 +157,7 @@ function StateCharts() {
                                     legend: {
                                         display: true,
                                         position: "bottom",
-                                        fontSize: 15,
+                                        fontSize: 25,
                                         fontColor: "#021b45"
                                     },
                                     responsive: true,
@@ -156,7 +168,7 @@ function StateCharts() {
                         </Col>
                     </div>
                     <div className="dchart">
-                        <Col md="6">
+                        <Col md={6}>
                             <Doughnut
                                 data={IchartData}
                                 options={{
@@ -178,7 +190,32 @@ function StateCharts() {
                         </Col>
                     </div>
                 </Row>
+                <Row>
+                    <div className='bchart'>
+                        <Col md={3}></Col>
+                        <Col md={6}>
+                            <Bar
+                                data={revenue}
+                                options={{
+                                    title: {
+                                        display: true,
+                                        text: "State of Texas Total Funds 2014-2018",
+                                        fontSize: 25,
+                                        fontColor: "#021b45"
+                                    },
+                                    legend: {
+                                        display: true,
+                                        position: "bottom"
+                                    },
+                                    responsive: true,
+                                    maintainAspectRatio: true,
 
+                                }}
+
+                            />
+                        </Col>
+                    </div>
+                </Row>
                 <Row>
                     <div className='bchart'>
                         <Col md="6" >

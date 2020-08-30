@@ -100,8 +100,8 @@ function Census() {
                 {
                     data: [e[0].insured, e[0].uninsured],
                     backgroundColor: [
-                        '#021b45',
-                        '#d90429'
+                        '#1D3557',
+                        '#C81927'
                     ],
                     borderWidth: 3
                 }
@@ -113,8 +113,8 @@ function Census() {
                 {
                     data: [e[0].employed, e[0].unemployed],
                     backgroundColor: [
-                        '#021b45',
-                        '#d90429'
+                        '#1D3557',
+                        '#C81927'
                     ],
                     borderWidth: 3
                 }
@@ -128,8 +128,8 @@ function Census() {
                 {
                     data: [e[0].medianmaleincome, e[0].medianfemaleincome],
                     backgroundColor: [
-                        '#021b45',
-                        '#d90429'
+                        '#1D3557',
+                        '#C81927'
                     ],
                     borderWidth: 3
                 }
@@ -142,19 +142,19 @@ function Census() {
                 {
                     data: [e[0].Agricultureforestryfishingandhuntingandmining, e[0].Construction, e[0].Manufacturing, e[0].Wholesaletrade, e[0].Retailtrade, e[0].Transportationandwarehousingandutilities, e[0].Information, e[0].Financeandinsuranceandrealestateandrentalandleasing, e[0].ScientificManagementAdministrativeWastemanagementservices, e[0].Educationalservicesandhealthcareandsocialassistance, e[0].Artsentertainmentandrecreationandaccommodationandfoodservices, e[0].Otherservicesexceptpublicadministration, e[0].Publicadministration],
                     backgroundColor: [
-                        '#021b45',
-                        '#d90429',
-                        '#021b45',
-                        '#d90429',
-                        '#021b45',
-                        '#d90429',
-                        '#021b45',
-                        '#d90429',
-                        '#021b45',
-                        '#d90429',
-                        '#021b45',
-                        '#d90429',
-                        '#021b45'
+                        '#1D3557',
+                        '#457B9D',
+                        '#1D3557',
+                        '#457B9D',
+                        '#1D3557',
+                        '#457B9D',
+                        '#1D3557',
+                        '#457B9D',
+                        '#1D3557',
+                        '#457B9D',
+                        '#1D3557',
+                        '#457B9D',
+                        '#1D3557'
                     ],
                     borderWidth: 3
                 }
