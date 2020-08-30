@@ -220,6 +220,10 @@ module.exports = function (app) {
           model: db.Note,
           where: { UserId: req.query.id },
           required: false
+        }, {
+          model: db.Choice,
+          where: { UserId: req.query.id },
+          required: false
         }]
       }]
     }
