@@ -8,16 +8,6 @@ import "./style.css";
 
 function DisplayBallot(props) {
 
-  // let tempArr = [];
-  // let tempChoicesArr = [];
-
-  // props.elections.forEach(element => {
-  //   tempArr.push((element.Election.Notes.length !== 0) ? element.Election.Notes[0].noteText : '');
-  //   tempChoicesArr.push((element.Election.Choices.length !== 0) ? element.Election.Choices[0].CandidateId : null);
-  // });
-
-  // console.log(tempChoicesArr);
-
   //Display ballot will keep track if the modal is showing or not...
   // props.elections --> is the array
 
@@ -28,7 +18,6 @@ function DisplayBallot(props) {
 
   const [displayModal, setDisplayModal] = useState(false);
   const [electionId, setElectionId] = useState(1);
-  const [electionChoiceId, setElectionChoiceId] = useState(null);
   const [office, setOffice] = useState('');
   const [noteId, setNoteId] = useState(0);
   const [noteArr, setNoteArr] = useState([]);
@@ -44,10 +33,9 @@ function DisplayBallot(props) {
   const [noteIndex, setNoteIndex] = useState(0);
   const [choiceIndex, setChoiceIndex] = useState(0);
 
-  const testArray = [2, null, 39];
-
   //setTempNotes(...tempNotes, index: newValue )
 
+  // Updates our values if prop values change
   useEffect(() => {
     setTempNotes(props.initialNotes);
   }, [props.initialNotes])
@@ -56,6 +44,7 @@ function DisplayBallot(props) {
     setTempChoices(props.initialChoices);
   }, [props.initialChoices])
 
+  // Modal/Notes
 
   const openModal = () => {
     setDisplayModal(true);
@@ -92,18 +81,15 @@ function DisplayBallot(props) {
     setNote(event.target.value);
   }
 
-  const handleChoiceClick = (electionInput, candidateInput) => {
-    console.log(electionInput, candidateInput);
-    // setChoice(val[1]);
-    // setChoiceIndex(val[0]);
+  // Choices
+
+  const handleChoiceClick = (e) => {
+    console.log(e);
   }
 
+  // Triggers when the value within a button toggle group changes
   const handleChoiceChange = (val) => {
-    // console.log(val, event.target);
-    // console.log(val, parseInt(event.target.name));
-    // let elec = parseInt(event.target.name);
     setChoice(val);
-
     console.log(val, choice, electionChoice, choiceIndex);
     let choiceObj = {
       CandidateId: val,
@@ -113,10 +99,9 @@ function DisplayBallot(props) {
     tempChoices[choiceIndex] = val;
   }
 
-
   const updateChoice = (choiceObj) => {
     API.choiceUpdate(choiceObj).then(response => {
-      console.log('Choice updated');
+      console.log('Choice updated - E: ' + choiceObj.ElectionId + ' C: ' + choiceObj.CandidateId);
     }).catch(error => {
       console.log(error);
     })
@@ -124,7 +109,7 @@ function DisplayBallot(props) {
 
   const saveChoice = (choiceObj) => {
     API.choiceSave(choiceObj).then(response => {
-      console.log('Choice Saved');
+      console.log('Choice Saved - E: ' + choiceObj.ElectionId + ' C: ' + choiceObj.CandidateId);
     }).catch(error => {
       console.log(error);
     })
@@ -156,18 +141,11 @@ function DisplayBallot(props) {
                     (element.Election.county + ' COUNTY') : ''}
                   </Card.Subtitle>
                   <Card.Text>
-                    {/* <ListGroup>
-                      {element.Election.Candidates.map((race) => (
-                        <ListGroup.Item>{race.candidate} -
-                          <span>{race.party} </span></ListGroup.Item>
-                      ))}
-                    </ListGroup> */}
                     <ToggleButtonGroup vertical type="radio" name={`${a}`} value={tempChoices[a]} onChange={handleChoiceChange}>
                       {element.Election.Candidates.map((candidateEl) => (
                         <ToggleButton className="candidateBtn" id={"option" + candidateEl.id} variant="info" value={candidateEl.id} onClick={(e) => {
-                          // console.log(e.target, e.eventPhase);
-                          // handleChoiceClick(element.ElectionId, e.target.value);
-                          console.log(element.Election.id, a);
+                          // handleChoiceClick(e);
+                          // console.log(element.Election.id, a);
                           setElectionChoice(element.Election.id);
                           setChoiceIndex(a);
                         }}>{candidateEl.candidate} -
