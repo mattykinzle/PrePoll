@@ -24,15 +24,20 @@
 }
 
 .close{
+  padding-right:10px;
   color:#aaaaaa;
   float:right;
-  font-size:25px;
+  font-size:30px;
   font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: #000;
+  color: rgb(153, 1, 1);
   text-decoration: none;
   cursor:pointer;
+}
+
+.party{
+  font-size: 14px;
 }
