@@ -25,6 +25,7 @@ function Charts(userCounty) {
 
     const [theCounty, settheCounty] = useState();
 
+
     // const localCounty = JSON.stringify(userCounty) + ' County'
     // console.log(localCounty)
     useEffect(() => {
@@ -166,6 +167,29 @@ function Charts(userCounty) {
                         </Col>
                     } */}
                     </div>
+                </Row>
+                <Row>
+                    <Col md="6">
+                        <Doughnut
+                            // censusData={censusData.data}
+                            data={MFchartData}
+                            options={{
+                                title: {
+                                    display: true,
+                                    text: "Median Male Income vs. Median Female Income",
+                                    fontSize: 25,
+                                    fontColor: "#021b45"
+                                },
+                                legend: {
+                                    display: true,
+                                    position: "bottom"
+                                },
+                                responsive: true,
+                                maintainAspectRatio: true,
+
+                            }}
+                        />
+                    </Col>
                 </Row>
             </Container>
 

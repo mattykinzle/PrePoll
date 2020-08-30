@@ -7,12 +7,24 @@
 .searchCounty{
     display: flex;
     justify-content: center;
-    width: 150px;
+    width: 165px;
+    height: 30px;
     margin-top: 10px;
+    border-radius: 5%;
     background-color: #a3a4a5;
     border-color: #a3a4a5;
     color: #021b45;
 
+}
+.Echart {
+    margin-left: 300px;
+}
+.infoCard {
+    text-align: center;
+    padding: 10px;
+    background-color: #f1faee;
+    border-radius: 5px;
+    margin-top: 20px;
 }
 .searchCounty:hover {
     background-color: #d90429;
@@ -37,8 +49,7 @@
     margin: 45px;
 }
 .rawNumbers {
-    /* display: flex;
-    justify-content: center; */
+    text-align: center;
     
 }
 .population{
@@ -66,5 +77,11 @@
 }
 .disclaimerContainer{
     text-align: center; 
+    margin-top: 30px;
+}
+Row {
+    align-content: center;
+}
+.Industry {
     margin-top: 30px;
 }

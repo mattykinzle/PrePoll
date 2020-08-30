@@ -132,7 +132,7 @@ function StateCharts() {
             <Container>
                 <Row>
                     <div className="chart">
-                        <Col md={6}>
+                        <Col md="6">
                             <Doughnut
                                 data={EchartData}
                                 options={{
@@ -156,7 +156,7 @@ function StateCharts() {
                         </Col>
                     </div>
                     <div className="dchart">
-                        <Col md={6}>
+                        <Col md="6">
                             <Doughnut
                                 data={IchartData}
                                 options={{
@@ -181,7 +181,7 @@ function StateCharts() {
 
                 <Row>
                     <div className='bchart'>
-                        <Col md={6}>
+                        <Col md="6" >
                             <Bar
                                 data={education}
                                 options={{
@@ -204,7 +204,7 @@ function StateCharts() {
                         </Col>
                     </div>
                     <div className='bchart'>
-                        <Col md={6}>
+                        <Col md="6">
                             <Bar
                                 data={healthcare}
                                 options={{
@@ -229,7 +229,7 @@ function StateCharts() {
                 </Row>
                 <Row>
                     <div className='bchart'>
-                        <Col md={6}>
+                        <Col md="6">
                             <Bar
                                 data={police}
                                 options={{
@@ -253,7 +253,7 @@ function StateCharts() {
                         </Col >
                     </div>
                     <div className='bchart'>
-                        <Col md={6}>
+                        <Col md="6">
                             <Bar
                                 data={highways}
                                 options={{
@@ -278,6 +278,13 @@ function StateCharts() {
                     </div>
                 </Row>
             </Container>
+            <Row>
+                <Col md={12}>
+                    <Container className="disclaimerContainer">
+                        <div><p className="disclaimer"> *All the data presented here is sourced from the acs census data collected in 2018</p></div>
+                    </Container>
+                </Col>
+            </Row>
 
         </>
     )

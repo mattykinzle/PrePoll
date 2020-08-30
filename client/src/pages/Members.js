@@ -79,7 +79,8 @@ function Members() {
           style={{
             padding: "10px",
             backgroundColor: "#f1faee",
-            borderRadius: "5px"
+            borderRadius: "5px",
+            textAlign: "center"
           }}>
 
           <Col>
@@ -117,7 +118,7 @@ function Members() {
             <TabPanel>
               <SavedArticles />
             </TabPanel>
-            
+
             <TabPanel>
               <StateCharts />
             </TabPanel>
