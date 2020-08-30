@@ -2,11 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Col, Row, Card, ListGroup, Button, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import Modal from '../Modal/Modal';
 import API from "../../utils/API";
+import "./style.css";
 
 
 
 function DisplayBallot(props) {
 
+  // let tempArr = [];
+  // let tempChoicesArr = [];
+
+  // props.elections.forEach(element => {
+  //   tempArr.push((element.Election.Notes.length !== 0) ? element.Election.Notes[0].noteText : '');
+  //   tempChoicesArr.push((element.Election.Choices.length !== 0) ? element.Election.Choices[0].CandidateId : null);
+  // });
+
+  // console.log(tempChoicesArr);
 
   //Display ballot will keep track if the modal is showing or not...
   // props.elections --> is the array
@@ -25,6 +35,7 @@ function DisplayBallot(props) {
   const [note, setNote] = useState('');
   const [choiceArr, setChoiceArr] = useState([]);
   const [choice, setChoice] = useState(null);
+  const [electionChoice, setElectionChoice] = useState(null);
   const [candidateChoice, setCandidateChoice] = useState(null);
 
   // this is to keep track of how the page is rendered, and display purposes
@@ -81,36 +92,43 @@ function DisplayBallot(props) {
     setNote(event.target.value);
   }
 
-  const handleChoiceChange = (val) => {
-    console.log(val);
+  const handleChoiceClick = (electionInput, candidateInput) => {
+    console.log(electionInput, candidateInput);
     // setChoice(val[1]);
     // setChoiceIndex(val[0]);
-    setChoice(val);
-    setChoiceIndex(2);
   }
 
-  // const updateChoice = () => {
-  //   let choiceObj = {
-  //     CandidateId: choiceId
-  //   };
-  //   API.choiceUpdate(choiceObj).then(response => {
-  //     console.log('Choice updated');
-  //   }).catch(error => {
-  //     console.log(error);
-  //   })
-  // };
+  const handleChoiceChange = (val) => {
+    // console.log(val, event.target);
+    // console.log(val, parseInt(event.target.name));
+    // let elec = parseInt(event.target.name);
+    setChoice(val);
 
-  // const saveChoice = () => {
-  //   let choiceObj = {
-  //     CandidateId: candidateId,
-  //     ElectionId: electionChoiceId
-  //   };
-  //   API.choiceSave(choiceObj).then(response => {
-  //     console.log('choice Saved');
-  //   }).catch(error => {
-  //     console.log(error);
-  //   })
-  // }
+    console.log(val, choice, electionChoice, choiceIndex);
+    let choiceObj = {
+      CandidateId: val,
+      ElectionId: electionChoice
+    };
+    (tempChoices[choiceIndex] !== null) ? updateChoice(choiceObj) : saveChoice(choiceObj);
+    tempChoices[choiceIndex] = val;
+  }
+
+
+  const updateChoice = (choiceObj) => {
+    API.choiceUpdate(choiceObj).then(response => {
+      console.log('Choice updated');
+    }).catch(error => {
+      console.log(error);
+    })
+  };
+
+  const saveChoice = (choiceObj) => {
+    API.choiceSave(choiceObj).then(response => {
+      console.log('Choice Saved');
+    }).catch(error => {
+      console.log(error);
+    })
+  }
 
   return (
     <div>
@@ -123,7 +141,7 @@ function DisplayBallot(props) {
       </Modal>
       <Row>
 
-        <Col md="10" style={{ display: 'contents' }}>
+        <Col md={10} style={{ display: 'contents' }}>
           {
             props.elections.map((element, a) => (
 
@@ -144,9 +162,15 @@ function DisplayBallot(props) {
                           <span>{race.party} </span></ListGroup.Item>
                       ))}
                     </ListGroup> */}
-                    <ToggleButtonGroup type="radio" name={"options" + a} defaultValue={testArray[a]} onChange={handleChoiceChange}>
+                    <ToggleButtonGroup vertical type="radio" name={`${a}`} value={tempChoices[a]} onChange={handleChoiceChange}>
                       {element.Election.Candidates.map((candidateEl) => (
-                        <ToggleButton value={candidateEl.id}>{candidateEl.candidate} -
+                        <ToggleButton className="candidateBtn" id={"option" + candidateEl.id} variant="info" value={candidateEl.id} onClick={(e) => {
+                          // console.log(e.target, e.eventPhase);
+                          // handleChoiceClick(element.ElectionId, e.target.value);
+                          console.log(element.Election.id, a);
+                          setElectionChoice(element.Election.id);
+                          setChoiceIndex(a);
+                        }}>{candidateEl.candidate} -
                           <span>{candidateEl.party} </span></ToggleButton>
                       ))}
                     </ToggleButtonGroup>
