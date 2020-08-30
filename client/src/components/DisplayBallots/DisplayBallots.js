@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Row, Card, ListGroup, Button } from 'react-bootstrap';
+import { Col, Row, Card, ListGroup, Button, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import Modal from '../Modal/Modal';
 import API from "../../utils/API";
 
@@ -13,27 +13,37 @@ function DisplayBallot(props) {
 
   //I need to know what to display with the modal, and 
   // create an array of all notes and functions to update temp
-  
+
 
 
   const [displayModal, setDisplayModal] = useState(false);
   const [electionId, setElectionId] = useState(1);
+  const [electionChoiceId, setElectionChoiceId] = useState(null);
   const [office, setOffice] = useState('');
   const [noteId, setNoteId] = useState(0);
   const [noteArr, setNoteArr] = useState([]);
   const [note, setNote] = useState('');
+  const [choiceArr, setChoiceArr] = useState([]);
+  const [choice, setChoice] = useState(null);
   const [candidateChoice, setCandidateChoice] = useState(null);
 
   // this is to keep track of how the page is rendered, and display purposes
   const [tempNotes, setTempNotes] = useState(props.initialNotes);
+  const [tempChoices, setTempChoices] = useState(props.initialChoices);
   const [noteIndex, setNoteIndex] = useState(0);
+  const [choiceIndex, setChoiceIndex] = useState(0);
+
+  const testArray = [2, null, 39];
 
   //setTempNotes(...tempNotes, index: newValue )
 
-  useEffect(()=> {
+  useEffect(() => {
     setTempNotes(props.initialNotes);
-  },[props.initialNotes])
+  }, [props.initialNotes])
 
+  useEffect(() => {
+    setTempChoices(props.initialChoices);
+  }, [props.initialChoices])
 
 
   const openModal = () => {
@@ -54,7 +64,7 @@ function DisplayBallot(props) {
       console.log(error);
     })
   };
-  
+
   const saveNote = () => {
     let noteObj = {
       noteText: note,
@@ -71,6 +81,37 @@ function DisplayBallot(props) {
     setNote(event.target.value);
   }
 
+  const handleChoiceChange = (val) => {
+    console.log(val);
+    // setChoice(val[1]);
+    // setChoiceIndex(val[0]);
+    setChoice(val);
+    setChoiceIndex(2);
+  }
+
+  // const updateChoice = () => {
+  //   let choiceObj = {
+  //     CandidateId: choiceId
+  //   };
+  //   API.choiceUpdate(choiceObj).then(response => {
+  //     console.log('Choice updated');
+  //   }).catch(error => {
+  //     console.log(error);
+  //   })
+  // };
+
+  // const saveChoice = () => {
+  //   let choiceObj = {
+  //     CandidateId: candidateId,
+  //     ElectionId: electionChoiceId
+  //   };
+  //   API.choiceSave(choiceObj).then(response => {
+  //     console.log('choice Saved');
+  //   }).catch(error => {
+  //     console.log(error);
+  //   })
+  // }
+
   return (
     <div>
       <Modal displayModal={displayModal} closeModal={closeModal}
@@ -81,6 +122,7 @@ function DisplayBallot(props) {
         noteIndex={noteIndex} noteId={noteId}>
       </Modal>
       <Row>
+
         <Col md="10" style={{ display: 'contents' }}>
           {
             props.elections.map((element, a) => (
@@ -96,12 +138,18 @@ function DisplayBallot(props) {
                     (element.Election.county + ' COUNTY') : ''}
                   </Card.Subtitle>
                   <Card.Text>
-                    <ListGroup>
+                    {/* <ListGroup>
                       {element.Election.Candidates.map((race) => (
                         <ListGroup.Item>{race.candidate} -
                           <span>{race.party} </span></ListGroup.Item>
                       ))}
-                    </ListGroup>
+                    </ListGroup> */}
+                    <ToggleButtonGroup type="radio" name={"options" + a} defaultValue={testArray[a]} onChange={handleChoiceChange}>
+                      {element.Election.Candidates.map((candidateEl) => (
+                        <ToggleButton value={candidateEl.id}>{candidateEl.candidate} -
+                          <span>{candidateEl.party} </span></ToggleButton>
+                      ))}
+                    </ToggleButtonGroup>
                     <Button color="success" onClick={() => {
                       setElectionId(element.ElectionId);
                       setOffice(element.Election.office);
