@@ -14,6 +14,7 @@ module.exports = function (sequelize, DataTypes) {
   Election.associate = function (models) {
     Election.hasMany(models.Candidate);
     Election.hasMany(models.Note);
+    Election.hasMany(models.Choice);
     Election.belongsToMany(models.User, { through: 'User_Election' });
     Election.hasMany(models.User_Election);
   };

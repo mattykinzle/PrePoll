@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Row, Card, ListGroup, Button } from 'react-bootstrap';
+import { Col, Row, Card, ListGroup, Button, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import Modal from '../Modal/Modal';
 import API from "../../utils/API";
+import "./style.css";
 
 
 
 function DisplayBallot(props) {
-
 
   //Display ballot will keep track if the modal is showing or not...
   // props.elections --> is the array
 
   //I need to know what to display with the modal, and 
   // create an array of all notes and functions to update temp
-  
+
 
 
   const [displayModal, setDisplayModal] = useState(false);
@@ -22,19 +22,29 @@ function DisplayBallot(props) {
   const [noteId, setNoteId] = useState(0);
   const [noteArr, setNoteArr] = useState([]);
   const [note, setNote] = useState('');
+  const [choiceArr, setChoiceArr] = useState([]);
+  const [choice, setChoice] = useState(null);
+  const [electionChoice, setElectionChoice] = useState(null);
   const [candidateChoice, setCandidateChoice] = useState(null);
 
   // this is to keep track of how the page is rendered, and display purposes
   const [tempNotes, setTempNotes] = useState(props.initialNotes);
+  const [tempChoices, setTempChoices] = useState(props.initialChoices);
   const [noteIndex, setNoteIndex] = useState(0);
+  const [choiceIndex, setChoiceIndex] = useState(0);
 
   //setTempNotes(...tempNotes, index: newValue )
 
-  useEffect(()=> {
+  // Updates our values if prop values change
+  useEffect(() => {
     setTempNotes(props.initialNotes);
-  },[props.initialNotes])
+  }, [props.initialNotes])
 
+  useEffect(() => {
+    setTempChoices(props.initialChoices);
+  }, [props.initialChoices])
 
+  // Modal/Notes
 
   const openModal = () => {
     setDisplayModal(true);
@@ -54,7 +64,7 @@ function DisplayBallot(props) {
       console.log(error);
     })
   };
-  
+
   const saveNote = () => {
     let noteObj = {
       noteText: note,
@@ -71,6 +81,40 @@ function DisplayBallot(props) {
     setNote(event.target.value);
   }
 
+  // Choices
+
+  const handleChoiceClick = (e) => {
+    console.log(e);
+  }
+
+  // Triggers when the value within a button toggle group changes
+  const handleChoiceChange = (val) => {
+    setChoice(val);
+    console.log(val, choice, electionChoice, choiceIndex);
+    let choiceObj = {
+      CandidateId: val,
+      ElectionId: electionChoice
+    };
+    (tempChoices[choiceIndex] !== null) ? updateChoice(choiceObj) : saveChoice(choiceObj);
+    tempChoices[choiceIndex] = val;
+  }
+
+  const updateChoice = (choiceObj) => {
+    API.choiceUpdate(choiceObj).then(response => {
+      console.log('Choice updated - E: ' + choiceObj.ElectionId + ' C: ' + choiceObj.CandidateId);
+    }).catch(error => {
+      console.log(error);
+    })
+  };
+
+  const saveChoice = (choiceObj) => {
+    API.choiceSave(choiceObj).then(response => {
+      console.log('Choice Saved - E: ' + choiceObj.ElectionId + ' C: ' + choiceObj.CandidateId);
+    }).catch(error => {
+      console.log(error);
+    })
+  }
+
   return (
     <div>
       <Modal displayModal={displayModal} closeModal={closeModal}
@@ -81,7 +125,8 @@ function DisplayBallot(props) {
         noteIndex={noteIndex} noteId={noteId}>
       </Modal>
       <Row>
-        <Col md="10" style={{ display: 'contents' }}>
+
+        <Col md={10} style={{ display: 'contents' }}>
           {
             props.elections.map((element, a) => (
 
@@ -96,12 +141,17 @@ function DisplayBallot(props) {
                     (element.Election.county + ' COUNTY') : ''}
                   </Card.Subtitle>
                   <Card.Text>
-                    <ListGroup>
-                      {element.Election.Candidates.map((race) => (
-                        <ListGroup.Item>{race.candidate} -
-                          <span>{race.party} </span></ListGroup.Item>
+                    <ToggleButtonGroup vertical type="radio" name={`${a}`} value={tempChoices[a]} onChange={handleChoiceChange}>
+                      {element.Election.Candidates.map((candidateEl) => (
+                        <ToggleButton className="candidateBtn" id={"option" + candidateEl.id} variant="info" value={candidateEl.id} onClick={(e) => {
+                          // handleChoiceClick(e);
+                          // console.log(element.Election.id, a);
+                          setElectionChoice(element.Election.id);
+                          setChoiceIndex(a);
+                        }}>{candidateEl.candidate} -
+                          <span>{candidateEl.party} </span></ToggleButton>
                       ))}
-                    </ListGroup>
+                    </ToggleButtonGroup>
                     <Button color="success" onClick={() => {
                       setElectionId(element.ElectionId);
                       setOffice(element.Election.office);
