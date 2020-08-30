@@ -1,3 +1,14 @@
 input {
     display: none
 }
+
+.ballotCard {
+    padding: 10px;
+    background-color: #f1faee;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.notesBtn {
+    margin-left: 10px;
+}
