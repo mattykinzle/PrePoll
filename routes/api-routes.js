@@ -283,8 +283,9 @@ module.exports = function (app) {
 
   //Route to save election choice
   app.post('/api/saveChoice', function (req, res) {
+    console.log(req);
     db.Choice.create({
-      CandidateId: req.body.candidateId,
+      CandidateId: req.body.CandidateId,
       ElectionId: req.body.ElectionId,
       UserId: req.user.id
     })
@@ -302,7 +303,8 @@ module.exports = function (app) {
       CandidateId: req.body.choice
     }, {
       where: {
-        id: req.body.id
+        ElectionId: req.body.ElectionId,
+        UserId: req.user.id
       }
     })
       .then(function (results) {
