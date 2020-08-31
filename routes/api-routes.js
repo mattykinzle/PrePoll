@@ -118,7 +118,7 @@ module.exports = function (app) {
     }).then(response => {
       res.json(response.data)
     }).catch(err => {
-      res.status(err.status).send(err.message)
+      res.status(500).send(err.message)
     })
   });
 
@@ -278,9 +278,9 @@ module.exports = function (app) {
   app.delete("/api/deleteNote", function (req, res) {
     console.log(req.user.id);
     db.Note.destroy({
-      where: { 
+      where: {
         ElectionId: req.query.ElectionId,
-        UserId: req.user.id 
+        UserId: req.user.id
       }
     }).then((response) => {
       console.log(response);
