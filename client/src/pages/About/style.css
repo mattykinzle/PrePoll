@@ -1,7 +1,7 @@
 .aboutCard {
     margin-bottom: 10px;
     padding: 10px;
-    background-color: white;
+    background-color: #f1faee;
     border-radius: 10px;
     text-align: center;
 }
@@ -16,9 +16,13 @@
 }
 
 .aboutHeader {
-    background-color: white;
+    background-color: #f1faee;
     text-align: center;
     border-radius: 10px;
     margin-top: 10px;
     width: 50%;
+}
+
+.gitBtn {
+    margin-left: 10px;
 }
