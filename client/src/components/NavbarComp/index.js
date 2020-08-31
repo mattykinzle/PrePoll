@@ -14,6 +14,8 @@ import About from "../../pages/About/index";
 import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
 import "./style.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCopyright } from '@fortawesome/free-solid-svg-icons'
 
 function NavbarComp() {
 
@@ -51,11 +53,39 @@ function NavbarComp() {
 
     return (
         <div>
-            <Router>
-                {/* Componetize this into Nav */}
-                <div>
-                    {!state.userLoggedIn ? (
-                        // if the user is Logged out
+
+            {/* Componetize this into Nav */}
+            <div>
+                {!state.userLoggedIn ? (
+                    // if the user is Logged out
+                    <>
+                        <Navbar>
+
+                            <Link className="navbar-brand" to="/">
+                                <span className="red">P</span>
+                                <span className="white">r</span>
+                                <span className="blue">e</span>
+                                <span className="red">P</span>
+                                <span className="white">o</span>
+                                <span className="blue">l</span>
+                                <span className="red">l</span>
+                                <span style={{ fontSize: '18px' }}> - Texas </span>
+                            </Link>
+
+                            <Nav className="ml-md-auto justify-content-end">
+                                <Link className="nav-link active" to="/news">News</Link>
+                                <Link className="nav-link active" to="/info"> | Info</Link>
+                                <Link className="nav-link active" to="/history"> | History</Link>
+                                <Link className="log-link active" to="/login"> Login /</Link>
+                                <Link className="log-link active" to="/signup"> Sign Up</Link>
+                            </Nav>
+
+                        </Navbar>
+
+
+                    </>
+                ) : (
+                        // If the user is Logged In
                         <>
                             <Navbar>
 
@@ -67,84 +97,62 @@ function NavbarComp() {
                                     <span className="white">o</span>
                                     <span className="blue">l</span>
                                     <span className="red">l</span>
-                                    <span style={{fontSize:'18px'}}> - Texas </span>
+                                    <span style={{ fontSize: '18px' }}> - Texas </span>
                                 </Link>
 
                                 <Nav className="ml-md-auto justify-content-end">
                                     <Link className="nav-link active" to="/news">News</Link>
                                     <Link className="nav-link active" to="/info"> | Info</Link>
                                     <Link className="nav-link active" to="/history"> | History</Link>
-                                    <Link className="log-link active" to="/login"> Login /</Link>
-                                    <Link className="log-link active" to="/signup"> Sign Up</Link>
+                                    <Link className="log-link active" to="/members"> Members /</Link><a className="log-link" onClick={() => logout()} href="/"> Logout</a>
+
                                 </Nav>
 
                             </Navbar>
                         </>
+                    )
+                }
+            </div>
+            <Switch>
+                {
+
+                    !state.userLoggedIn ? (
+                        // These routes are only avaialable to LOGGED OUT users
+                        <>
+                            <Route exact path="/" component={Landing} />
+                            <Route exact path="/login" component={Login} />
+                            <Route exact path="/signup" component={Signup} />
+                            <Route exact path="/info" component={CensusInfo} />
+                            <Route exact path="/about" component={About} />
+                            <Route exact path={["/members", "/vote", "/news", "/landing", "/history"]}>
+                                {/* If you are logged in, going to the login/signup page will take you to the members page */}
+                                <Redirect to="/login" />
+                            </Route>
+
+                        </>
                     ) : (
-                            // If the user is Logged In
+                            // These routes are only available to LOGGED IN users
                             <>
-                                <Navbar>
-
-                                    <Link className="navbar-brand" to="/">
-                                        <span className="red">P</span>
-                                        <span className="white">r</span>
-                                        <span className="blue">e</span>
-                                        <span className="red">P</span>
-                                        <span className="white">o</span>
-                                        <span className="blue">l</span>
-                                        <span className="red">l</span>
-                                        <span style={{fontSize:'18px'}}> - Texas </span>
-                                    </Link>
-
-                                    <Nav className="ml-md-auto justify-content-end">
-                                        <Link className="nav-link active" to="/news">News</Link>
-                                        <Link className="nav-link active" to="/info"> | Info</Link>
-                                        <Link className="nav-link active" to="/history"> | History</Link>
-                                        <Link className="log-link active" to="/members"> Members /</Link><a className="log-link" onClick={() => logout()} href="/"> Logout</a>
-
-                                    </Nav>
-
-                                </Navbar>
-                            </>
-                        )
-                    }
-                </div>
-                <Switch>
-                    {
-
-                        !state.userLoggedIn ? (
-                            // These routes are only avaialable to LOGGED OUT users
-                            <>
-                                <Route exact path="/" component={Landing} />
-                                <Route exact path="/login" component={Login} />
-                                <Route exact path="/signup" component={Signup} />
-                                <Route exact path="/info" component={CensusInfo} />
-                                <Route exact path={["/members", "/vote", "/news", "/landing", "/history"]}>
+                                <Route exact path={["/login", "/signup"]}>
                                     {/* If you are logged in, going to the login/signup page will take you to the members page */}
-                                    <Redirect to="/login" />
+                                    <Redirect to="/members" />
                                 </Route>
+                                <Route exact path="/" component={Landing} />
+                                <Route exact path="/members" component={Members} />
+                                <Route exact path="/news" component={News} />
+                                <Route exact path="/info" component={CensusInfo} />
+                                <Route exact path="/history" component={History} />
+                                <Route exact path="/about" component={About} />
 
                             </>
-                        ) : (
-                                // These routes are only available to LOGGED IN users
-                                <>
-                                    <Route exact path={["/login", "/signup"]}>
-                                        {/* If you are logged in, going to the login/signup page will take you to the members page */}
-                                        <Redirect to="/members" />
-                                    </Route>
-                                    <Route exact path="/" component={Landing} />
-                                    <Route exact path="/members" component={Members} />
-                                    <Route exact path="/news" component={News} />
-                                    <Route exact path="/info" component={CensusInfo} />
-                                    <Route exact path="/history" component={History} />
 
-                                </>
-                            )
-                    }
-                </Switch>
-                <Route exact path="/about" component={About} />
 
-            </Router>
+                        )
+                }
+            </Switch>
+
+
+
         </div>
     )
 }

@@ -11,13 +11,13 @@ function Footer() {
 
     return (
         <div>
-            <Router>
-                <Nav className="footer">
-                    <Link className="foot-link active" to="/">PrePoll</Link>
-                    <Link className="foot-link active" to="/about"> | About</Link>
-                    <Link className="foot-link active"> | <FontAwesomeIcon icon={faCopyright} /> 2020</Link>
-                </Nav>
-            </Router>
+            {/* <Router> */}
+            <Nav className="footer">
+                <Link className="foot-link active" to="/">PrePoll</Link>
+                <Link className="foot-link active" to="/about"> | About</Link>
+                <Link className="foot-link active"> | <FontAwesomeIcon icon={faCopyright} /> 2020</Link>
+            </Nav>
+            {/* </Router> */}
         </div>
     )
 }
