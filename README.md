@@ -15,9 +15,10 @@ This is the first iteration of the Prepoll webapp. The purpose of this web appli
 * passport
 
 ### Front-End
-* react-geocode
-* react-google-autocomplete
-* react-google-maps
+* Bing Search API
+* Census API
+* Texas Capital API
+* react
 * react-bootstrap
 * react-chartjs-2
 * react-fontawesome
