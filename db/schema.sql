@@ -28,6 +28,19 @@ Create Table Censuscounties (
     uninsuredpme DECIMAL,
     belowpovertyline DECIMAL,
     belowpovertylinepme DECIMAL,
+    Agricultureforestryfishingandhuntingandmining INT,
+    Construction INT,
+    Manufacturing INT,
+    Wholesaletrade INT,
+    Retailtrade INT,
+    Transportationandwarehousingandutilities INT,
+    Information INT,
+    Financeandinsuranceandrealestateandrentalandleasing INT,
+    ScientificManagementAdministrativeWastemanagementservices INT,
+    Educationalservicesandhealthcareandsocialassistance INT,
+    Artsentertainmentandrecreationandaccommodationandfoodservices INT,
+    Otherservicesexceptpublicadministration INT,
+    Publicadministration INT,
     
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
 );

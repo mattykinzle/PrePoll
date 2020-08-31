@@ -10,6 +10,7 @@ import History from "../../pages/History";
 import Landing from "../../pages/Landing";
 import News from "../../pages/News";
 import CensusInfo from "../../pages/Info";
+import About from "../../pages/About/index";
 import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
 import "./style.css";
@@ -117,7 +118,8 @@ function NavbarComp() {
                                 <Route exact path="/" component={Landing} />
                                 <Route exact path="/login" component={Login} />
                                 <Route exact path="/signup" component={Signup} />
-                                <Route exact path={["/members", "/vote", "/news", "/info", "/landing", "/history"]}>
+                                <Route exact path="/info" component={CensusInfo} />
+                                <Route exact path={["/members", "/vote", "/news", "/landing", "/history"]}>
                                     {/* If you are logged in, going to the login/signup page will take you to the members page */}
                                     <Redirect to="/login" />
                                 </Route>
@@ -140,6 +142,7 @@ function NavbarComp() {
                             )
                     }
                 </Switch>
+                <Route exact path="/about" component={About} />
 
             </Router>
         </div>

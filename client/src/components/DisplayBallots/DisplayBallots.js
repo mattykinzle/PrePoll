@@ -138,13 +138,19 @@ function DisplayBallot(props) {
         candidates={candidateArr} deleteNote={deleteNote}
         setNoteArr={setNoteArr}>
       </Modal>
+
       <Container fluid>
+
         <Col md="12">
+
           <Row>
             {
               props.elections.map((element, a) => (
+
                 <Col md="6" key={a}>
+
                   <Card className="ballotCard" >
+
                     <Card.Body>
                       <Card.Title style={{ fontSize: '20px' }}>
                         Election for {element.Election.office}
@@ -166,7 +172,7 @@ function DisplayBallot(props) {
                           ))}
                         </ToggleButtonGroup>
                         <Button className="notesBtn" color="success" onClick={() => {
-                          setCandidateArr(element.Election.Candidates);
+                          setCandidateArr(element.Election.Candidates)
                           setElectionId(element.ElectionId);
                           setOffice(element.Election.office);
                           setNoteId((element.Election.Notes.length !== 0) ? element.Election.Notes[0].id : 0);
@@ -185,6 +191,7 @@ function DisplayBallot(props) {
             }
           </Row>
         </Col>
+
       </Container>
     </div>
   );

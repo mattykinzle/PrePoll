@@ -1,0 +1,28 @@
+.aboutCard {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f1faee;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.aboutImg {
+    border-radius: 10px;
+    width: 50%;
+}
+
+.aboutCol {
+    padding: 10px;
+}
+
+.aboutHeader {
+    background-color: #f1faee;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 50%;
+}
+
+.gitBtn {
+    margin-left: 10px;
+}
