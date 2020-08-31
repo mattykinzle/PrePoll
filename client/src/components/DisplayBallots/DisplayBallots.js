@@ -20,7 +20,7 @@ function DisplayBallot(props) {
   const [electionId, setElectionId] = useState(1);
   const [office, setOffice] = useState('');
   const [noteId, setNoteId] = useState(0);
-  const [noteArr, setNoteArr] = useState([]);
+  const [noteArr, setNoteArr] = useState(['']);
   const [note, setNote] = useState('');
   const [choiceArr, setChoiceArr] = useState([]);
   const [choice, setChoice] = useState(null);
@@ -56,13 +56,23 @@ function DisplayBallot(props) {
     let noteObj = {
       noteText: note,
       candidateChoice: candidateChoice,
-      id: noteId
-    }
+      ElectionId: electionId
+    };
     API.noteUpdate(noteObj).then(response => {
+      console.log(response);
       console.log('Note updated');
     }).catch(error => {
       console.log(error);
     })
+  };
+
+  const deleteNote = () => {
+   
+    API.noteDelete(electionId).then(response => {
+      console.log('Note deleted');
+    }).catch(error => {
+      console.log(error);
+    });
   };
 
   const saveNote = () => {
@@ -72,6 +82,8 @@ function DisplayBallot(props) {
       ElectionId: electionId
     };
     API.noteSave(noteObj).then(response => {
+      console.log(response.data.id);
+      setNoteId(response.data.id);
       console.log('Note Saved');
     }).catch(error => {
       console.log(error);
@@ -123,7 +135,8 @@ function DisplayBallot(props) {
         handleNoteChange={handleNoteChange} setNote={setNote}
         passedNotes={tempNotes} setTempNotes={setTempNotes}
         noteIndex={noteIndex} noteId={noteId}
-        candidates={candidateArr}>
+        candidates={candidateArr} deleteNote={deleteNote}
+        setNoteArr={setNoteArr}>
       </Modal>
 
       <Container fluid>
@@ -163,11 +176,9 @@ function DisplayBallot(props) {
                           setElectionId(element.ElectionId);
                           setOffice(element.Election.office);
                           setNoteId((element.Election.Notes.length !== 0) ? element.Election.Notes[0].id : 0);
-                          setNoteArr(element.Election.Notes);  //this is an array...
-                          setTempNotes(props.initialNotes);
                           setNoteIndex(a);
-                          //setNote((element.Election.Notes.length !== 0) ? element.Election.Notes[0].noteText : '');
-                          setNote(tempNotes[a])
+                          setNote(tempNotes[a]);
+                          setNoteArr([tempNotes[a]]);
                           openModal();
                         }}>
                           Candidate Notes
