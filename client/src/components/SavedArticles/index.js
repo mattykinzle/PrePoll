@@ -28,6 +28,7 @@ function SavedArticles() {
 
     function handleArticleDelete(event) {
         event.preventDefault();
+        console.log(event.target);
         let saveId = saveArticles[event.target.id].id;
         API.articleDelete(saveId)
             .then(() => articlesSaved())
@@ -59,7 +60,7 @@ function SavedArticles() {
                                     className="delArtBtn"
                                     onClick={handleArticleDelete}
                                 >
-                                    <FontAwesomeIcon icon={faTrashAlt} />
+                                    Delete <FontAwesomeIcon icon={faTrashAlt} />
                                 </Button>
 
 
