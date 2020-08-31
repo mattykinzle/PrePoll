@@ -204,6 +204,10 @@ module.exports = function (app) {
     })
   });
 
+  // app.get("/api/notes", (req, res) => {
+  //   db.Note.findAll
+  // })
+
   // GET BALLOT
   app.get("/api/ballotTable", (req, res) => {
     db.User_Election.findAll({
@@ -258,7 +262,8 @@ module.exports = function (app) {
       candidateId: req.body.candidateChoice,
     }, {
       where: {
-        id: req.body.id
+        ElectionId: req.body.ElectionId,
+        UserId: req.user.id
       }
     })
       .then(function (results) {
@@ -271,8 +276,12 @@ module.exports = function (app) {
 
   //Route to delete election note
   app.delete("/api/deleteNote", function (req, res) {
+    console.log(req.user.id);
     db.Note.destroy({
-      where: { id: req.params.id }
+      where: { 
+        ElectionId: req.query.ElectionId,
+        UserId: req.user.id 
+      }
     }).then((response) => {
       console.log(response);
       res.end();

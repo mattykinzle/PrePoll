@@ -17,8 +17,8 @@ const Modal = props => {
     let updatedNotes = [...props.passedNotes];
     updatedNotes.splice(props.noteIndex, 1, props.note);
     props.setTempNotes(updatedNotes);
-    props.closeModal();
 
+    props.closeModal();
   }
 
   const saveNote = () => {
@@ -28,14 +28,22 @@ const Modal = props => {
     console.log(props.passedNotes)
     console.log('Save');
     props.saveNote();
-    //also setTempNotes
+    let updatedNoteArr = [props.note];
+    console.log(updatedNoteArr);
+    props.setNoteArr(updatedNoteArr);
+
     props.closeModal();
   }
 
   const deleteNote = () => {
     console.log('Delete');
+    props.deleteNote();
+    let updatedNotes = [...props.passedNotes];
+    updatedNotes.splice(props.noteIndex, 1, '');
+    props.setTempNotes(updatedNotes);
     props.closeModal();
   }
+
 
   return (
     <div className="modal" onClick={closeModal} style={divStyle} >
@@ -46,7 +54,7 @@ const Modal = props => {
             <Form.Label>Notes on the candidates for: {props.office}.</Form.Label>
             <ListGroup>
               {props.candidates.map((race) => (
-                <ListGroup.Item>{race.candidate} - 
+                <ListGroup.Item>{race.candidate} -
                   <span className='party'> {race.party}</span></ListGroup.Item>
               ))}
             </ListGroup>
@@ -55,16 +63,16 @@ const Modal = props => {
 
             </Form.Control>
           </Form.Group>
-          {(props.noteArr.length !== 0) ?
-          <div>
-            <Button style={{marginRight:'15px'}} onClick={updateNote} 
-            variant='info'>Update Note </Button>
-            <Button onClick={deleteNote} variant='danger'>Delete Note </Button>
-          </div>
-          :
-          <div>
-            <Button onClick={saveNote} variant='success'>Save Note </Button>
-          </div>
+          {(props.noteArr[0].length !== 0) ?
+            <div>
+              <Button style={{ marginRight: '15px' }} onClick={updateNote}
+                variant='info'>Update Note </Button>
+              <Button onClick={deleteNote} variant='danger'>Delete Note </Button>
+            </div>
+            :
+            <div>
+              <Button onClick={saveNote} variant='success'>Save Note </Button>
+            </div>
           }
 
         </Form>

@@ -85,10 +85,10 @@ export default {
         return axios.put("/api/updateNote", note);
     },
 
-    noteDelete: (note) => {
+    noteDelete: (eId) => {
         return axios.delete("/api/deleteNote", {
             params: {
-                id: note.id
+                ElectionId: eId
             }
         })
     },
