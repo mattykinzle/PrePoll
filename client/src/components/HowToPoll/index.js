@@ -38,7 +38,7 @@ function HowToPoll() {
                                         <Card.Text>
                                             Keep up to date on the most recent election news or search for topics that interest you.
                                 </Card.Text>
-                                        <Link to="/news" type="button" className="mt-auto howToBtn" variant="primary">Go somewhere</Link>
+                                        <Link to="/news" type="button" className="mt-auto howToBtn" variant="primary">Get the News</Link>
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -49,23 +49,9 @@ function HowToPoll() {
                                     <Card.Body className="d-flex flex-column">
                                         <Card.Title className="howToTitle">Know your County</Card.Title>
                                         <Card.Text>
-                                            The US census provides many great insights on how your counti holding up! Click below to see what's good in the hood.
+                                            The US census provides many great insights on how your county is holding up! Click below to see what's good in the hood.
                                 </Card.Text>
-                                        <Link to="/info" type="button" className="mt-auto howToBtn" variant="primary">Go somewhere</Link>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-
-                            <Col md="5" className="featureCol">
-                                <Card className="howToCard h-100">
-                                    <Card.Img variant="top" src={ballotPic} className="howToPic" />
-                                    <Card.Body className="d-flex flex-column">
-                                        <Card.Title className="howToTitle">Card Title</Card.Title>
-                                        <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
-                                </Card.Text>
-                                        <Link to="/vote" type="button" className="mt-auto howToBtn" variant="primary">Go somewhere</Link>
+                                        <Link to="/info" type="button" className="mt-auto howToBtn" variant="primary">Get Census Info</Link>
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -74,15 +60,26 @@ function HowToPoll() {
                                 <Card className="howToCard h-100">
                                     <Card.Img variant="top" src={historyPic} className="howToPic" />
                                     <Card.Body className="d-flex flex-column">
-                                        <Card.Title className="howToTitle">Card Title</Card.Title>
+                                        <Card.Title className="howToTitle">The History of Voting</Card.Title>
                                         <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
+                                            Learn more about the history of voting in our country. 
                                 </Card.Text>
-                                        <Link to="/history" type="button" className="mt-auto howToBtn" variant="primary">Go somewhere</Link>
+                                        <Link to="/history" type="button" className="mt-auto howToBtn" variant="primary">Learn the History</Link>
                                     </Card.Body>
                                 </Card>
+                            </Col>
 
+                             <Col md="5" className="featureCol">
+                                <Card className="howToCard h-100">
+                                    <Card.Img variant="top" src={ballotPic} className="howToPic" />
+                                    <Card.Body className="d-flex flex-column">
+                                        <Card.Title className="howToTitle">Get Your Ballot</Card.Title>
+                                        <Card.Text>
+                                            Log into your account to get data based on where you live. 
+                                </Card.Text>
+                                        <Link to="/members" type="button" className="mt-auto howToBtn" variant="primary">Log in</Link>
+                                    </Card.Body>
+                                </Card>
                             </Col>
 
                         </Row>

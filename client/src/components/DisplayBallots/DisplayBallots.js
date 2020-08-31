@@ -67,7 +67,7 @@ function DisplayBallot(props) {
   };
 
   const deleteNote = () => {
-   
+
     API.noteDelete(electionId).then(response => {
       console.log('Note deleted');
     }).catch(error => {
@@ -140,58 +140,55 @@ function DisplayBallot(props) {
       </Modal>
 
       <Container fluid>
+        {
+          props.elections.map((element, a) => (
 
-        <Col md="12">
+            <Row className="justify-content-md-center" key={a}>
+              <Col xs='6'>
+                <Card className="ballotCard" >
 
-          <Row>
-            {
-              props.elections.map((element, a) => (
+                  <Card.Body>
+                    <Card.Title style={{ fontSize: '20px' }}>
+                      Election for {element.Election.office}
+                    </Card.Title>
+                    <Card.Subtitle
+                    >{(element.Election.county) ?
+                      (element.Election.county + ' COUNTY') : ''}
+                    </Card.Subtitle>
+                    <Card.Text>
+                      <ToggleButtonGroup vertical type="radio" name={`${a}`} value={tempChoices[a]} onChange={handleChoiceChange}>
+                        {element.Election.Candidates.map((candidateEl) => (
+                          <ToggleButton className="candidateBtn" id={"option" + candidateEl.id} variant="info" value={candidateEl.id} onClick={(e) => {
+                            // handleChoiceClick(e);
+                            // console.log(element.Election.id, a);
+                            setElectionChoice(element.Election.id);
+                            setChoiceIndex(a);
+                          }}>{candidateEl.candidate} -
+                            <span>{candidateEl.party} </span></ToggleButton>
+                        ))}
+                      </ToggleButtonGroup>
 
-                <Col md="6" key={a}>
-
-                  <Card className="ballotCard" >
-
-                    <Card.Body>
-                      <Card.Title style={{ fontSize: '20px' }}>
-                        Election for {element.Election.office}
-                      </Card.Title>
-                      <Card.Subtitle
-                      >{(element.Election.county) ?
-                        (element.Election.county + ' COUNTY') : ''}
-                      </Card.Subtitle>
-                      <Card.Text>
-                        <ToggleButtonGroup vertical type="radio" name={`${a}`} value={tempChoices[a]} onChange={handleChoiceChange}>
-                          {element.Election.Candidates.map((candidateEl) => (
-                            <ToggleButton className="candidateBtn" id={"option" + candidateEl.id} variant="info" value={candidateEl.id} onClick={(e) => {
-                              // handleChoiceClick(e);
-                              // console.log(element.Election.id, a);
-                              setElectionChoice(element.Election.id);
-                              setChoiceIndex(a);
-                            }}>{candidateEl.candidate} -
-                              <span>{candidateEl.party} </span></ToggleButton>
-                          ))}
-                        </ToggleButtonGroup>
-                        <Button className="notesBtn" color="success" onClick={() => {
-                          setCandidateArr(element.Election.Candidates)
-                          setElectionId(element.ElectionId);
-                          setOffice(element.Election.office);
-                          setNoteId((element.Election.Notes.length !== 0) ? element.Election.Notes[0].id : 0);
-                          setNoteIndex(a);
-                          setNote(tempNotes[a]);
-                          setNoteArr([tempNotes[a]]);
-                          openModal();
-                        }}>
-                          Candidate Notes
-                          </Button>
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))
-            }
-          </Row>
-        </Col>
-
+                    </Card.Text>
+                    <Card.Footer>
+                      <Button className="notesBtn" variant="danger" onClick={() => {
+                        setCandidateArr(element.Election.Candidates)
+                        setElectionId(element.ElectionId);
+                        setOffice(element.Election.office);
+                        setNoteId((element.Election.Notes.length !== 0) ? element.Election.Notes[0].id : 0);
+                        setNoteIndex(a);
+                        setNote(tempNotes[a]);
+                        setNoteArr([tempNotes[a]]);
+                        openModal();
+                      }}>
+                        Candidate Notes
+                        </Button>
+                    </Card.Footer>
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
+          ))
+        }
       </Container>
     </div>
   );
