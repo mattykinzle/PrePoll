@@ -171,7 +171,11 @@ module.exports = function (app) {
   });
 
   app.get("/api/saved", (req, res) => {
-    db.Article.findAll()
+    db.Article.findAll({
+      where: {
+        UserId: req.user.id
+      }
+    })
       .then(response => {
         res.json(response);
       }).catch(err => {
