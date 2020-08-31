@@ -67,11 +67,11 @@ function NavbarComp() {
                                     <span className="white">o</span>
                                     <span className="blue">l</span>
                                     <span className="red">l</span>
+                                    <span style={{fontSize:'18px'}}> - Texas </span>
                                 </Link>
 
                                 <Nav className="ml-md-auto justify-content-end">
                                     <Link className="nav-link active" to="/news">News</Link>
-                                    <Link className="nav-link active" to="/vote"> | Vote</Link>
                                     <Link className="nav-link active" to="/info"> | Info</Link>
                                     <Link className="nav-link active" to="/history"> | History</Link>
                                     <Link className="log-link active" to="/login"> Login /</Link>
@@ -93,11 +93,11 @@ function NavbarComp() {
                                         <span className="white">o</span>
                                         <span className="blue">l</span>
                                         <span className="red">l</span>
+                                        <span style={{fontSize:'18px'}}> - Texas </span>
                                     </Link>
 
                                     <Nav className="ml-md-auto justify-content-end">
                                         <Link className="nav-link active" to="/news">News</Link>
-                                        <Link className="nav-link active" to="/vote"> | Vote</Link>
                                         <Link className="nav-link active" to="/info"> | Info</Link>
                                         <Link className="nav-link active" to="/history"> | History</Link>
                                         <Link className="log-link active" to="/members"> Members /</Link><a className="log-link" onClick={() => logout()} href="/"> Logout</a>

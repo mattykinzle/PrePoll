@@ -95,7 +95,8 @@ function Signup() {
             <div className="row" style={{ justifyContent: "center" }}>
                 <div className="col-md-6 col-md-offset-3">
                     <h2>Sign Up Form</h2>
-                    <form className="signup" onSubmit={handleSignup}>
+                    <h4> * Currently only accepting address in the state of Texas.</h4>
+                    <form className="signup" onSubmit={handleSignup} style={{marginTop:'25px'}}>
                         {/* First Name  */}
                         <div className="form-group">
                             <label htmlFor="inputFirstName">First Name</label>
